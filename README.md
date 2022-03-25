@@ -1,5 +1,5 @@
 # Hatchetflash
-The official repository for my free open source indie game named "Hatchetflash".
+The official repository for my free somewhat open source indie game named "Hatchetflash".
 
 Hatchetflash is a 3D voxel sandbox survival game, focused mostly on mining and scientific realism but with fantastical elements. Ideally, the player's health will use a system of injuries and malnutrition (as opposed to a health bar of sorts;) worlds will generate landscapes, ores and substances based on actual geology, and meshing fantastical elements (such as fantastical creatures, magic-esk "azure" and weird additional landscapes) will still have a grounding in (made up but consistant) science within the game's universe.
 
