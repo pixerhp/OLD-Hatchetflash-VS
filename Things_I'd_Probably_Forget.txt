@@ -1,0 +1,2 @@
+Regarding whether during debug you want the console window to stay after you close the game's window:
+"To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops."

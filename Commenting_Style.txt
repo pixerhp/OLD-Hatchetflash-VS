@@ -1,0 +1,33 @@
+=-= =-= =-= =-= =-= =-= =-=
+
+The commenting style I typed and planned out in one of my google docs, hopefully to keep comments consistant.
+
+=-= =-= =-= =-= =-= =-= =-=
+
+
+
+/* (name of file this code is in) description:
+*		(description of what the file does, and the importance and existence of the code that’s in here.)
+*/
+
+
+// COMMENTS IN ALL CAPS ARE TO NOT BE PERMANENT, AND INSTEAD SHOULD ONLY BE USED TO TEMPORARILY ALERT A DEV (PROBABLY MYSELF) TO COME BACK TO A THING OR AN IMMEDIATE PROBLEM WITH SHOULD BE RESOLVED ASAP, AND THEN BE DELETED.
+
+
+// this code does a thing.
+code(code);
+code(code, 1, 2, 3);
+
+
+/* (what this comment block is about)
+*       (stuff in the comment block)
+*/
+
+
+// and this does a thing, too.
+code(code); //no initial space in this comment
+code(code, 1, 2, 3); //(code input, runtime, always use 2, age of cereal)
+
+
+
+=-= =-= =-= =-= =-= =-= =-=

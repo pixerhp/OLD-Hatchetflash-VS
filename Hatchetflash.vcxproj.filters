@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Text Documents">
+      <UniqueIdentifier>{5be53ee6-5a89-4f76-99c2-da2ff4ae49e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -21,5 +24,13 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Things_I%27d_Probably_Forget.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
+    <Text Include="Commenting_Style.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
   </ItemGroup>
 </Project>
