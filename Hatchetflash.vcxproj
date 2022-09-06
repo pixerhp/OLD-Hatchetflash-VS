@@ -152,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Commenting_Style.txt" />
-    <Text Include="Things_I%27d_Probably_Forget.txt" />
+    <Text Include="Things_To_Remember.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
