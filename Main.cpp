@@ -41,7 +41,7 @@ GLuint indices[] =
 
 
 
-// Jfoxcode's function to resize the canvas when you resize the window.
+// Jcodefox's function to resize the canvas when you resize the window.
 void framebuffer_size_callback(GLFWwindow* window, int w, int h){
 	glViewport(0, 0, w, h);
 }
