@@ -58,9 +58,9 @@ int main()
 	}
 
 	// Maximizes the window before beginning to use it.
-	glfwSetFrameBufferSizeCallback(windows, framebuffer_size_callback);
 	glfwMaximizeWindow(window);
 	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	
 	// Loads GLAD so that it configures opengl, and error checks.
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
