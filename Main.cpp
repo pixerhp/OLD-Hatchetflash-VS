@@ -28,7 +28,9 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "   FragColor = vec4(0.32f, 0.56f, 0.80f, 1.0f);\n"
 "}\n\0";
 
-
+void framebuffer_size_callback(GLFWwindow* window, int width, int height){
+	glViewport(0, 0, width, height);
+}
 
 int main()
 {
@@ -56,6 +58,7 @@ int main()
 	}
 
 	// Maximizes the window before beginning to use it.
+	glfwSetFrameBufferSizeCallback(windows, framebuffer_size_callback);
 	glfwMaximizeWindow(window);
 	glfwMakeContextCurrent(window);
 	
