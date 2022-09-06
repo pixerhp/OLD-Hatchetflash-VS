@@ -40,7 +40,11 @@ int main()
 	glfwMakeContextCurrent(window);
 	
 	// Loads GLAD so that it configures opengl.
-	gladLoadGL();
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
+		std::cout << "Failed to initilize GLAD." << std::endl;
+		return -1;
+	}
+
 	// Specifies the viewport of opengl in the window.
 	glViewport(0, 0, monitorWidth, monitorHeight);
 
