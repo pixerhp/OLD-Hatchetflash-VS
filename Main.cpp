@@ -12,6 +12,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+
+
 // THIS SOURCE CODE STUFF WILL NOT STAY HERE BUT IS JUST HERE FOR NOW FOR TESTING.
 // Vertex Shader source code.
 const char* vertexShaderSource = "#version 330 core\n"
@@ -28,8 +30,11 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "   FragColor = vec4(0.32f, 0.56f, 0.80f, 1.0f);\n"
 "}\n\0";
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height){
-	glViewport(0, 0, width, height);
+
+
+// Jfoxcode's function to resize the canvas when you resize the window.
+void framebuffer_size_callback(GLFWwindow* window, int w, int h){
+	glViewport(0, 0, w, h);
 }
 
 int main()
@@ -48,7 +53,7 @@ int main()
 	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height;
 
 	// Creates the window. If the 4th argument is filled in with primaryMonitor, having the program open will use the entire direct monitor itself, going into fullscreen mode.
-	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash - Pre-Alpha", NULL, NULL); //(width, height, name, fullscreen monitor pointer, idk)
+	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash - Pre-Alpha", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	// (An error-checking if statement:)
 	if (window == NULL)
 	{
@@ -57,7 +62,7 @@ int main()
 		return -1;
 	}
 
-	// Maximizes the window before beginning to use it.
+	// Maximizes the window before beginning to use it, and then prepares a callback for resizing the canvas when you resize the window.
 	glfwMaximizeWindow(window);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -73,46 +78,37 @@ int main()
 
 
 
-	// Create Vertex Shader Object and get its reference
+	// Create Vertex Shader Object and get its reference, attach Vertex Shader source to the Vertex Shader Object, and compile the Vertex Shader into machine code.
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	// Attach Vertex Shader source to the Vertex Shader Object
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	// Compile the Vertex Shader into machine code
 	glCompileShader(vertexShader);
-
-	// Create Fragment Shader Object and get its reference
+	// Create Fragment Shader Object and get its reference, attach Fragment Shader source to the Fragment Shader Object, and compile the Vertex Shader into machine code.
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	// Attach Fragment Shader source to the Fragment Shader Object
 	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	// Compile the Vertex Shader into machine code
 	glCompileShader(fragmentShader);
-
-	// Create Shader Program Object and get its reference
+	// Create Shader Program Object and get its reference, attatches the Vertex and Fragment Shaders to the SP, and Wrap-up/Links all the shaders together into the SP.
 	GLuint shaderProgram = glCreateProgram();
-	// Attach the Vertex and Fragment Shaders to the Shader Program
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
-	// Wrap-up/Link all the shaders together into the Shader Program
 	glLinkProgram(shaderProgram);
-
-	// Delete the now useless Vertex and Fragment Shader objects
+	// Deletes the now useless Vertex and Fragment Shader objects.
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
 
 
-	// Vertices coordinates
+	// TRIANGL-ISH COORDINATES FOR TESTING.
 	GLfloat vertices[] =
 	{
-		-1.0f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
+		-1.0f, -1.73f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
+		0.0f, 0.0f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
 		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
 		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
 		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
 		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
 	};
 
-	// Indices for vertices order
+	// TRIANGL-ISH INDICES FOR TESTING.
 	GLuint indices[] =
 	{
 		0, 3, 5, // Lower left triangle
@@ -120,17 +116,17 @@ int main()
 		5, 4, 1 // Upper triangle
 	};
 
-	// Create reference containers for the Vartex Array Object, the Vertex Buffer Object, and the Element Buffer Object
-	GLuint VAO, VBO, EBO;
 
-	// Generate the VAO, VBO, and EBO with only 1 object each
+
+	// Create reference containers for the Vertex Array Object, the Vertex Buffer Object, and the Element Buffer Object.
+	GLuint VAO, VBO, EBO;
+	// Generate the VAO, VBO, and EBO with only 1 object each.
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 
-	// Make the VAO the current Vertex Array Object by binding it
+	// Make the VAO the current Vertex Array Object by binding it.
 	glBindVertexArray(VAO);
-
 	// Bind the VBO specifying it's a GL_ARRAY_BUFFER
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// Introduce the vertices into the VBO
@@ -150,8 +146,8 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	// Bind the EBO to 0 so that we don't accidentally modify it
-	// MAKE SURE TO UNBIND IT AFTER UNBINDING THE VAO, as the EBO is linked in the VAO
-	// This does not apply to the VBO because the VBO is already linked to the VAO during glVertexAttribPointer
+	// MAKE SURE TO UNBIND IT AFTER UNBINDING THE VAO, as the EBO is linked in the VAO.
+	// This does not apply to the VBO because the VBO is already linked to the VAO during glVertexAttribPointer.
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
@@ -166,12 +162,10 @@ int main()
 
 
 
-		// Tell OpenGL which Shader Program we want to use
+		// Tell OpenGL which Shader Program we want to use, binds the VAO, and draws the primitives.
 		glUseProgram(shaderProgram);
-		// Bind the VAO so OpenGL knows to use it
 		glBindVertexArray(VAO);
-		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); //(primitive type, # of indices, indices data type, index of indices)
 
 
 
