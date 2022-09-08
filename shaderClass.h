@@ -1,3 +1,9 @@
+/* shaderClass.cpp file description:
+* Defines the shader class, and states all of the functions that it will have.
+* (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO.)
+* (The functions for this class are definied in "shaderClass.cpp".)
+*/
+
 #ifndef SHADER_CLASS_H
 #define SHADER_CLASS_H
 
@@ -8,20 +14,21 @@
 #include<iostream>
 #include<cerrno>
 
+// States the existance of a function which reads the contents of a file.
 std::string get_file_contents(const char* filename);
 
 class Shader
 {
 public:
-	GLuint ID; //(Reference ID of the Shader Program)
-	// Constructor that builds the Shader Program from 2 different shaders
+	GLuint ID; //(ID reference of a Shader Class Object.)
+	// States a constructor which generates a Shader Program from 2 different shaders.
 	Shader(const char* vertexFile, const char* fragmentFile);
 
-	// Activates the Shader Program
+	// States the existence of some basic functions as defined in "shaderClass.cpp".
 	void Activate();
-	// Deletes the Shader Program
 	void Delete();
 };
 
+//Used in "shaderClass.cpp" for throwing a pretty recognizable error for when/if the shaderProgram can't read file contents properly.
 class ShaderNotFoundException{};
 #endif

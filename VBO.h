@@ -1,3 +1,9 @@
+/* VBO.h file description:
+* Defines the VBO class, and states all of the functions that it will have.
+* (VBO stands for "Vertex Buffer Object". VBOs contain information about the vertices of an object.)
+* (The functions for this class are definied in "VBO.cpp".)
+*/
+
 #ifndef VBO_CLASS_H
 #define VBO_CLASS_H
 
@@ -6,16 +12,13 @@
 class VBO
 {
 public:
-	// Reference ID of the Vertex Buffer Object
-	GLuint ID;
-	// Constructor that generates a Vertex Buffer Object and links it to vertices
+	GLuint ID; //(ID reference for a Vertex Buffer Object.)
+	// States a constructor which generates an Vertex Buffer Object and links it to it's vertices.
 	VBO(GLfloat* vertices, GLsizeiptr size);
 
-	// Binds the VBO
+	// States the existence of some basic functions as defined in "VBO.cpp".
 	void Bind();
-	// Unbinds the VBO
 	void Unbind();
-	// Deletes the VBO
 	void Delete();
 };
 #endif

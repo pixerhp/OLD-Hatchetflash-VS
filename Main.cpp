@@ -1,8 +1,10 @@
 /* Main.cpp file description:
-* The core of the program, contains code relating to:
-* - the window's functions;
+* The core of the program and the game, containing code relating to:
+* - The program's main functions;
+* - Code relating to the game's window;
+* - and Rendering calls.
 * 
-* (Will later contain code also for the main game loop.)
+* [Later on, this will also contain core loops of the game.]
 */
 
 // These 3 includes are necessary for 3D rendering and general glad/glfw window functions.
@@ -19,24 +21,22 @@
 #include "VBO.h"
 #include "EBO.h"
 
-
-
-// TRIANGL-ISH COORDINATES FOR TESTING.
+// Triangle-ish testing vertices.
 GLfloat vertices[] =
 {
-	-1.0f, -1.73f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
-	0.0f, 0.0f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
-	0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
-	-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
-	0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
-	0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
+	-1.0f, -1.73f * float(sqrt(3)) / 3, 0.0f, //Lower left corner vertex.
+	0.0f, 0.0f * float(sqrt(3)) / 3, 0.0f, //Lower right corner vertex.
+	0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, //Upper corner vertex.
+	-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, //Inner left vertex.
+	0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, //Inner right vertex.
+	0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f //Inner down vertex.
 };
-// TRIANGL-ISH INDICES FOR TESTING.
+// Triangle-ish testing indices.
 GLuint indices[] =
 {
-	0, 3, 5, // Lower left triangle
-	3, 2, 4, // Lower right triangle
-	5, 4, 1 // Upper triangle
+	0, 3, 5, //Lower left triangle.
+	3, 2, 4, //Lower right triangle.
+	5, 4, 1 //Upper equilateral triangle.
 };
 
 
@@ -45,6 +45,8 @@ GLuint indices[] =
 void framebuffer_size_callback(GLFWwindow* window, int w, int h){
 	glViewport(0, 0, w, h);
 }
+
+
 
 int main()
 {
@@ -87,23 +89,21 @@ int main()
 
 
 
-	// Generates Shader object using shaders defualt.vert and default.frag
+	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("default.vert", "default.frag");
 
-
-
-	// Generates Vertex Array Object and binds it
+	// Generates a Vertex Array Object and binds it.
 	VAO VAO1;
 	VAO1.Bind();
 
-	// Generates Vertex Buffer Object and links it to vertices
+	// Generates a Vertex Buffer Object and links it to the triangle-testing vertices.
 	VBO VBO1(vertices, sizeof(vertices));
-	// Generates Element Buffer Object and links it to indices
+	// Generates an Element Buffer Object and links it to the triangle-testing vertices.
 	EBO EBO1(indices, sizeof(indices));
 
-	// Links VBO to VAO
+	// Links the VBO to the VAO.
 	VAO1.LinkVBO(VBO1, 0);
-	// Unbind all to prevent accidentally modifying them
+	// Unbinds these to prevent accidentally modifying them later.
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
@@ -120,23 +120,22 @@ int main()
 
 
 
-		// Tell OpenGL which Shader Program we want to use
+		// Tells OpenGL which Shader Program we want to use, and binds the VAO so that OpenGL knows to use it.
 		shaderProgram.Activate();
-		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
-		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		// Draws the triangle-testing vertices.
+		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); //(primitives, number of indices, datatype of indices, index of indices)
 
 
 
-		//Swaps the windows back buffer canvas and it's front buffer canvas.
+		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
 
 		// Checks for window events.
 		glfwPollEvents();
 	}
 
-	// Delete all the objects we've created
+	// Cleanly deletes all of the created rendering-based objects.
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();

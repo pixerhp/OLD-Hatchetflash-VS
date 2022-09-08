@@ -1,33 +1,97 @@
-=-= =-= =-= =-= =-= =-= =-=
-
-The commenting style I typed and planned out in one of my google docs, hopefully to keep comments consistant.
-
-=-= =-= =-= =-= =-= =-= =-=
-
-
-
-/* (name of file this code is in) description:
-* (description of what the file does, and the importance and existence of the code that’s in here.)
+/* Commenting_Style.txt file description:
+* The official standard commenting style for Hatchetflash's code.
+* Written by Pixer Pinecone on 9/8/2022. (M/D/YYYY)
 */
 
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
 
-// COMMENTS IN ALL CAPS ARE TO NOT BE PERMANENT, AND INSTEAD SHOULD ONLY BE USED TO TEMPORARILY ALERT A DEV (PROBABLY MYSELF) TO COME BACK TO A THING OR AN IMMEDIATE PROBLEM WITH SHOULD BE RESOLVED ASAP, AND THEN BE DELETED.
+==> Most (if not all) code files should have a multi-line file description at the start of the file like this:
 
-
-// This code does a thing.
-code(code);
-code(code, 1, 2, 3);
-
-
-/* (what this comment block is about)
-* (stuff in the comment block)
+/* (Name) file descripton:
+* A comment talking about the file.
+* A comment about to refer to multiple things:
+* - List item #1;
+* - List item #2;
+* - and List item #3.
+* Regular comments can also be included after lists, (the order of things in the description is not very limited.)
 */
 
+{first line of code}
+{second line of code}
 
-// And this does a thing, too.
-code(code); //No initial space in this comment
-code(code, 1, 2, 3); //(code input, runtime, always use 2, age of cereal)
+=-=-=-=   =-=-=-=   =-=-=-=
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+
+==> If you want to say what a part of the code (1 or multuple lines) does, put a comment such as this on the line before all of the applicable:
+
+{not applicable code}
+
+{not applicable code}
+// Comment that begins with a capital letter at the start, and ends with proper punctuation.
+{applicable code for only #1}
+{applicable code for only #1}
+// A second comment that begins with a capital letter at the start, and ends with proper punctuation.
+{applicable code for only #2}
+{applicable code for only #2}
+
+{not applicable code}
+
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+
+==> If you want to specify the inputs of a function or make a small note about a particular line of code, put a comment after the code like this:
+
+{not applicable code}
+{applicable code} //A comment that starts with a capital letter but not a space, and ends with proper punctuation.
+{not applicable code}
+
+{not applicable code}
+
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+
+==> If you want to explain the functions of a particular function, class or contained very large swath of code, use a multi-line comment similar to file description ones:
+
+{not applicable code}
+
+{not applicable code}
+/* Explain quickly what is being described:
+* A comment talking about the code
+* A comment about to refer to multiple things:
+* - List item #1;
+* - List item #2;
+* - and List item #3.
+* Regular comments can also be included after lists, (the order of things in the description is not very limited.)
+*/
+{applicable code}
+{applicable code}
+
+{applicable code}
+{applicable code}
+{applicable code}
+
+{applicable code}
 
 
+{not applicable code, note there being more than one space before this.}
+{not applicable code}
 
-=-= =-= =-= =-= =-= =-= =-=
+{not applicable code}
+
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+
+==> If you want to make a very imperinant comment about anything, write it in all caps like this:
+
+// This comment is probably going to stay mostly the same in the code for a while.
+// THIS COMMENT RELATES TO SOMETHING THAT'S ACTIVELY BEING DEVELOPED/WORKED ON AND WON'T EXIST FOR VERY LONG.
+
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   
+=-=-=-=   =-=-=-=   =-=-=-=   

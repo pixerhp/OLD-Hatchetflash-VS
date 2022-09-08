@@ -1,3 +1,9 @@
+/* EBO.h file description:
+* Defines the EBO class, and states all of the functions that it will have.
+* (EBO stands for "Element Buffer Object". EBOs contain information about the indices of an object.)
+* (The functions for this class are definied in "EBO.cpp".)
+*/
+
 #ifndef EBO_CLASS_H
 #define EBO_CLASS_H
 
@@ -6,16 +12,13 @@
 class EBO
 {
 public:
-	// ID reference of Elements Buffer Object
-	GLuint ID;
-	// Constructor that generates a Elements Buffer Object and links it to indices
+	GLuint ID; //(ID reference of an Elements Buffer Object.)
+	// States a constructor which generates an Elements Buffer Object and links it to it's indices.
 	EBO(GLuint* indices, GLsizeiptr size);
 
-	// Binds the EBO
+	// States the existence of some basic functions as defined in "EBO.cpp".
 	void Bind();
-	// Unbinds the EBO
 	void Unbind();
-	// Deletes the EBO
 	void Delete();
 };
 #endif

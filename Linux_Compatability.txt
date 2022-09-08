@@ -5,4 +5,4 @@ For aid with Linux compatability, there have been some extra changes to the code
 =-= =-= =-= =-= =-= =-= =-=
 
 * #include -ing <cmath> in "Main.cpp".
-* Adding a build script to the availible files for aid with linux compiling.
+* Adding a build script to the availible files for aid with linux compiling. (Otherwise, shaderClass may not load correctly.)
