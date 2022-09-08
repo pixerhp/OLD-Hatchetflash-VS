@@ -18,5 +18,4 @@ public:
 	// Deletes the VBO
 	void Delete();
 };
-
 #endif
