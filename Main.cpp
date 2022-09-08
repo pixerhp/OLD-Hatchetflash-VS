@@ -7,36 +7,37 @@
 * [Later on, this will also contain core loops of the game.]
 */
 
-// These 3 includes are necessary for 3D rendering and general glad/glfw window functions.
+// These 3 includes are necessary for 3D rendering and general glad/glfw window functions:
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-// Linux needs this, VS automatically adds it.
+// Linux needs this, VS automatically adds it:
 #include <cmath>
 
-// Rendering header files
+// Used for texture-related things:
+#include <stb/stb_image.h>
+
+// Rendering-based header files:
+#include"Texture.h"
 #include "shaderClass.h"
 #include "VAO.h"
 #include "VBO.h"
 #include "EBO.h"
 
-// Triangle-ish testing vertices.
+// Texture-ish testing vertices.
 GLfloat vertices[] =
-{
-	-1.0f, -1.73f * float(sqrt(3)) / 3, 0.0f, //Lower left corner vertex.
-	0.0f, 0.0f * float(sqrt(3)) / 3, 0.0f, //Lower right corner vertex.
-	0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, //Upper corner vertex.
-	-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, //Inner left vertex.
-	0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, //Inner right vertex.
-	0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f //Inner down vertex.
+{ //     COORDINATES     /        COLORS      /   TexCoord  //
+	-0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Lower left corner
+	-0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Upper left corner
+	 0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Upper right corner
+	 0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Lower right corner
 };
-// Triangle-ish testing indices.
+// Texture-ish testing indices.
 GLuint indices[] =
 {
-	0, 3, 5, //Lower left triangle.
-	3, 2, 4, //Lower right triangle.
-	5, 4, 1 //Upper equilateral triangle.
+	0, 2, 1, // Upper triangle
+	0, 3, 2 // Lower triangle
 };
 
 
@@ -96,22 +97,34 @@ int main()
 	VAO VAO1;
 	VAO1.Bind();
 
-	// Generates a Vertex Buffer Object and links it to the triangle-testing vertices.
+	// Generates a Vertex Buffer Object and links it to vertices.
 	VBO VBO1(vertices, sizeof(vertices));
-	// Generates an Element Buffer Object and links it to the triangle-testing vertices.
+	// Generates an Element Buffer Object and links it to indices.
 	EBO EBO1(indices, sizeof(indices));
 
-	// Links the VBO to the VAO.
-	VAO1.LinkVBO(VBO1, 0);
-	// Unbinds these to prevent accidentally modifying them later.
+	// Links VBO attributes such as coordinates and colors to VAO.
+	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
+	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	// Unbinds all to prevent accidentally modifying them later.
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
 
+	// Gets ID of uniform called "scale"
+	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
+
+
+
+	// A texture for testing.
+	stbi_set_flip_vertically_on_load(true);
+	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	testingTexture.texUnit(shaderProgram, "tex0", 0);
+
 
 
 	// Specifies the base color that the window is cleared/drawn-over with.
-	glClearColor(0.08f, 0.14f, 0.20f, 1.0f);
+	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
@@ -120,11 +133,16 @@ int main()
 
 
 
-		// Tells OpenGL which Shader Program we want to use, and binds the VAO so that OpenGL knows to use it.
+		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
+		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
+		glUniform1f(uniID, 0.5f);
+		// Binds texture so that is appears in rendering
+		testingTexture.Bind();
+		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
-		// Draws the triangle-testing vertices.
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); //(primitives, number of indices, datatype of indices, index of indices)
+		// Draw primitives, number of indices, datatype of indices, index of indices
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 
 
@@ -139,6 +157,7 @@ int main()
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
+	testingTexture.Delete();
 	shaderProgram.Delete();
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);

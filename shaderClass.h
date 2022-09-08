@@ -27,8 +27,11 @@ public:
 	// States the existence of some basic functions as defined in "shaderClass.cpp".
 	void Activate();
 	void Delete();
+private:
+	// Checks if the different Shaders have compiled properly.
+	void compileErrors(unsigned int shader, const char* type);
 };
 
-//Used in "shaderClass.cpp" for throwing a pretty recognizable error for when/if the shaderProgram can't read file contents properly.
+//Used in "shaderClass.cpp" for linux for throwing a pretty recognizable error for when/if the shaderProgram can't read file contents properly.
 class ShaderNotFoundException{};
 #endif

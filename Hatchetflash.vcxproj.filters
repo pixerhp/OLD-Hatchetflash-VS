@@ -9,15 +9,18 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Text Documents">
       <UniqueIdentifier>{5be53ee6-5a89-4f76-99c2-da2ff4ae49e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders">
+    <Filter Include="Header Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Resource Files\Shaders">
       <UniqueIdentifier>{8e13216b-4a68-468f-a210-304d69d023d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Resource Files\Block_Textures">
+      <UniqueIdentifier>{b80333ab-2639-4290-90ba-3f2b9ead635d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +42,12 @@
     <ClCompile Include="EBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Things_To_Remember.txt">
@@ -53,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Header Files\Resource Files\Shaders</Filter>
     </None>
     <None Include="default.frag">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Header Files\Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -72,5 +81,13 @@
     <ClInclude Include="EBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Block_Textures\Album_2_Art.png">
+      <Filter>Header Files\Resource Files\Block_Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

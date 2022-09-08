@@ -18,7 +18,7 @@ public:
 	VAO();
 
 	// States the existence of a function which links a VBO to the VAO using a certain layout.
-	void LinkVBO(VBO& VBO, GLuint layout);
+	void LinkAttrib(VBO& VBO, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset);
 
 	// States the existence of some basic functions as defined in "VAO.cpp".
 	void Bind();
