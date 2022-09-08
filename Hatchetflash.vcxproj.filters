@@ -47,6 +47,9 @@
     <Text Include="Commenting_Style.txt">
       <Filter>Text Documents</Filter>
     </Text>
+    <Text Include="Linux_Compatability.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">

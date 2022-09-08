@@ -18,5 +18,4 @@ public:
 	// Deletes the EBO
 	void Delete();
 };
-
 #endif

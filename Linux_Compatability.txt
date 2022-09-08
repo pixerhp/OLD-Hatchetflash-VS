@@ -1,0 +1,8 @@
+=-= =-= =-= =-= =-= =-= =-=
+
+For aid with Linux compatability, there have been some extra changes to the code, here are most/all of them:
+
+=-= =-= =-= =-= =-= =-= =-=
+
+* #include -ing <cmath> in "Main.cpp".
+* Adding a build script to the availible files for aid with linux compiling.
