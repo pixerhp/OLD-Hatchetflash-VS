@@ -22,4 +22,6 @@ public:
 	// Deletes the Shader Program
 	void Delete();
 };
+
+class ShaderNotFoundException{};
 #endif

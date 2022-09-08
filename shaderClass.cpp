@@ -14,7 +14,7 @@ std::string get_file_contents(const char* filename)
 		in.close();
 		return(contents);
 	}
-	throw(errno);
+	throw(new ShaderNotFoundException);
 }
 
 // Constructor that build the Shader Program from 2 different shaders
