@@ -85,10 +85,11 @@ int main()
 		return -1;
 	}
 
-	int width, height;
-	glfwGetWindowSize(window, &width, &height);
+	// Gets the width and height of the window (instead of monitor) after it's created for the viewport, accounting for operating system specific weirdness like the window's taskbar.
+	int windowWidth, windowHeight;
+	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 	// Specifies the viewport of opengl in the window.
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, windowWidth, windowHeight);
 
 
 
