@@ -33,16 +33,30 @@
 // Texture-ish testing vertices.
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Lower left corner
-	-0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Upper left corner
-	 0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Upper right corner
-	 0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Lower right corner
+	-0.5f, -0.5f,  0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Front Lower left corner
+	-0.5f,  0.5f,  0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Front Upper left corner
+	 0.5f,  0.5f,  0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Front Upper right corner
+	 0.5f, -0.5f,  0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f, // Front Lower right corner
+	-0.5f, -0.5f, -0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Back Lower left corner
+	-0.5f,  0.5f, -0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Back Upper left corner
+	 0.5f,  0.5f, -0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Back Upper right corner
+	 0.5f, -0.5f, -0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Back Lower right corner
 };
 // Texture-ish testing indices.
 GLuint indices[] =
 {
-	0, 2, 1, // Upper triangle
-	0, 3, 2 // Lower triangle
+	0, 2, 1, // Upper triangle Front
+	0, 3, 2, // Lower triangle Front
+	3, 6, 2, // Upper triangle Right
+	3, 7, 6, // Lower triangle Right
+	7, 5, 6, // Upper triangle Back
+	7, 4, 5, // Lower triangle Back
+	4, 1, 5, // Upper triangle Left
+	4, 0, 1, // Lower triangle Left
+	1, 6, 5, // Back triangle Top
+	1, 2, 6, // Front triangle Top
+	4, 3, 0, // Front triangle Bottom
+	4, 7, 3, // Back triangle Bottom
 };
 
 
@@ -90,6 +104,9 @@ int main()
 		return -1;
 	}
 
+	// Enable depth testing so things are rendered in the correct order.
+	glEnable(GL_DEPTH_TEST);
+
 	// Gets the width and height of the window (instead of monitor) after it's created for the viewport, accounting for operating system specific weirdness like the window's taskbar.
 	int windowWidth, windowHeight;
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
@@ -119,17 +136,12 @@ int main()
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-	// Gets ID of uniform called "scale"
-	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
-
-
-
 	// A texture for testing.
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
-
+	glm::mat4 transform = glm::mat4(1.0f);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -137,20 +149,23 @@ int main()
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
 		// Clears the window with it's set basic clear color.
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
+		transform = glm::rotate(transform, glm::radians(1.0f), glm::vec3(1.0, 0.0, 0.0));
+		transform = glm::rotate(transform, glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0));
+		transform = glm::rotate(transform, glm::radians(0.25f), glm::vec3(0.0, 0.0, 1.0));
 
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
-		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
-		glUniform1f(uniID, 0.5f);
+		// Assigns a value to the transform uniform; NOTE: Must always be done after activating the Shader Program
+		GLuint transformID = glGetUniformLocation(shaderProgram.ID, "transform");
+		glUniformMatrix4fv(transformID, 1, GL_FALSE, glm::value_ptr(transform));
 		// Binds texture so that is appears in rendering
 		testingTexture.Bind();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 
 
