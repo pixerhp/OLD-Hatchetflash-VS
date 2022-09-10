@@ -12,6 +12,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+// These are for linear algebra for rendering.
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 // Linux needs this, VS automatically adds it:
 #include <cmath>
 
@@ -19,7 +24,7 @@
 #include <stb/stb_image.h>
 
 // Rendering-based header files:
-#include"Texture.h"
+#include "Texture.h"
 #include "shaderClass.h"
 #include "VAO.h"
 #include "VBO.h"
