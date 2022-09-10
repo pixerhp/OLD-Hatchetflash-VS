@@ -138,40 +138,58 @@ int main()
 
 	// A texture used for testing.
 	stbi_set_flip_vertically_on_load(true);
-	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture testingTexture("Block_Textures/error_texture.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
-	glm::mat4 transform = glm::mat4(1.0f);
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+	// View matrix for moving the world around the camera.
+	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -20.0f));
+
+	// Projection matrix for squishing view space into clip space.
+	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
+
+	float last_time = glfwGetTime();
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
 		// Clears the window with it's set basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-
-		// Testing code that rotates the cube over time.
-		transform = glm::rotate(transform, glm::radians(1.0f), glm::vec3(1.0, 0.0, 0.0));
-		transform = glm::rotate(transform, glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0));
-		transform = glm::rotate(transform, glm::radians(0.25f), glm::vec3(0.0, 0.0, 1.0));
+		// Reset the camera's projectionMatrix just in case the aspect ratio changed
+		int windowWidth, windowHeight;
+		glfwGetWindowSize(window, &windowWidth, &windowHeight);
+		projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
-		// Assigns a value to the transform uniform; NOTE: Must always be done after activating the Shader Program
-		GLuint transformID = glGetUniformLocation(shaderProgram.ID, "transform");
-		glUniformMatrix4fv(transformID, 1, GL_FALSE, glm::value_ptr(transform));
+
+		// Send the viewMatrix and projectionMatrix to the shader.
+		GLuint viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+		GLuint projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
 		// Binds texture so that is appears in rendering
 		testingTexture.Bind();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
+
+		// Testing code that rotates the cube over time.
+		modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
+		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 		// Draw primitives, number of indices, datatype of indices, index of indices
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-
+		// Show fps in window title
+		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_time)).c_str());
+		last_time = glfwGetTime();
 
 		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
