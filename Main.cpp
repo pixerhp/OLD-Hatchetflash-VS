@@ -136,11 +136,12 @@ int main()
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-	// A texture for testing.
+	// A texture used for testing.
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
+	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 transform = glm::mat4(1.0f);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
@@ -151,6 +152,9 @@ int main()
 		// Clears the window with it's set basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+
+		// Testing code that rotates the cube over time.
 		transform = glm::rotate(transform, glm::radians(1.0f), glm::vec3(1.0, 0.0, 0.0));
 		transform = glm::rotate(transform, glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0));
 		transform = glm::rotate(transform, glm::radians(0.25f), glm::vec3(0.0, 0.0, 1.0));

@@ -6,9 +6,10 @@
 
 #version 330 core
 
+
+
 // Outputs colors in RGBA
 out vec4 FragColor;
-
 
 // Inputs the color from the Vertex Shader
 in vec3 color;
@@ -19,10 +20,13 @@ in vec2 texCoord;
 uniform sampler2D tex0;
 
 
+
 void main()
 {
-	if(texture(tex0, texCoord).a < 0.5){
+	// Jankily discards transparent pixels (doesn't draw them) if the alpha channel is at least halfway.
+	if(texture(tex0, texCoord).a < 0.5) {
 		discard;
 	}
+
 	FragColor = texture(tex0, texCoord);
 }
