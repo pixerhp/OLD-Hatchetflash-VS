@@ -32,31 +32,52 @@
 
 // Texture-ish testing vertices.
 GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, -0.5f,  0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Front Lower left corner
-	-0.5f,  0.5f,  0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Front Upper left corner
-	 0.5f,  0.5f,  0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Front Upper right corner
-	 0.5f, -0.5f,  0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f, // Front Lower right corner
-	-0.5f, -0.5f, -0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Back Lower left corner
-	-0.5f,  0.5f, -0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Back Upper left corner
-	 0.5f,  0.5f, -0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Back Upper right corner
-	 0.5f, -0.5f, -0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Back Lower right corner
+{ //   COORDINATES    /       COLOURS      /  TexCoord  //
+	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,//Back face
+	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
+	1.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+
+	0.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,//Front face
+	0.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	1.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
+	1.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+
+	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,//Left face
+	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	0.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
+	0.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+
+	1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,//Right face
+	1.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
+	1.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	1.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+
+	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,//Bottom face
+	1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
+	1.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+
+	1.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,//Top face
+	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
+	0.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f
 };
 // Texture-ish testing indices.
 GLuint indices[] =
 {
-	0, 2, 1, // Upper triangle Front
-	0, 3, 2, // Lower triangle Front
-	3, 6, 2, // Upper triangle Right
-	3, 7, 6, // Lower triangle Right
-	7, 5, 6, // Upper triangle Back
-	7, 4, 5, // Lower triangle Back
-	4, 1, 5, // Upper triangle Left
-	4, 0, 1, // Lower triangle Left
-	1, 6, 5, // Back triangle Top
-	1, 2, 6, // Front triangle Top
-	4, 3, 0, // Front triangle Bottom
-	4, 7, 3, // Back triangle Bottom
+	0, 1, 3, //Back face
+	3, 1, 2, //
+	4, 5, 7, //Front face
+	7, 5, 6, //
+	8, 9, 11,//Left face
+	11,9, 10,//
+	12,13,15,//Right face
+	15,13,14,//
+	16,17,19,//Bottom face
+	19,17,18,//
+	20,21,23,//Top face
+	23,21,22 //
 };
 
 
