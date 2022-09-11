@@ -12,14 +12,14 @@
     <Filter Include="Text Documents">
       <UniqueIdentifier>{5be53ee6-5a89-4f76-99c2-da2ff4ae49e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Resource Files">
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Resource Files\Shaders">
+    <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{8e13216b-4a68-468f-a210-304d69d023d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Resource Files\Block_Textures">
+    <Filter Include="Resource Files\Block_Textures">
       <UniqueIdentifier>{b80333ab-2639-4290-90ba-3f2b9ead635d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -62,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
-      <Filter>Header Files\Resource Files\Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="default.frag">
-      <Filter>Header Files\Resource Files\Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Block_Textures\Album_2_Art.png">
-      <Filter>Header Files\Resource Files\Block_Textures</Filter>
+      <Filter>Resource Files\Block_Textures</Filter>
     </Image>
   </ItemGroup>
 </Project>

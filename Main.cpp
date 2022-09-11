@@ -33,16 +33,30 @@
 // Texture-ish testing vertices.
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Lower left corner
-	-0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Upper left corner
-	 0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Upper right corner
-	 0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Lower right corner
+	-0.5f, -0.5f,  0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Front Lower left corner
+	-0.5f,  0.5f,  0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Front Upper left corner
+	 0.5f,  0.5f,  0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Front Upper right corner
+	 0.5f, -0.5f,  0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f, // Front Lower right corner
+	-0.5f, -0.5f, -0.5f,    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, // Back Lower left corner
+	-0.5f,  0.5f, -0.5f,    0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // Back Upper left corner
+	 0.5f,  0.5f, -0.5f,    0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // Back Upper right corner
+	 0.5f, -0.5f, -0.5f,    1.0f, 1.0f, 1.0f,	1.0f, 0.0f  // Back Lower right corner
 };
 // Texture-ish testing indices.
 GLuint indices[] =
 {
-	0, 2, 1, // Upper triangle
-	0, 3, 2 // Lower triangle
+	0, 2, 1, // Upper triangle Front
+	0, 3, 2, // Lower triangle Front
+	3, 6, 2, // Upper triangle Right
+	3, 7, 6, // Lower triangle Right
+	7, 5, 6, // Upper triangle Back
+	7, 4, 5, // Lower triangle Back
+	4, 1, 5, // Upper triangle Left
+	4, 0, 1, // Lower triangle Left
+	1, 6, 5, // Back triangle Top
+	1, 2, 6, // Front triangle Top
+	4, 3, 0, // Front triangle Bottom
+	4, 7, 3, // Back triangle Bottom
 };
 
 
@@ -90,6 +104,9 @@ int main()
 		return -1;
 	}
 
+	// Enable depth testing so things are rendered in the correct order.
+	glEnable(GL_DEPTH_TEST);
+
 	// Gets the width and height of the window (instead of monitor) after it's created for the viewport, accounting for operating system specific weirdness like the window's taskbar.
 	int windowWidth, windowHeight;
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
@@ -119,40 +136,60 @@ int main()
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-	// Gets ID of uniform called "scale"
-	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
-
-
-
-	// A texture for testing.
+	// A texture used for testing.
 	stbi_set_flip_vertically_on_load(true);
-	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture testingTexture("Block_Textures/error_texture.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
+	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
+	// View matrix for moving the world around the camera.
+	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -20.0f));
+
+	// Projection matrix for squishing view space into clip space.
+	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
 
+	float last_time = glfwGetTime();
+
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
 		// Clears the window with it's set basic clear color.
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
+		// Reset the camera's projectionMatrix just in case the aspect ratio changed
+		int windowWidth, windowHeight;
+		glfwGetWindowSize(window, &windowWidth, &windowHeight);
+		projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
-		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
-		glUniform1f(uniID, 0.5f);
+
+		// Send the viewMatrix and projectionMatrix to the shader.
+		GLuint viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+		GLuint projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
 		// Binds texture so that is appears in rendering
 		testingTexture.Bind();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
+
+		// Testing code that rotates the cube over time.
+		modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
+		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-
+		// Show fps in window title
+		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_time)).c_str());
+		last_time = glfwGetTime();
 
 		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
