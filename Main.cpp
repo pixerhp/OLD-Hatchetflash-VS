@@ -138,14 +138,14 @@ int main()
 
 	// A texture used for testing.
 	stbi_set_flip_vertically_on_load(true);
-	Texture testingTexture("Block_Textures/error_texture.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture testingTexture("Block_Textures/Album_2_Art.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// View matrix for moving the world around the camera.
-	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -20.0f));
+	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 
 	// Projection matrix for squishing view space into clip space.
 	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
@@ -180,7 +180,7 @@ int main()
 		VAO1.Bind();
 
 		// Testing code that rotates the cube over time.
-		modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		modelMatrix = glm::rotate(modelMatrix, (float)(glfwGetTime() - last_time) * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
