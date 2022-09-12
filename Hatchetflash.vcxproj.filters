@@ -89,5 +89,8 @@
     <Image Include="Block_Textures\Album_2_Art.png">
       <Filter>Resource Files\Block_Textures</Filter>
     </Image>
+    <Image Include="Block_Textures\HF_window_icon_16x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

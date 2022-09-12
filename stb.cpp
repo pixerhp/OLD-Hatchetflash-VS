@@ -1,7 +1,7 @@
 /* stb.cpp file description:
-* Simply helps "stb_image.h" work.
-* ("stb_image.h" is open source code which is responsible for everything textures and texture loading.)
-* (This file specifically was right clicked and compiled specifically once.)
+* Required to use "stb_image.h", which is open-source code used for image/texture loading.
+* 
+* (So I don't forget: This file was specifically right clicked and compiled exactly & only once for setting it up.)
 */
 
 #define STB_IMAGE_IMPLEMENTATION

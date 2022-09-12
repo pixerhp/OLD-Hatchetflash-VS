@@ -1,7 +1,6 @@
 /* shaderClass.cpp file description:
-* Defines the shader class, and states all of the functions that it will have.
-* (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO.)
-* (The functions for this class are definied in "shaderClass.cpp".)
+* Defines the shader class, and states all of it's functions (which are defined in "shaderClass.cpp".)
+* (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO, and texture information.)
 */
 
 #ifndef SHADER_CLASS_H
@@ -23,10 +22,10 @@ public:
 	GLuint ID; //(ID reference of a Shader Class Object.)
 	// States a constructor which generates a Shader Program from 2 different shaders.
 	Shader(const char* vertexFile, const char* fragmentFile);
-
-	// States the existence of some basic functions as defined in "shaderClass.cpp".
+	
 	void Activate();
 	void Delete();
+
 private:
 	// Checks if the different Shaders have compiled properly.
 	void compileErrors(unsigned int shader, const char* type);

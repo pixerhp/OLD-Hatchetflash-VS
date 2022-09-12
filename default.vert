@@ -1,7 +1,8 @@
 /* default.vert file description:
 * Defines the OpenGL code for the default vertex shader to be used in rendering.
-* (The vertex shader here takes in the lists of vertices, indices and other information and processes the shape made out of them and how it would be displayed.)
-* (Also see the shader class for more use.)
+*
+* Takes in information such as positions, colors and texture coordinates as needed for some rendering.
+* (Outputs information to the default fragment shader: "default.frag".)
 */
 
 #version 330 core
@@ -14,9 +15,8 @@ layout (location = 1) in vec3 aColor;
 layout (location = 2) in vec2 aTex;
 
 
-// Outputs the color for the Fragment Shader
+// Outputs different information to the fragment shader.
 out vec3 color;
-// Outputs the texture coordinates to the fragment shader
 out vec2 texCoord;
 
 // Controls the scale of the vertices

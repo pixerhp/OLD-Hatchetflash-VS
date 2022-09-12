@@ -1,7 +1,7 @@
 /* VBO.h file description:
-* Defines the VBO class, and states all of the functions that it will have.
+* Defines the VBO class, and states all of the functions that it will have as defined in "VBO.cpp".
+* 
 * (VBO stands for "Vertex Buffer Object". VBOs contain information about the vertices of an object.)
-* (The functions for this class are definied in "VBO.cpp".)
 */
 
 #ifndef VBO_CLASS_H

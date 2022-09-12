@@ -1,7 +1,7 @@
 /* EBO.h file description:
-* Defines the EBO class, and states all of the functions that it will have.
+* Defines the EBO class, and states all of the functions that it will have as defined in "EBO.cpp".
+* 
 * (EBO stands for "Element Buffer Object". EBOs contain information about the indices of an object.)
-* (The functions for this class are definied in "EBO.cpp".)
 */
 
 #ifndef EBO_CLASS_H
