@@ -166,7 +166,7 @@ int main()
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// View matrix for moving the world around the camera.
-	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, -0.5f, -3.0f));
 
 	// Projection matrix for squishing view space into clip space.
 	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
@@ -184,7 +184,8 @@ int main()
 		// Reset the camera's projectionMatrix just in case the aspect ratio changed
 		int windowWidth, windowHeight;
 		glfwGetWindowSize(window, &windowWidth, &windowHeight);
-		projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+		if(windowHeight>0&&windowWidth>0)
+			projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
