@@ -28,7 +28,7 @@ public:
 
 	// Set the speed of the camera's movement and it's sensitivity to looking around.
 	float movementSpeed = 0.1f;
-	float turningSensitivity = 100.0f;
+	float turningSensitivity = 200.0f;
 
 	// Camera constructor to set up initial values
 	Camera(int width, int height, glm::vec3 position);
