@@ -62,6 +62,9 @@
     <Text Include="Linux_Compatability.txt">
       <Filter>Text Documents</Filter>
     </Text>
+    <Text Include="Controls.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">

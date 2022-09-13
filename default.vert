@@ -19,14 +19,15 @@ layout (location = 2) in vec2 aTex;
 out vec3 color;
 out vec2 texCoord;
 
+// Takes in the matrix outputed by the camera object.
 uniform mat4 camMatrix;
 
 void main()
 {
-	// Outputs the positions/coordinates of all vertices
+	// Outputs the positions/coordinates of all of the vertices.
 	gl_Position = camMatrix * vec4(aPos,1.0f);
-	// Assigns the colors from the Vertex Data to "color"
+	// Assigns the colors from the Vertex Data to "color".
 	color = aColor;
-	// Assigns the texture coordinates from the Vertex Data to "texCoord"
+	// Assigns the texture coordinates from the Vertex Data to "texCoord".
 	texCoord = aTex;
 }

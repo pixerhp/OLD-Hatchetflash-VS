@@ -30,15 +30,15 @@
 // Testing vertices for a 3D block.
 GLfloat vertices[] =
 { //   COORDINATES    /       COLOURS      /  TexCoord  //
-	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,//Back face.
-	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
-	1.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,//Back face.
+	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+	1.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+	1.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
 
-	0.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,//Front face.
-	0.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
-	1.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
-	1.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,//Front face.
+	0.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 1.0f,
+	1.0f, 0.0f, 1.0f,	 0.0f, 0.0f, 0.0f,	 1.0f, 0.0f,
 
 	0.0f, 0.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 1.0f,//Left face.
 	0.0f, 1.0f, 0.0f,	 0.0f, 0.0f, 0.0f,	 0.0f, 0.0f,
@@ -155,14 +155,17 @@ int main()
 	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
+	//@Jcodefox
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
-	glm::mat4 modelMatrix = glm::mat4(1.0f);
+	//glm::mat4 modelMatrix = glm::mat4(1.0f);
 
+	//@Jcodefox
 	// View matrix for moving the world around the camera.
-	glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, -0.5f, -3.0f));
+	//glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, -0.5f, -3.0f));
 
+	//@Jcodefox
 	// Projection matrix for squishing view space into clip space.
-	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+	//glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -173,18 +176,19 @@ int main()
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	// (Used for our current method of getting the fps.)
-	float last_time = glfwGetTime();
+	double last_time = glfwGetTime();
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
-		// Clears the window with it's set basic clear color.
+		// Clears the window canvas with it's basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		//@Jcodefox
 		// Reset the camera's projectionMatrix just in case the aspect ratio changed.
-		int windowWidth, windowHeight;
-		glfwGetWindowSize(window, &windowWidth, &windowHeight);
-		if(windowHeight>0&&windowWidth>0)
-			projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+		//int windowWidth, windowHeight; //THESE ALREADY EXIST?
+		//glfwGetWindowSize(window, &windowWidth, &windowHeight);
+		//if(windowHeight>0&&windowWidth>0)
+			//projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
@@ -198,12 +202,12 @@ int main()
 
 
 
-		// Binds texture so that is appears in rendering
+		// Binds the testing texture so that it appears in rendering.
 		testingTexture.Bind();
-		// Bind the VAO so OpenGL knows to use it
+		// Bind the VAO so that OpenGL knows to use it.
 		VAO1.Bind();
 
-		// I DON'T KNOW IF THIS IS NEEDED
+		//@Jcodefox
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		//GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));

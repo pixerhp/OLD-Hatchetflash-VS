@@ -1,0 +1,19 @@
+=-= =-= =-= =-= =-= =-= =-=
+
+[Camera movement controls:]
+
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=
+
+Right click - Hold down right click whislt moving your mouse to look around. (Your mouse will be hidden whilst looking around.)
+
+WASD - Move around laterally based on your orientation (the direction you're looking towards.)
+Q & E - Move downwards or upwards (respectively) with respect to your orientation (the direction you're looking towards.)
+
+Space - Move upwards.
+Left-Shift - Move downwards.
+
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=

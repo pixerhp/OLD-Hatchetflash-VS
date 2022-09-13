@@ -1,3 +1,8 @@
+/* Camera.h file description:
+* Defines the Camera class, and states all of the functions that it will have as defined in "Camera.cpp".
+* (An instance of a camera object is used as the in-game perspective camera.)
+*/
+
 #ifndef CAMERA_CLASS_H
 #define CAMERA_CLASS_H
 
@@ -26,17 +31,16 @@ public:
 	int cameraWindowWidth;
 	int cameraWindowHeight;
 
-	// Set the speed of the camera's movement and it's sensitivity to looking around.
+	// Sets the speed of the camera's orientational movement + it's sensitivity to turning around.
 	float movementSpeed = 0.1f;
 	float turningSensitivity = 200.0f;
 
-	// Camera constructor to set up initial values
+	// States a camera object constructor which sets up initial values.
 	Camera(int width, int height, glm::vec3 position);
-
-	// Updates and exports the camera matrix to the Vertex Shader
+	// States a function which updates/calculates and exports the camera matrix to the Vertex Shader.
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
-	// Handles camera inputs
+	// States a function which handles camera mouse/keyboard inputs.
 	void Inputs(GLFWwindow* window);
-};//Classes need a semicolon after them.
+};
 
 #endif

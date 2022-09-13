@@ -6,3 +6,7 @@ For aid with Linux compatability, there have been some extra changes to the code
 
 * #include -ing <cmath> in "Main.cpp", although not directly because of linux, was added due to Fox's IDE not adding this automatically.
 * Added a build script to the availible files for aid with linux compiling. (Otherwise, shaderClass may not load correctly.)
+
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=

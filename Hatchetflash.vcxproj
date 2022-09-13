@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Commenting_Style.txt" />
+    <Text Include="Controls.txt" />
     <Text Include="Linux_Compatability.txt" />
     <Text Include="Things_To_Remember.txt" />
   </ItemGroup>
