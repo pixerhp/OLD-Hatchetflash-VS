@@ -79,7 +79,7 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 {
 	// Stores the status of the compilation:
 	GLint hasCompiled;
-	// Character array that the error message is stored in:
+	// Character array that the error message can be stored in:
 	char infoLog[1024];
 
 	if (type != "PROGRAM")

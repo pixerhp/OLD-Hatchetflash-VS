@@ -12,7 +12,7 @@ VAO::VAO()
 	glGenVertexArrays(1, &ID);
 }
 
-// Links a VBO Attribute such as a position or a color to the VAO.
+// Links VBO attributes, such as texture coordinates, colors etc.
 void VAO::LinkAttrib(VBO& VBO, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset)
 {
 	VBO.Bind();

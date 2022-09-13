@@ -1,7 +1,7 @@
 /* VAO.h file description:
-* Defines the VAO class, and states all of the functions that it will have.
+* Defines the VAO class, and states all of the functions that it will have as defined in "VAO.cpp".
+* 
 * (VAO stands for "Vertex Array Object". VAOs contain VBOs and information about the complete rendered object and vertex bindings.)
-* (The functions for this class are definied in "VAO.cpp".)
 */
 
 #ifndef VAO_CLASS_H
