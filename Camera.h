@@ -37,7 +37,6 @@ public:
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	// Handles camera inputs
 	void Inputs(GLFWwindow* window);
-}
+};//Classes need a semicolon after them.
 
 #endif
-; //DE-SPAGETTI THIS   A. S. A. P.
