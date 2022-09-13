@@ -19,9 +19,10 @@
 // Used for texture and misc. image related things:
 #include <stb/stb_image.h>
 
-// Our manually coded endering-based header files:
+// Our manually coded header files:
 #include "Texture.h"
 #include "shaderClass.h"
+#include "Camera.h"
 #include "VAO.h"
 #include "VBO.h"
 #include "EBO.h"
@@ -163,12 +164,15 @@ int main()
 	// Projection matrix for squishing view space into clip space.
 	glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
-	// Enable depth testing so things are rendered in the correct order.
-	glEnable(GL_DEPTH_TEST);
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
+	// Enable depth testing so things are rendered in the correct order.
+	glEnable(GL_DEPTH_TEST);
 
-	// Used for our current method of getting the fps.
+	// Creates the camera object.
+	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
+
+	// (Used for our current method of getting the fps.)
 	float last_time = glfwGetTime();
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
@@ -185,24 +189,27 @@ int main()
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
 
-		// Send the viewMatrix and projectionMatrix to the shader.
-		GLuint viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-		GLuint projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
+
+		// Handles camera inputs.
+		camera.Inputs(window);
+		// Updates and exports the camera matrix to the Vertex Shader.
+		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+
+
 
 		// Binds texture so that is appears in rendering
 		testingTexture.Bind();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 
-		// Testing code that rotates the cube over time.
-		modelMatrix = glm::rotate(modelMatrix, (float)(glfwGetTime() - last_time) * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		// I DON'T KNOW IF THIS IS NEEDED
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
-		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+		//GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
 
 		// Shows the fps in the window's title.
 		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_time)).c_str());
@@ -210,7 +217,6 @@ int main()
 
 		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
-
 		// Checks for window events.
 		glfwPollEvents();
 	}
