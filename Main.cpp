@@ -162,17 +162,9 @@ int main()
 	glfwSetWindowIcon(window, 1, &windowIconImage);
 	stbi_image_free(windowIconImage.pixels);
 
-	//@Jcodefox
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
-	//glm::mat4 modelMatrix = glm::mat4(1.0f);
-
-	//@Jcodefox
-	// View matrix for moving the world around the camera.
-	//glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, -0.5f, -3.0f));
-
-	//@Jcodefox
-	// Projection matrix for squishing view space into clip space.
-	//glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
+	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -190,34 +182,22 @@ int main()
 		// Clears the window canvas with it's basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//@Jcodefox
-		// Reset the camera's projectionMatrix just in case the aspect ratio changed.
-		//int windowWidth, windowHeight; //THESE ALREADY EXIST?
-		//glfwGetWindowSize(window, &windowWidth, &windowHeight);
-		//if(windowHeight>0&&windowWidth>0)
-			//projectionMatrix = glm::perspective(glm::radians(45.0f), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
-
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
-
-
 
 		// Handles camera inputs.
 		camera.Inputs(window);
 		// Updates and exports the camera matrix to the Vertex Shader.
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
-
-
 		// Binds the testing texture so that it appears in rendering.
 		testingTexture.Bind();
 		// Bind the VAO so that OpenGL knows to use it.
 		VAO1.Bind();
 
-		//@Jcodefox
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
-		//GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
 		// Draw primitives, number of indices, datatype of indices, index of indices
 		glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
