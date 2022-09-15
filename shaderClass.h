@@ -3,8 +3,7 @@
 * (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO, and texture information.)
 */
 
-#ifndef SHADER_CLASS_H
-#define SHADER_CLASS_H
+#pragma once
 
 #include<glad/glad.h>
 #include<string>
@@ -33,4 +32,3 @@ private:
 
 //Used in "shaderClass.cpp" for linux for throwing a pretty recognizable error for when/if the shaderProgram can't read file contents properly.
 class ShaderNotFoundException{};
-#endif
