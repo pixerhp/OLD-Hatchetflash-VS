@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\Block_Textures">
       <UniqueIdentifier>{b80333ab-2639-4290-90ba-3f2b9ead635d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Utility_Images">
+      <UniqueIdentifier>{e6cf2454-bcd3-4025-93b5-d080966c340d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -95,11 +98,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Block_Textures\Album_2_Art.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
     <Image Include="Block_Textures\HF_window_icon_16x.png">
       <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Utility_Images\Album_2_Art.png">
+      <Filter>Resource Files\Utility_Images</Filter>
+    </Image>
+    <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png">
+      <Filter>Resource Files\Utility_Images</Filter>
     </Image>
   </ItemGroup>
 </Project>

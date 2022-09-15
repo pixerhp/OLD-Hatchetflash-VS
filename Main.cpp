@@ -128,6 +128,13 @@ int main()
 	// Specifies the viewport of opengl in the window.
 	glViewport(0, 0, windowWidth, windowHeight);
 
+	// Gives the window it's icon.
+	stbi_set_flip_vertically_on_load(false);
+	GLFWimage windowIconImage;
+	windowIconImage.pixels = stbi_load("Utility_Images/Hatchetflash_Window_Icon_A.png", &windowIconImage.width, &windowIconImage.height, 0, 4);
+	glfwSetWindowIcon(window, 1, &windowIconImage);
+	stbi_image_free(windowIconImage.pixels);
+
 
 
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
@@ -154,13 +161,6 @@ int main()
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
-
-	// Sets the window icon to the testing texture:
-	stbi_set_flip_vertically_on_load(false);
-	GLFWimage windowIconImage;
-	windowIconImage.pixels = stbi_load("Block_Textures/HF_window_icon_16x.png", &windowIconImage.width, &windowIconImage.height, 0, 4);
-	glfwSetWindowIcon(window, 1, &windowIconImage);
-	stbi_image_free(windowIconImage.pixels);
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
