@@ -34,9 +34,12 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shade
 // Checks keyboard and mouse inputs as used for camera movement.
 void Camera::Inputs(GLFWwindow* window)
 {
+	// Re-get the actual size of the window.
 	glfwGetWindowSize(window, &cameraWindowWidth, &cameraWindowHeight);
+
 	if (cameraWindowWidth == 0){ cameraWindowWidth = 1; }
 	if (cameraWindowHeight == 0){ cameraWindowHeight = 1; }
+
 	// (Keyboard inputs.)
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
