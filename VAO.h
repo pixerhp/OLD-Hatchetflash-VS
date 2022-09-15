@@ -4,8 +4,7 @@
 * (VAO stands for "Vertex Array Object". VAOs contain VBOs and information about the complete rendered object and vertex bindings.)
 */
 
-#ifndef VAO_CLASS_H
-#define VAO_CLASS_H
+#pragma once
 
 #include<glad/glad.h>
 #include"VBO.h"
@@ -25,4 +24,3 @@ public:
 	void Unbind();
 	void Delete();
 };
-#endif

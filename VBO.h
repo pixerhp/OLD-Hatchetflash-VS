@@ -4,8 +4,7 @@
 * (VBO stands for "Vertex Buffer Object". VBOs contain information about the vertices of an object.)
 */
 
-#ifndef VBO_CLASS_H
-#define VBO_CLASS_H
+#pragma once
 
 #include<glad/glad.h>
 
@@ -21,4 +20,3 @@ public:
 	void Unbind();
 	void Delete();
 };
-#endif
