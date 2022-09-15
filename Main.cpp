@@ -13,13 +13,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-// Visual Studio automatically adds this but not every IDE does:
+// (Visual Studio automatically adds this but not every IDE does.)
 #include <cmath>
 
-// Used for texture and misc. image related things:
+// (Used for texture and miscellaneous image-related things.)
 #include <stb/stb_image.h>
 
-// Our manually coded header files:
+// (Our manually coded header files.)
 #include "Texture.h"
 #include "shaderClass.h"
 #include "Camera.h"
@@ -154,6 +154,13 @@ int main()
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
+
+	// Sets the window icon to the testing texture:
+	stbi_set_flip_vertically_on_load(false);
+	GLFWimage windowIconImage;
+	windowIconImage.pixels = stbi_load("Block_Textures/HF_window_icon_16x.png", &windowIconImage.width, &windowIconImage.height, 0, 4);
+	glfwSetWindowIcon(window, 1, &windowIconImage);
+	stbi_image_free(windowIconImage.pixels);
 
 	//@Jcodefox
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
