@@ -176,8 +176,9 @@
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Block_Textures\Album_2_Art.png" />
     <Image Include="Block_Textures\HF_window_icon_16x.png" />
+    <Image Include="Utility_Images\Album_2_Art.png" />
+    <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
