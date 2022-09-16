@@ -15,6 +15,7 @@
 
 // (Visual Studio automatically adds this but not every IDE does.)
 #include <cmath>
+#include <vector>
 
 // (Used for texture and miscellaneous image-related things.)
 #include <stb/stb_image.h>
@@ -23,9 +24,7 @@
 #include "Texture.h"
 #include "shaderClass.h"
 #include "Camera.h"
-#include "VAO.h"
-#include "VBO.h"
-#include "EBO.h"
+#include "Mesh.h"
 
 // Testing vertices for a 3D block.
 GLfloat vertices[] =
@@ -133,23 +132,6 @@ int main()
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("default.vert", "default.frag");
 
-	// Generates a Vertex Array Object and binds it.
-	VAO VAO1;
-	VAO1.Bind();
-
-	// Generates a Vertex Buffer Object and an Element Buffer Object and links them to vertices & indices respectively.
-	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
-
-	// Links VBO attributes such as coordinates and colors to VAO.
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	// Unbinds them to prevent against accidentally modifying them later.
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
-
 	// (A texture used for testing.)
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -165,6 +147,14 @@ int main()
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
+
+	// Create a simple mesh.
+	Mesh mesh;
+	// Put the vertices and indices in the mesh.
+	mesh.vertices.insert(mesh.vertices.begin(), std::begin(vertices), std::end(vertices));
+	mesh.indices.insert(mesh.indices.begin(), std::begin(indices), std::end(indices));
+	// Regenerate the mesh with the new vertices and indices.
+	mesh.regenerateVBOsAndEBOs();
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -192,15 +182,12 @@ int main()
 
 		// Binds the testing texture so that it appears in rendering.
 		testingTexture.Bind();
-		// Bind the VAO so that OpenGL knows to use it.
-		VAO1.Bind();
-
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
-		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
+		// Draw the mesh on screen.
+		mesh.draw();
 
 		// Shows the fps in the window's title.
 		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_time)).c_str());
@@ -211,13 +198,11 @@ int main()
 		// Checks for window events.
 		glfwPollEvents();
 	}
-
 	// Cleanly deletes all of the created rendering-based objects.
-	VAO1.Delete();
-	VBO1.Delete();
-	EBO1.Delete();
 	testingTexture.Delete();
 	shaderProgram.Delete();
+	// Cleanup the data in the mesh.
+	mesh.cleanup();
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();
