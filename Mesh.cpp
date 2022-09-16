@@ -3,7 +3,7 @@
 * A Mesh stores information about and generates meshes.
 */
 
-// Jcodefox will comment this file soon.
+// {Jcodefox will comment this file soon.}
 
 #include "Mesh.h"
 #include <glad/glad.h>
@@ -30,7 +30,7 @@ void Mesh::draw(){
 }
 
 void Mesh::cleanup(){
-    //Delete VAOs, VBOs, and EBOs
+    // Delete VAOs, VBOs, and EBOs.
     glDeleteVertexArrays(1, &VAOID);
     glDeleteBuffers(1, &VBOID);
     glDeleteBuffers(1, &EBOID);

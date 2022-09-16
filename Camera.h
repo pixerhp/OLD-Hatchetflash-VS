@@ -1,6 +1,7 @@
 /* Camera.h file description:
 * Defines the Camera class, and states all of the functions that it will have as defined in "Camera.cpp".
 * (An instance of a camera object is used as the in-game perspective camera.)
+* (The used camera object also currently contains the movement controls.)
 */
 
 #pragma once

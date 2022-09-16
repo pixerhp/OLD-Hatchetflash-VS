@@ -15,7 +15,7 @@ public:
 	// States a constructor which generates an Elements Buffer Object and links it to it's indices.
 	EBO(GLuint* indices, GLsizeiptr size);
 
-	// States the existence of some basic functions as defined in "EBO.cpp".
+	// States some basic functions as defined in "EBO.cpp".
 	void Bind();
 	void Unbind();
 	void Delete();

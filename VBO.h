@@ -15,7 +15,7 @@ public:
 	// States a constructor which generates an Vertex Buffer Object and links it to it's vertices.
 	VBO(GLfloat* vertices, GLsizeiptr size);
 
-	// States the existence of some basic functions as defined in "VBO.cpp".
+	// States some basic functions as defined in "VBO.cpp".
 	void Bind();
 	void Unbind();
 	void Delete();

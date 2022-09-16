@@ -4,7 +4,7 @@
 * A Mesh stores information about and generates meshes.
 */
 
-// Jcodefox will comment this file soon.
+// {Jcodefox will comment this file soon.}
 
 #pragma once
 

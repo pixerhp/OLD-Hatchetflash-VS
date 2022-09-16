@@ -4,7 +4,7 @@
 * (The functions here are also stated in "VAO.h".)
 */
 
-#include"VAO.h"
+#include "VAO.h"
 
 // A constructor which generates a VAO ID.
 VAO::VAO()

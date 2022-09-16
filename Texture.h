@@ -17,10 +17,10 @@ public:
 	GLenum type;
 	Texture(const char* image, GLenum texType, GLenum slot, GLenum format, GLenum pixelType);
 
-	// States the existance of a function which assigns a texture unit to a texture.
+	// States a function which assigns a texture unit to a texture.
 	void texUnit(Shader& shader, const char* uniform, GLuint unit);
 	
-	// States the existence of some basic functions as defined in "Texture.cpp".
+	// States some basic functions as defined in "Texture.cpp".
 	void Bind();
 	void Unbind();
 	void Delete();
