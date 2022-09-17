@@ -4,7 +4,6 @@
 */
 
 #include "Mesh.h"
-#include <glad/glad.h>
 
 // Regenerate the VBO and EBO with the vertices and indices vectors.
 void Mesh::regenerateVBOAndEBO(){
