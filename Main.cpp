@@ -87,6 +87,8 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h){
 
 int main()
 {
+	std::cout << "Starting Hatchetflash..." << std::endl;
+
 	// Initializes glfw and instructs it on it's version and that we will be using it's modern core features.
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -105,7 +107,7 @@ int main()
 	// (Error checking for whether the glfw window was created successfully.)
 	if (window == NULL)
 	{
-		std::cout << "Failed to create GLFW window." << std::endl;
+		std::cout << "Failed to create the GLFW window." << std::endl;
 		glfwTerminate();
 		return -1;
 	}
@@ -134,7 +136,7 @@ int main()
 	glfwSetWindowIcon(window, 1, &windowIconImage);
 	stbi_image_free(windowIconImage.pixels);
 
-	std::cout << "Opengl window successfully created\n";
+	std::cout << "Hatchetflash Opengl-window created successfully..." << std::endl;
 
 
 
@@ -167,7 +169,7 @@ int main()
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	// (Used for our current method of getting the fps.)
-	double last_time = glfwGetTime();
+	double last_FPS_time = glfwGetTime();
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
@@ -192,18 +194,19 @@ int main()
 		mesh.draw();
 
 		// Shows the fps in the window's title.
-		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_time)).c_str());
-		last_time = glfwGetTime();
+		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_FPS_time)).c_str());
+		last_FPS_time = glfwGetTime();
 
 		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
 		// Checks for window events.
 		glfwPollEvents();
 	}
+	std::cout << "Closing Hatchetflash..." << std::endl;
 	// Cleanly deletes all of the created rendering-based objects.
 	testingTexture.Delete();
 	shaderProgram.Delete();
-	// Cleanup the data in the mesh.
+	// Cleas up the data in the mesh. {WHAT DOES THIS MEAN? PROBABLY EXPLAIN.}
 	mesh.cleanup();
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);

@@ -12,7 +12,7 @@
 #include<iostream>
 #include<cerrno>
 
-// States the existance of a function which reads the contents of a file.
+// States a function which reads the contents of a file.
 std::string get_file_contents(const char* filename);
 
 class Shader
