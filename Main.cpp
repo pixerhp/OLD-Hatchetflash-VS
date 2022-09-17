@@ -28,7 +28,7 @@
 
 // Testing vertices for a 3D block.
 GLfloat vertices[] =
-{ //   COORDINATES    /       COLOURS      /  TexCoord   //
+{ //   COORDINATES    /   TexCoord   //
 	0.0f, 0.0f, 0.0f,	 1.0f, 0.0f, //Back face.
 	0.0f, 1.0f, 0.0f,	 1.0f, 1.0f,
 	1.0f, 1.0f, 0.0f,	 0.0f, 1.0f,
