@@ -156,7 +156,7 @@ int main()
 	mesh.vertices.insert(mesh.vertices.begin(), std::begin(vertices), std::end(vertices));
 	mesh.indices.insert(mesh.indices.begin(), std::begin(indices), std::end(indices));
 	// Regenerate the mesh with the new vertices and indices.
-	mesh.regenerateVBOsAndEBOs();
+	mesh.regenerateVBOAndEBO();
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
