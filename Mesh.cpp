@@ -39,10 +39,6 @@ void Mesh::draw(){
 
 // Delete the VAO, VBO, and EBO.
 void Mesh::cleanup(){
-<<<<<<< HEAD
-=======
-    // Delete VAOs, VBOs, and EBOs.
->>>>>>> 39443653e0db8b069f4895e741f6736007dcf6af
     glDeleteVertexArrays(1, &VAOID);
     glDeleteBuffers(1, &VBOID);
     glDeleteBuffers(1, &EBOID);
