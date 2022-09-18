@@ -27,7 +27,7 @@
 #include "Mesh.h"
 
 // Testing vertices for a 3D block.
-Vertex vertices[] =
+std::vector<Vertex> vertices =
 { //   COORDINATES    /       COLOURS      /  TexCoord   //
 	{{0.0f, 0.0f, 0.0f},	 {1.0f, 0.0f}}, //Back face.
 	{{0.0f, 1.0f, 0.0f},	 {1.0f, 1.0f}},
@@ -60,7 +60,7 @@ Vertex vertices[] =
 	{{1.0f, 1.0f, 1.0f},	 {4.0f, 4.0f}}
 };
 // Testing indices for a 3D block.
-GLuint indices[] =
+std::vector<GLuint> indices =
 {
 	0, 1, 3, //Back face
 	3, 1, 2, //
@@ -153,12 +153,7 @@ int main()
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
 
 	// Create a simple mesh.
-	Mesh mesh;
-	// Put the vertices and indices in the mesh.
-	mesh.vertices.insert(mesh.vertices.begin(), std::begin(vertices), std::end(vertices));
-	mesh.indices.insert(mesh.indices.begin(), std::begin(indices), std::end(indices));
-	// Regenerate the mesh with the new vertices and indices.
-	mesh.regenerateVBOAndEBO();
+	Mesh mesh(vertices, indices);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);

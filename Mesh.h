@@ -28,7 +28,9 @@ class Mesh{
         GLuint VBOID;
         GLuint EBOID;
 
-        Mesh(){
+        Mesh(std::vector<Vertex> vertices = {}, std::vector<GLuint> indices = {}){
+            Mesh::vertices = vertices;
+            Mesh::indices = indices;
             // Generate and bind the VAO.
             glGenVertexArrays(1, &VAOID);
             glBindVertexArray(VAOID);
@@ -37,7 +39,7 @@ class Mesh{
             glGenBuffers(1, &VBOID);
             glGenBuffers(1, &EBOID);
 
-            // Populate the VBO and EBO with blank data. (Cause the vertices and indices aren't set yet.)
+            // Populate the VBO and EBO with passed in data.
             regenerateVBOAndEBO();
 
             // Rebind the VAO, VBO, and EBO. (The regenerateVBOsAndEBOs function unbound them.)
