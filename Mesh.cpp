@@ -15,7 +15,7 @@ void Mesh::regenerateVBOAndEBO(){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOID);
 
     // Fill the VBO and EBO with the vertex and index data.
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GLusage);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GLusage);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), indices.data(), GLusage);
 
     // Unbind VAO, VBO, and EBO.

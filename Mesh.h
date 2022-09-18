@@ -8,13 +8,19 @@
 
 #include <vector>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
+
+struct Vertex{
+    glm::vec3 position;
+    glm::vec2 textUV;
+};
 
 class Mesh{
     private:
         GLenum GLusage = GL_STATIC_DRAW;
     public:
         // Vectors to store all vertices and indices.
-        std::vector<GLfloat> vertices;
+        std::vector<Vertex> vertices;
         std::vector<GLuint> indices;
 
         // The IDs of the VAO, VBO, and EBO.
