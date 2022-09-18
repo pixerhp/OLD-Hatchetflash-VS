@@ -10,6 +10,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
+// Store the Vertex data as a struct, this makes it easier to change and work with.
 struct Vertex{
     glm::vec3 position;
     glm::vec2 textUV;
@@ -17,6 +18,8 @@ struct Vertex{
 
 class Mesh{
     private:
+        // This determines how often the data will be sent to the GPU, this is for potential use in the future.
+        // Do not remove.
         GLenum GLusage = GL_STATIC_DRAW;
     public:
         // Vectors to store all vertices and indices.
