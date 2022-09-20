@@ -163,6 +163,11 @@ int main()
 	// Creates the camera object.
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
 
+	// Counts the time that will later be used for FPS calculations
+	double FPSTimer = 0.0f;
+	// Increments every time the FPS is checked
+	long FPSCnt = 0;
+
 	// (Used for our current method of getting the fps.)
 	double last_FPS_time = glfwGetTime();
 
@@ -187,11 +192,19 @@ int main()
 
 		// Draw the mesh on screen.
 		mesh.draw();
-
-		// Shows the fps in the window's title.
-		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_FPS_time)).c_str());
+		
+		// Shows the half second average of fps in the window's title.
+		if (FPSTimer > 0.5f) {
+			glfwSetWindowTitle(window, std::to_string(1.0f / (FPSTimer /FPSCnt)).c_str());
+			//Sets the veriables used for measuring the FPS back to 0
+			FPSTimer = 0.0f;
+			FPSCnt = 0;
+		}
+		// FPS timer incremented by time between frames, the FPS counter is incremented too
+		FPSTimer += glfwGetTime() - last_FPS_time;
+		FPSCnt++;
 		last_FPS_time = glfwGetTime();
-
+		
 		//Swaps the window's back buffer canvas and it's front buffer canvas.
 		glfwSwapBuffers(window);
 		// Checks for window events.
