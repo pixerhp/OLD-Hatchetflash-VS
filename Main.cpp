@@ -1,6 +1,6 @@
 /* Main.cpp file description:
 * The core of the program and the game, main() is where the program starts when it begins running.
-* (Will eventually contain the game's main function calls and gameplay loops.)
+* (Will eventually also contain the game's main function calls and gameplay loops.)
 */
 
 // Very necessary for 3D rendering and general glad/glfw window functions:
@@ -26,7 +26,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 
-// Testing vertices for a 3D block.
+// Testing vertices for a 3D block, which is itself used as a testing mesh.
 std::vector<Vertex> vertices =
 { //   COORDINATES        /      TexCoord   //
 	{{0.0f, 0.0f, 0.0f},	 {1.0f, 0.0f}}, //Back face.
@@ -129,7 +129,7 @@ int main()
 	// Specifies the viewport of opengl in the window.
 	glViewport(0, 0, windowWidth, windowHeight);
 
-	// Gives the window it's icon.
+	// Gives the game-window it's icon, which also displays in the Windows taskbar.
 	stbi_set_flip_vertically_on_load(false);
 	GLFWimage windowIconImage;
 	windowIconImage.pixels = stbi_load("Utility_Images/Hatchetflash_Window_Icon_A.png", &windowIconImage.width, &windowIconImage.height, 0, 4);
@@ -152,8 +152,8 @@ int main()
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
 
-	// Create a simple mesh.
-	Mesh mesh(vertices, indices);
+	// Creates a simple mesh for use in testing.
+	Mesh testingMesh(vertices, indices);
 
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -163,9 +163,9 @@ int main()
 	// Creates the camera object.
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
 
-	// Counts the time that will later be used for FPS calculations
+	// Counts the time that will later be used for FPS calculations.
 	double FPSTimer = 0.0f;
-	// Increments every time the FPS is checked
+	// Increments every time the FPS is checked.
 	long FPSCnt = 0;
 
 	// (Used for our current method of getting the fps.)
@@ -176,7 +176,7 @@ int main()
 		// Clears the window canvas with it's basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Tell OpenGL which Shader Program we want to use
+		// Tells OpenGL which Shader Program to use.
 		shaderProgram.Activate();
 
 		// Handles camera inputs.
@@ -190,8 +190,8 @@ int main()
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
-		// Draw the mesh on screen.
-		mesh.draw();
+		// Draws the testing mesh on the canvas.
+		testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.
 		if (FPSTimer > 0.5f) {
@@ -214,8 +214,8 @@ int main()
 	// Cleanly deletes all of the created rendering-based objects.
 	testingTexture.Delete();
 	shaderProgram.Delete();
-	// Cleas up the data in the mesh. {WHAT DOES THIS MEAN? PROBABLY EXPLAIN.}
-	mesh.cleanup();
+	// Deletes VAO, VBO and EBO stuff related to the mesh.
+	testingMesh.cleanup();
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();

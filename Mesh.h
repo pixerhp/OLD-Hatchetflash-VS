@@ -65,12 +65,12 @@ class Mesh{
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
-        // Regenerate the VBO and EBO with the vertices and indices vectors.
+        // States a function which regenerates the VBO and EBO with the vertices and indices vectors.
         void regenerateVBOAndEBO();
 
-        // Draw the mesh.
+        // States a function which draws the mesh.
         void draw();
 
-        // Delete the VAO, VBO, and EBO.
+        // States a function which deletes the VAO, VBO, and EBO.
         void cleanup();
 };
