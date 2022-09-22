@@ -9,10 +9,10 @@
 class Chunk
 {
 public:
-
 	unsigned long int seed = 0;
 	int chunkX = 0;
 	int chunkY = 0;
+	// Should contain an array of 4096 (16^3) vectors, which contain at least 0 blocks, with unsigned ints being used for information for each block.
 	std::vector<unsigned int> blockStorage[4096];
 
 	/* A constructor for chunk objects.
