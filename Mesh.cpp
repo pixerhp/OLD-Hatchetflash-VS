@@ -1,6 +1,6 @@
 /* Mesh.cpp file description:
 *
-* A Mesh stores information about and generates meshes.
+* (A Mesh stores information about vertices and such and generates meshes.)
 */
 
 #include "Mesh.h"

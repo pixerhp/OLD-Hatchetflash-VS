@@ -1,7 +1,7 @@
 /* Mesh.h file description:
 * Defines the Mesh class, and states all of the functions that it will have as defined in "Mesh.cpp".
 *
-* A Mesh stores information about and generates meshes.
+* (A Mesh stores information about vertices and such and generates meshes.)
 */
 
 #pragma once
@@ -10,7 +10,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-// Store the Vertex data as a struct, this makes it easier to change and work with.
+// Stores the Vertex data as a struct, this makes it easier to change and work with.
 struct Vertex{
     glm::vec3 position;
     glm::vec2 textUV;
@@ -50,12 +50,12 @@ class Mesh{
             glBindBuffer(GL_ARRAY_BUFFER, VBOID);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOID);
 
-            // Set the VAO information.
-            // First 3 floats are position.
+            // Sets the VAO information.
+            // (The first 3 floats are position.)
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
             glEnableVertexAttribArray(0);
 
-            // Second 2 floats are texture coordinates.
+            // (The second 2 floats are texture coordinates.)
             glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
             glEnableVertexAttribArray(1);
 
