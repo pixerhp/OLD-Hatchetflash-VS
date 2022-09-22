@@ -170,9 +170,10 @@ int main()
 	double FPSTimer = 0.0f;
 	// Increments every time the FPS is checked.
 	long FPSCnt = 0;
-
 	// (Used for our current method of getting the fps.)
 	double last_FPS_time = glfwGetTime();
+	// Delta-time. (This is a permanent variable even if the code of getting it may change later.)
+	double deltaTime = 1.0f / 60.0f;
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
@@ -206,6 +207,7 @@ int main()
 		// FPS timer incremented by time between frames, the FPS counter is incremented too
 		FPSTimer += glfwGetTime() - last_FPS_time;
 		FPSCnt++;
+		deltaTime = glfwGetTime() - last_FPS_time; //(Updates dt.)
 		last_FPS_time = glfwGetTime();
 		
 		//Swaps the window's back buffer canvas and it's front buffer canvas.

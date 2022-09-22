@@ -10,3 +10,7 @@ Regarding whether during debug you want the console window to stay after you clo
 VS specific: "To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops."
 
 =-= =-= =-= =-= =-= =-= =-=
+
+To toggle whether the fps is foreably unlocked or not, toggle whether "glfwSwapInterval(0);" is commented out in "main.cpp".
+
+=-= =-= =-= =-= =-= =-= =-=
