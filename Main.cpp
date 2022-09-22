@@ -25,6 +25,7 @@
 #include "shaderClass.h"
 #include "Camera.h"
 #include "Mesh.h"
+#include "Model.h"
 
 // Testing vertices for a 3D block.
 std::vector<Vertex> vertices =
@@ -152,13 +153,14 @@ int main()
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
 
-	// Create a simple mesh.
-	Mesh mesh(vertices, indices);
-
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
 	// Enable depth testing so things are rendered in the correct order.
 	glEnable(GL_DEPTH_TEST);
+
+	// Create a simple mesh.
+	//Mesh mesh(vertices, indices);
+	Model model("bunny.gltf");
 
 	// Creates the camera object.
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
@@ -186,7 +188,8 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
 		// Draw the mesh on screen.
-		mesh.draw();
+		//mesh.draw();
+		model.draw();
 
 		// Shows the fps in the window's title.
 		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_FPS_time)).c_str());
@@ -202,7 +205,8 @@ int main()
 	testingTexture.Delete();
 	shaderProgram.Delete();
 	// Cleas up the data in the mesh. {WHAT DOES THIS MEAN? PROBABLY EXPLAIN.}
-	mesh.cleanup();
+	//mesh.cleanup();
+	model.cleanup();
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();
