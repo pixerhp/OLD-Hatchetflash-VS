@@ -173,7 +173,7 @@ int main()
 	// (Used for our current method of getting the fps.)
 	double last_FPS_time = glfwGetTime();
 	// Delta-time. (This is a permanent variable even if the code of getting it may change later.)
-	double deltaTime = 1.0f / 60.0f;
+	float deltaTime = 1.0f / 60.0f;
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
