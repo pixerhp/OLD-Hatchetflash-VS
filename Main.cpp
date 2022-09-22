@@ -140,6 +140,9 @@ int main()
 
 
 
+	// If used rather than commented out, unlocks the fps of the window for testing purposes.
+	glfwSwapInterval(0);
+	
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("default.vert", "default.frag");
 
