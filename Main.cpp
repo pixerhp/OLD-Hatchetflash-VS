@@ -145,7 +145,7 @@ int main()
 
 
 	// If used rather than commented out, unlocks the fps of the window for testing purposes.
-	glfwSwapInterval(0);
+	//glfwSwapInterval(0);
 	
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("default.vert", "default.frag");
@@ -171,6 +171,11 @@ int main()
 
 	// Creates the camera object.
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
+
+	// A chunk to be used for testing out the chunk class.
+	Chunk testingChunk(314,0,0);
+	testingChunk.MakeChunkFilledWithTestBlocks();
+	testingChunk.UpdateChunkMesh();
 
 	// Counts the time that will later be used for FPS calculations.
 	double FPSTimer = 0.0f;

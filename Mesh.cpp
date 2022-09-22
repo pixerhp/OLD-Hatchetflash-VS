@@ -5,7 +5,8 @@
 
 #include "Mesh.h"
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices){
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices)
+{
     Mesh::vertices = vertices;
     Mesh::indices = indices;
     // Generate and bind the VAO.

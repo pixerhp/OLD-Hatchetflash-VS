@@ -25,4 +25,8 @@ public:
 		chunkX = input_chunkX;
 		chunkY = input_chunkY;
 	}
+
+	void MakeChunkFilledWithTestBlocks();
+
+	void UpdateChunkMesh();
 };
