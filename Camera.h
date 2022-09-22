@@ -32,7 +32,7 @@ public:
 	int cameraWindowHeight;
 
 	// Sets the speed of the camera's orientational movement + it's sensitivity to turning around.
-	float movementSpeed = 0.1f;
+	float movementSpeed = 10.0f;
 	float turningSensitivity = 200.0f;
 
 	// States a camera object constructor which sets up initial values.
@@ -40,5 +40,5 @@ public:
 	// States a function which updates/calculates and exports the camera matrix to the Vertex Shader.
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	// States a function which handles camera mouse/keyboard inputs.
-	void Inputs(GLFWwindow* window);
+	void Inputs(GLFWwindow* window, float dt);
 };
