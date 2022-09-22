@@ -1,5 +1,5 @@
 /* Chunk.h file description:
-* 
+* (Currently in a very unfinished state.)
 */
 
 #pragma once

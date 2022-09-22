@@ -1,5 +1,5 @@
 /* Chunk.h file description:
-*
+* (Currently in a very unfinished state.)
 */
 
 #include "Chunk.h"
@@ -13,5 +13,10 @@ void Chunk::MakeChunkFilledWithTestBlocks()
 
 void Chunk::UpdateChunkMesh()
 {
-
+	for (int i = 0; i < 4096; i++) {
+		if (blockStorage[i].at(0) == 13);
+		{
+			//CREATE VERTEX STUFF FOR A BASIC CUBE BASED ON 'i' FOR THE MESH.
+		}
+	}
 }
