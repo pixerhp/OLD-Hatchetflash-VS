@@ -26,6 +26,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Model.h"
+#include "Chunk.h"
 
 // Testing vertices for a 3D block, which is itself used as a testing mesh.
 std::vector<Vertex> vertices =
