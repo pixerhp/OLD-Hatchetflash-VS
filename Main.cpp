@@ -173,7 +173,7 @@ int main()
 	// (Used for our current method of getting the fps.)
 	double last_FPS_time = glfwGetTime();
 	// Delta-time. (This is a permanent variable even if the code of getting it may change later.)
-	double deltaTime = 1.0f / 60.0f;
+	float deltaTime = 1.0f / 60.0f;
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
@@ -184,7 +184,7 @@ int main()
 		shaderProgram.Activate();
 
 		// Handles camera inputs.
-		camera.Inputs(window);
+		camera.Inputs(window, deltaTime);
 		// Updates and exports the camera matrix to the Vertex Shader.
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 

@@ -32,7 +32,7 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shade
 }
 
 // Checks keyboard and mouse inputs as used for camera movement.
-void Camera::Inputs(GLFWwindow* window)
+void Camera::Inputs(GLFWwindow* window, float dt)
 {
 	// Re-get the actual size of the window.
 	glfwGetWindowSize(window, &cameraWindowWidth, &cameraWindowHeight);
@@ -43,43 +43,43 @@ void Camera::Inputs(GLFWwindow* window)
 	// (Keyboard inputs.)
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		Position += movementSpeed * Orientation;
+		Position += (movementSpeed * dt) * Orientation;
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		Position += movementSpeed * -glm::normalize(glm::cross(Orientation, UpDirection));
+		Position += (movementSpeed * dt) * -glm::normalize(glm::cross(Orientation, UpDirection));
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		Position += movementSpeed * -Orientation;
+		Position += (movementSpeed * dt) * -Orientation;
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		Position += movementSpeed * glm::normalize(glm::cross(Orientation, UpDirection));
+		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, UpDirection));
 	}
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
-		Position += movementSpeed * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
+		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
 	}
 	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
 	{
-		Position += movementSpeed * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, -UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
+		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, -UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
 	}
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		Position += movementSpeed * UpDirection;
+		Position += (movementSpeed * dt) * UpDirection;
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 	{
-		Position += movementSpeed * -UpDirection;
+		Position += (movementSpeed * dt) * -UpDirection;
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
 	{
-		movementSpeed = 0.4f;
+		movementSpeed = 40.0f;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_RELEASE)
 	{
-		movementSpeed = 0.1f;
+		movementSpeed = 10.0f;
 	}
 
 	// (Mouse inputs.)
