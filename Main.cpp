@@ -157,7 +157,7 @@ int main()
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
-	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, -0.5f));
+	modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
 
 	// Creates a simple mesh for use in testing.
 	Mesh testingMesh(vertices, indices);
@@ -170,7 +170,7 @@ int main()
 	//Model model("bunny.gltf");
 
 	// Creates the camera object.
-	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
+	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
 
 	// A chunk to be used for testing out the chunk class.
 	Chunk testingChunk(314,0,0);
@@ -207,8 +207,6 @@ int main()
 
 		//model.draw();
 
-		// Shows the fps in the window's title.
-		glfwSetWindowTitle(window, std::to_string(1.0f / (glfwGetTime() - last_FPS_time)).c_str());
 		// Draws the testing mesh on the canvas.
 		testingMesh.draw();
 		

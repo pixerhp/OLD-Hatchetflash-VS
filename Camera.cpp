@@ -43,7 +43,7 @@ void Camera::Inputs(GLFWwindow* window, float dt)
 	// (Keyboard inputs.)
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * Orientation;
+		Collisions::testPColl(Position, (movementSpeed * dt) * Orientation, plane(glm::vec3(0, 0, 0), glm::vec3(0, 1, 1), 0), AABB(glm::vec3(-0.3f, -0.3f, -0.3f), glm::vec3(0.3f, 0.3f, 0.3f)));
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{

@@ -15,6 +15,7 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "shaderClass.h"
+#include "Collisions.h"
 
 class Camera
 {
