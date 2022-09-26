@@ -2,7 +2,6 @@
 
 Model::Model(const char* file){
     std::string text = get_file_contents(file);
-    std::cout << text;
     JSON = json::parse(text);
 
     Model::file = file;

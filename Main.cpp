@@ -155,9 +155,19 @@ int main()
 	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
+	// Load a texture for the standford bunny.
+	Texture bunnyTexture("metallicRoughness.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	bunnyTexture.texUnit(shaderProgram, "tex0", 0);
+
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
+
+	// Initializes a mat4 as a transform for the stanford bunny.
+	glm::mat4 bunnyModelMatrix = glm::mat4(1.0f);
+	bunnyModelMatrix = glm::translate(bunnyModelMatrix, glm::vec3(0.0f, 0.8f, 0.0f));
+	bunnyModelMatrix = glm::scale(bunnyModelMatrix, glm::vec3(8.0f));
+	bunnyModelMatrix = glm::rotate(bunnyModelMatrix, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
 	// Creates a simple mesh for use in testing.
 	Mesh testingMesh(vertices, indices);
@@ -167,7 +177,8 @@ int main()
 	// Enable depth testing so things are rendered in the correct order.
 	glEnable(GL_DEPTH_TEST);
 
-	//Model model("bunny.gltf");
+	// Load the standford bunny model.
+	Model model("bunny.gltf");
 
 	// Creates the camera object.
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
@@ -199,15 +210,20 @@ int main()
 		// Updates and exports the camera matrix to the Vertex Shader.
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
-		// Binds the testing texture so that it appears in rendering.
-		testingTexture.Bind();
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(bunnyModelMatrix));
+
+		// Bind the texture and draw the bunny.
+		bunnyTexture.Bind();
+		model.draw();
+
+		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
+		modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
-		//model.draw();
-
-		// Draws the testing mesh on the canvas.
+		// Bind the texture and draw the bunny.
+		testingTexture.Bind();
 		testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.
@@ -233,7 +249,8 @@ int main()
 	testingTexture.Delete();
 	shaderProgram.Delete();
 	
-	//model.cleanup();
+	// Deletes VAO, VBO and EBO stuff related to the bunny.
+	model.cleanup();
 	// Deletes VAO, VBO and EBO stuff related to the mesh.
 	testingMesh.cleanup();
 	
