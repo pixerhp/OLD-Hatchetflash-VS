@@ -178,7 +178,11 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Block_Textures\HF_window_icon_16x.png" />
+    <Image Include="Block_Textures\HF_BT_BrownTiles.png" />
+    <Image Include="Block_Textures\HF_BT_DryDirt.png" />
+    <Image Include="Block_Textures\HF_BT_GrayCarpet.png" />
+    <Image Include="Block_Textures\HF_BT_Unknown.png" />
+    <Image Include="Block_Textures\HF_BT_WhiteWall.png" />
     <Image Include="Utility_Images\Album_2_Art.png" />
     <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png" />
   </ItemGroup>

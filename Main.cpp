@@ -152,7 +152,7 @@ int main()
 
 	// (A texture used for testing.)
 	stbi_set_flip_vertically_on_load(true);
-	Texture testingTexture("Block_Textures/HF_window_icon_16x.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture testingTexture("Block_Textures/HF_BT_Unknown.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
