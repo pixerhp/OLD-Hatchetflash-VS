@@ -159,12 +159,6 @@
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Commenting_Style.txt" />
-    <Text Include="Controls.txt" />
-    <Text Include="Linux_Compatability.txt" />
-    <Text Include="Things_To_Remember.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="default.frag" />
     <None Include="default.vert" />
   </ItemGroup>
@@ -185,6 +179,12 @@
     <Image Include="Block_Textures\HF_BT_WhiteWall.png" />
     <Image Include="Utility_Images\Album_2_Art.png" />
     <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Text Documents\Commenting_Style.txt" />
+    <Text Include="Text Documents\Controls.txt" />
+    <Text Include="Text Documents\Linux_Compatability.txt" />
+    <Text Include="Text Documents\Things_To_Remember.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
