@@ -165,7 +165,7 @@ int main()
 
 	// Initializes a mat4 as a transform for the stanford bunny.
 	glm::mat4 bunnyModelMatrix = glm::mat4(1.0f);
-	bunnyModelMatrix = glm::translate(bunnyModelMatrix, glm::vec3(0.0f, 0.8f, 0.0f));
+	bunnyModelMatrix = glm::translate(bunnyModelMatrix, glm::vec3(0.5f, 0.7f, 0.5f));
 	bunnyModelMatrix = glm::scale(bunnyModelMatrix, glm::vec3(8.0f));
 	bunnyModelMatrix = glm::rotate(bunnyModelMatrix, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
