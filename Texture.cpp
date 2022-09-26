@@ -13,7 +13,7 @@ Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum format, 
 	// Flips the image so it appears right side up for OpenGL use..
 	stbi_set_flip_vertically_on_load(true);
 	// Reads the image from a file and stores it in bytes.
-	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
+	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 4);
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
 	glGenTextures(1, &ID);
