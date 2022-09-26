@@ -1,0 +1,5 @@
+=-= =-= =-= =-= =-= =-= =-=
+A list of IDs for different substances:
+=-= =-= =-= =-= =-= =-= =-=
+0-11 - Reserved.
+12-129 - Atomic Hydrogen through Oganesson.

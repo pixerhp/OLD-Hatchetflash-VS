@@ -181,10 +181,11 @@
     <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Text Documents\Commenting_Style.txt" />
+    <Text Include="Text Documents\Commenting style.txt" />
     <Text Include="Text Documents\Controls.txt" />
-    <Text Include="Text Documents\Linux_Compatability.txt" />
-    <Text Include="Text Documents\Things_To_Remember.txt" />
+    <Text Include="Text Documents\Linux compatability.txt" />
+    <Text Include="Text Documents\Substance IDs.txt" />
+    <Text Include="Text Documents\Things to remember.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
