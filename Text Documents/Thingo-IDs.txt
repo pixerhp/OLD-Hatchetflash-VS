@@ -15,7 +15,7 @@ A list of "Thingo" IDs:
 100000000-199999999 - Reserved for basic chemical elements, including all possible isotopes of everything, quarks if they exist yet, etc.
 200000000-399999999 - Reserved for basic chemical substances (such as O2, H2O or sugars.)
 400000000-599999999 - Reserved for basic materials composed of serveral substances (such as basic solutions or minerals.)
-600000000-799999999 - Reserved for complex materials composed of many substances or multiple basic materials (such as dirts or paints.)
+600000000-799999999 - Reserved for complex materials composed of many substances or multiple basic materials (such as dirt types or paints.)
 800000000-999999999 - Reserved for common living things which can be seen, such as recurring plants, bugs and animals.
 1000000000-1199999999 - Reserved for common living (or close enough) things which can't be seen, such as bacteria, viruses or things of similar nature.
 1200000000-1399999999 - IDs for world-specific living things, such as named animals or NPCs with any significant info about them.

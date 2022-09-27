@@ -17,7 +17,7 @@ public:
 
 	/* A constructor for chunk objects.
 	* 
-	* Seed specifies the seed the chunk is generated from.
+	* Seed specifies the seed the chunk is generated from. This is significant to have in the chunk as it allows for not all chunks to use the same seed.
 	* chunkX and chunkY specify the chunk coordinates of the chunk for easier later use in generation and functions.
 	*/
 	Chunk(unsigned long int input_seed, int input_chunkX, int input_chunkY) {
