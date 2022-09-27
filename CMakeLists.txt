@@ -6,11 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+include_directories(Headers)
 include_directories(Libraries/include)
 include_directories(/usr/local/include)
 
-file(GLOB CPPSOURCES "*.cpp")
-file(GLOB CSOURCES "*.c")
+file(GLOB CPPSOURCES "src/*.cpp")
+file(GLOB CSOURCES "src/*.c")
 add_executable(HatchetFlash.x86_64 ${CPPSOURCES} ${CSOURCES})
 
 set_property(TARGET HatchetFlash.x86_64 PROPERTY POSITION_INDEPENDENT_CODE TRUE)
