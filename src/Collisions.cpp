@@ -1,3 +1,8 @@
+/* Collisions.cpp file description:
+* 
+* (The functions here are also stated in "Collisions.h".)
+*/
+
 #include "Collisions.h"
 
 void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, plane pl, AABB Pexp)

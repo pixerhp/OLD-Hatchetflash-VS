@@ -1,3 +1,9 @@
+/* Model.h file description:
+* Defines the Model class, and states all of the functions that it will have as defined in "Model.cpp".
+*
+* (A model stores meshes as well as other information.)
+*/
+
 #pragma once
 
 #include <json/json.hpp>

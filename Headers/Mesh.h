@@ -10,7 +10,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-// Stores the Vertex data as a struct, this makes it easier to change and work with.
+// Stores the Vertex data as a struct, which makes it easier to change and work with.
 struct Vertex{
     glm::vec3 position;
     glm::vec2 textUV;
@@ -18,9 +18,8 @@ struct Vertex{
 
 class Mesh{
 private:
-    // This determines how often the data will be sent to the GPU, this is for potential use in the future.
-    // Do not remove.
-    GLenum GLusage = GL_STATIC_DRAW;
+    // This determines how often the data will be sent to the GPU (for potential use in the future.)
+    GLenum GLusage = GL_STATIC_DRAW; //(Do not remove.)
 public:
     // Vectors to store all vertices and indices.
     std::vector<Vertex> vertices;
@@ -33,12 +32,12 @@ public:
 
     Mesh(std::vector<Vertex> vertices = {}, std::vector<GLuint> indices = {});
 
-    // Regenerate the VBO and EBO with the vertices and indices vectors.
+    // Regenerates the VBO and EBO with the vertices and indices vectors.
     void regenerateVBOAndEBO();
 
-    // Draw the mesh.
+    // Draws the mesh.
     void draw();
 
-    // Delete the VAO, VBO, and EBO.
+    // Deletes the VAO, VBO, and EBO.
     void cleanup();
 };

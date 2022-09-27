@@ -1,5 +1,5 @@
 /* Chunk.h file description:
-* (Currently in a very unfinished state.)
+* Defines the Chunk class, and states all of the functions that it will have as defined in "Chunk.cpp".
 */
 
 #pragma once

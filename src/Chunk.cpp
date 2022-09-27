@@ -1,5 +1,7 @@
-/* Chunk.h file description:
-* (Currently in a very unfinished state.)
+/* Chunk.cpp file description:
+* Defines functions and other for chunk (physics) objects.
+* 
+* (The functions here are also stated in "Chunk.h".)
 */
 
 #include "Chunk.h"

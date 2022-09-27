@@ -1,3 +1,8 @@
+/* Collisions.h file description:
+* Defines the Collisions class, and states all of the functions that it will have as defined in "Collisions.cpp".
+*
+*/
+
 #pragma once
 
 #include<glm/glm.hpp>
