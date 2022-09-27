@@ -27,89 +27,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shaderClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chunk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Collisions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="default.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="default.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="shaderClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Chunk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collisions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Utility_Images\Album_2_Art.png">
+    <Image Include="Resources\Block_Textures\HF_BT_BrownTiles.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\HF_BT_DryDirt.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\HF_BT_GrayCarpet.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\HF_BT_Unknown.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\HF_BT_WhiteWall.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Utility_Images\Album_2_Art.png">
       <Filter>Resource Files\Utility_Images</Filter>
     </Image>
-    <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png">
+    <Image Include="Resources\Utility_Images\baseColor.png">
       <Filter>Resource Files\Utility_Images</Filter>
     </Image>
-    <Image Include="Block_Textures\HF_BT_BrownTiles.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+    <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png">
+      <Filter>Resource Files\Utility_Images</Filter>
     </Image>
-    <Image Include="Block_Textures\HF_BT_GrayCarpet.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+    <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png">
+      <Filter>Resource Files\Utility_Images</Filter>
     </Image>
-    <Image Include="Block_Textures\HF_BT_Unknown.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Block_Textures\HF_BT_WhiteWall.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Block_Textures\HF_BT_DryDirt.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+    <Image Include="Resources\Utility_Images\metallicRoughness.png">
+      <Filter>Resource Files\Utility_Images</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -128,5 +74,68 @@
     <Text Include="Text Documents\Substance IDs.txt">
       <Filter>Text Documents</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Collisions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shaderClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\shaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\default.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\default.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

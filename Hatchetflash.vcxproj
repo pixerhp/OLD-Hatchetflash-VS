@@ -71,12 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Headers;C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\16072\Documents\GitHub\Hatchetflash\src;$(SourcePath)</SourcePath>
+    <AllProjectIncludesArePublic>false</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Headers;C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\16072\Documents\GitHub\Hatchetflash\src;$(SourcePath)</SourcePath>
+    <AllProjectIncludesArePublic>false</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
@@ -147,38 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Chunk.cpp" />
-    <ClCompile Include="Collisions.cpp" />
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="shaderClass.cpp" />
-    <ClCompile Include="stb.cpp" />
-    <ClCompile Include="Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="default.frag" />
-    <None Include="default.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Chunk.h" />
-    <ClInclude Include="Collisions.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="shaderClass.h" />
-    <ClInclude Include="Texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Block_Textures\HF_BT_BrownTiles.png" />
-    <Image Include="Block_Textures\HF_BT_DryDirt.png" />
-    <Image Include="Block_Textures\HF_BT_GrayCarpet.png" />
-    <Image Include="Block_Textures\HF_BT_Unknown.png" />
-    <Image Include="Block_Textures\HF_BT_WhiteWall.png" />
-    <Image Include="Utility_Images\Album_2_Art.png" />
-    <Image Include="Utility_Images\Hatchetflash_Window_Icon_A.png" />
+    <Image Include="Resources\Block_Textures\HF_BT_BrownTiles.png" />
+    <Image Include="Resources\Block_Textures\HF_BT_DryDirt.png" />
+    <Image Include="Resources\Block_Textures\HF_BT_GrayCarpet.png" />
+    <Image Include="Resources\Block_Textures\HF_BT_Unknown.png" />
+    <Image Include="Resources\Block_Textures\HF_BT_WhiteWall.png" />
+    <Image Include="Resources\Utility_Images\Album_2_Art.png" />
+    <Image Include="Resources\Utility_Images\baseColor.png" />
+    <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
+    <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />
+    <Image Include="Resources\Utility_Images\metallicRoughness.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text Documents\Commenting style.txt" />
@@ -186,6 +168,31 @@
     <Text Include="Text Documents\Linux compatability.txt" />
     <Text Include="Text Documents\Substance IDs.txt" />
     <Text Include="Text Documents\Things to remember.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Chunk.cpp" />
+    <ClCompile Include="src\Collisions.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\shaderClass.cpp" />
+    <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Camera.h" />
+    <ClInclude Include="Headers\Chunk.h" />
+    <ClInclude Include="Headers\Collisions.h" />
+    <ClInclude Include="Headers\Mesh.h" />
+    <ClInclude Include="Headers\Model.h" />
+    <ClInclude Include="Headers\shaderClass.h" />
+    <ClInclude Include="Headers\Texture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\default.frag" />
+    <None Include="Resources\Shaders\default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
