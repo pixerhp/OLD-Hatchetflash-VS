@@ -5,7 +5,7 @@
 * (Outputs information to the default fragment shader: "default.frag".)
 */
 
-#version 330 core
+#version 330 core //(Helps OpenGL with version and related info.)
 
 // Positions/Coordinates
 layout (location = 0) in vec3 aPos;

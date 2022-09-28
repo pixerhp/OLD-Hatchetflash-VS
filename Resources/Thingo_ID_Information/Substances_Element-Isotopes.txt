@@ -1,0 +1,21 @@
+// Contains information about the standard elements.
+// Obviously this document with exactly how it is isn't going to be used, but it's a good example of what could be.
+//
+// ID: Primary name, other names until semicolon; Type-of-info: info;
+//
+100000000: Hydrogen, Hydrogen-1, Protium; protons: 1; neutrons: 0; stable: true;
+100000001: Hydrogen-2, Deuterium; protons: 1; neutrons: 1; stable: true;
+100000002: Hydrogen-3, Tritium; protons: 1; neutrons: 2; stable: false; half_life: 12.32 years;
+100000003: Hydrogen-4; protons: 1; neutrons: 3; stable: false; half_life: 139 yoctoseconds;
+100000004: Hydrogen-5; protons: 1; neutrons: 4; stable: false; half_life: 86 yoctoseconds;
+100000005: Hydrogen-6; protons: 1; neutrons: 5; stable: false; half_life: 294 yoctoseconds;
+100000006: Hydrogen-7; protons: 1; neutrons: 6; stable: false; half_life: 652 yoctoseconds;
+100000007: Helium-2, Diproton;
+100000008: Helium-3;
+100000009: Helium, Helium-4;
+100000010: Helium-5;
+100000011: Helium-6;
+100000012: Helium-7;
+100000013: Helium-8;
+100000014: Helium-9;
+100000015: Helium-10;

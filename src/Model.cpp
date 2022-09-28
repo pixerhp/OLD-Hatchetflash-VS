@@ -1,5 +1,11 @@
+/* Model.cpp file description:
+*
+* (The functions here are also stated in "Model.h".)
+*/
+
 #include "Model.h"
 
+// A general constructor for a raw Model object.
 Model::Model(const char* file){
     std::string text = get_file_contents(file);
     JSON = json::parse(text);
@@ -52,6 +58,7 @@ std::vector<unsigned char> Model::getData(){
     bytesText = get_file_contents((fileDirectory + uri).c_str());
 
     // I have no idea why another identical string is created here, but it's what the tutorial said to do...
+    // POTENTIALLY CHECK THIS OUT LATER!
     std::vector<unsigned char> data(bytesText.begin(), bytesText.end());
     return data;
 }
