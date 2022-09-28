@@ -11,6 +11,7 @@ out vec4 FragColor;
 
 // Inputs the texture coordinates from the Vertex Shader
 in vec2 texCoord;
+in vec3 color;
 
 // Gets the Texture Unit from the main function
 uniform sampler2D tex0;
@@ -24,5 +25,5 @@ void main()
 		discard;
 	}
 
-	FragColor = texture(tex0, texCoord);
+	FragColor = texture(tex0, texCoord) * vec4(color, 1.0f);
 }

@@ -12,8 +12,9 @@
 
 // Stores the Vertex data as a struct, this makes it easier to change and work with.
 struct Vertex{
-    glm::vec3 position;
-    glm::vec2 textUV;
+    glm::vec3 position = glm::vec3(0.0f);
+    glm::vec2 textUV = glm::vec2(0.0f);
+    glm::vec3 color = glm::vec3(1.0f);
 };
 
 class Mesh{
