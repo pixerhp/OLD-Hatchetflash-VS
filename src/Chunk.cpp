@@ -6,13 +6,15 @@
 
 #include "Chunk.h"
 
+// A good function for testing basic functionality of chunk objects.
 void Chunk::MakeChunkFilledWithTestBlocks()
 {
 	for (int i = 0; i < 4096; i++) {
-		blockStorage[i] = {600000000}; //(13 is chosen as the number for testing-blocks to reserve the first 12 number for other odd-er later use.)
+		blockStorage[i] = {600000000}; //UPDATE THE NUMBER HERE LATER WHEN YOU NEXT WORK ON CHUNK STUFF PIXER.
 	}
 }
 
+// Used to update the mesh of the chunk to match what the visuals of the current chunk info should look like.
 void Chunk::UpdateChunkMesh()
 {
 	for (int i = 0; i < 4096; i++) {

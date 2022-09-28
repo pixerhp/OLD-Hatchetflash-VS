@@ -4,7 +4,7 @@
 * (Also see the shader class for more use.)
 */
 
-#version 330 core
+#version 330 core //(Helps OpenGL with version and related info.)
 
 // Outputs colors in RGBA
 out vec4 FragColor;

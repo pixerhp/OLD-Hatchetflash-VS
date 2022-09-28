@@ -7,11 +7,11 @@
 
 void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, plane pl, AABB Pexp)
 {
-	//Big boy box (useful)
+	// Big boy box (useful)
 	AABB BigBox(glm::vec3(Ppos + Pexp.min.x), glm::vec3(Ppos + Pexp.max + Phead));
 
 
-	//some basic AABB on AABB action
+	// some basic AABB on AABB action
 	if (!(BigBox.min.x <= pl.max.x &&
 		BigBox.max.x >= pl.min.x &&
 		BigBox.min.y <= pl.max.y &&
@@ -21,7 +21,7 @@ void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, plane pl, AABB Pexp
 	{Ppos += Phead; return;}
 		
 
-	//switch statement (scary)
+	// switch statement (scary)
 	switch (pl.axis) {
 	case 0:
 		if (Phead.x > 0)

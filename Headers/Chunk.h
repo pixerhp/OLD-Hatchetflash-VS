@@ -26,6 +26,7 @@ public:
 		chunkY = input_chunkY;
 	}
 
+	// A function which is used purely for testing.
 	void MakeChunkFilledWithTestBlocks();
 
 	void UpdateChunkMesh();
