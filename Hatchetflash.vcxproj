@@ -180,6 +180,7 @@
     <ClCompile Include="src\shaderClass.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Camera.h" />
@@ -189,10 +190,13 @@
     <ClInclude Include="Headers\Model.h" />
     <ClInclude Include="Headers\shaderClass.h" />
     <ClInclude Include="Headers\Texture.h" />
+    <ClInclude Include="Headers\Text.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\default.frag" />
     <None Include="Resources\Shaders\default.vert" />
+    <None Include="Resources\Shaders\text.frag" />
+    <None Include="Resources\Shaders\text.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

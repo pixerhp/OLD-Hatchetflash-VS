@@ -30,6 +30,7 @@
 #include "Mesh.h"
 #include "Model.h"
 #include "Chunk.h"
+#include "Text.h"
 
 // Testing vertices for a 3D block, (which is itself also used for a testing mesh.)
 std::vector<Vertex> vertices =
@@ -151,7 +152,10 @@ int main()
 	
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("Resources/Shaders/default.vert", "Resources/Shaders/default.frag");
-
+	Shader textShader("Resources/Shaders/text.vert", "Resources/Shaders/text.frag");
+	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);
+	textShader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 	// (A texture used for testing.)
 	stbi_set_flip_vertically_on_load(true);
 	Texture testingTexture("Resources/Block_Textures/HF_BT_Unknown.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -179,6 +183,10 @@ int main()
 	// Enable depth testing so things are rendered in the correct order.
 	glEnable(GL_DEPTH_TEST);
 
+
+	Text text;
+	text.initText();
+
 	// Load the standford bunny model.
 	Model model("Resources/Models/bunny.gltf");
 
@@ -198,6 +206,8 @@ int main()
 	double last_FPS_time = glfwGetTime();
 	// Delta-time. (This is a permanent variable even if the code of getting it may change later.)
 	float deltaTime = 1.0f / 60.0f;
+
+	float avrgFPS = 0.0f;
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
@@ -227,11 +237,14 @@ int main()
 		// Bind the texture and draw the bunny.
 		testingTexture.Bind();
 		testingChunk.draw();
+		if (avrgFPS > 0.0f)
+			text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight-45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
 		//testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.
 		if (FPSTimer > 0.5f) {
-			glfwSetWindowTitle(window, std::to_string(1.0f / (FPSTimer /FPSCnt)).c_str());
+			avrgFPS = 1.0f / (FPSTimer /FPSCnt);
+			
 			//Sets the veriables used for measuring the FPS back to 0
 			FPSTimer = 0.0f;
 			FPSCnt = 0;
