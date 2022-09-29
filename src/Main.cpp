@@ -1,3 +1,4 @@
+/*================================J.M.J.================================*/
 /* Main.cpp file description:
 * The core of the program and the game, main() is where the program starts when it begins running.
 * (Will eventually also contain the game's main function calls and gameplay loops.)
@@ -216,8 +217,8 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(bunnyModelMatrix));
 
 		// Bind the texture and draw the bunny.
-		bunnyTexture.Bind();
-		model.draw();
+		//bunnyTexture.Bind();
+		//model.draw();
 
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
@@ -225,7 +226,8 @@ int main()
 
 		// Bind the texture and draw the bunny.
 		testingTexture.Bind();
-		testingMesh.draw();
+		testingChunk.draw();
+		//testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.
 		if (FPSTimer > 0.5f) {
