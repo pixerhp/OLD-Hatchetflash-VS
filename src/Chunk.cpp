@@ -17,18 +17,19 @@ void Chunk::Draw()
 
 
 
-// Generates a very basic chunk which can be used for developer testing purposes.
+// Generates a very basic chunk which can be used for developer-testing purposes.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {
-	int i = 0;
+	int index = 0;
 	for (int z = 0; z < 16; z++) {
 	for (int y = 0; y < 16; y++) {
 	for (int x = 0; x < 16; x++) {
 
 		// Converts the set of 3 coordinates into a single index as used for the block array.
-		i = 256*z + 16*y + x;
+		index = 256*z + 16*y + x;
 
-		blockStorage[i] = 600000000;
+		// 600000000
+		blockStorage[index] = ;
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
