@@ -110,7 +110,7 @@ int main()
 	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height;
 
 	// Creates the window. (If the 4th argument is filled in with primaryMonitor, having the program open will use the entire direct monitor itself, going into fullscreen mode.)
-	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash - Pre-Alpha, Going 3D!", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
+	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash - Pre-Alpha [Chunk Testing]", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	// (Error checking for whether the glfw window was created successfully.)
 	if (window == NULL)
 	{
@@ -195,7 +195,7 @@ int main()
 
 	// A chunk to be used for testing out the chunk class.
 	Chunk testingChunk(314,0,0);
-	testingChunk.MakeChunkFilledWithTestBlocks();
+	testingChunk.MakeChunkFilledWithTestingBlocks();
 	testingChunk.UpdateChunkMesh();
 
 	// Counts the time that will later be used for FPS calculations.
@@ -236,9 +236,10 @@ int main()
 
 		// Bind the texture and draw the bunny.
 		testingTexture.Bind();
-		testingChunk.draw();
-		if (avrgFPS > 0.0f)
-			text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight-45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
+		testingChunk.Draw();
+		if (avrgFPS > 0.0f) {
+			text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
+		}
 		//testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.
