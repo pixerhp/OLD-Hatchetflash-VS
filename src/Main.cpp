@@ -194,7 +194,7 @@ int main()
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
 
 	// A chunk to be used for testing out the chunk class.
-	Chunk testingChunk(314,0,0);
+	Chunk testingChunk(314,0,0,0);
 	testingChunk.MakeChunkFilledWithTestingBlocks();
 	testingChunk.UpdateChunkMesh();
 
