@@ -28,15 +28,12 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 		// Converts the set of 3 coordinates into a single index as used for the block array.
 		index = 256*z + 16*y + x;
 
-		// 600000000
-		blockStorage[index] = ;
+		blockStorage[index].push_back(600000000); //Set's the block's thingo-ID to a basic one.
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
 	} //(End of the 'z' for loop.)
 }
-
-
 
 // Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
 void Chunk::UpdateChunkMesh()
@@ -65,9 +62,9 @@ void Chunk::UpdateChunkMesh()
 		bk = (z - 1) * 256 + y * 16 + x;
 
 		// Checks if the block is a valid block we know how to work with.
-		if (blockStorage.at(i) == 600000000) {
+		if (blockStorage[i][0] == 600000000) {
 			// Check if the top face of this block should be drawn.
-			if (y + 1 >= 16 || blockStorage.at(up) != 600000000){
+			if (y + 1 >= 16 || blockStorage[up][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
@@ -89,7 +86,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the bottom face of this block should be drawn.
-			if (y - 1 < 0 || blockStorage.at(dn) != 600000000){
+			if (y - 1 < 0 || blockStorage[dn][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
@@ -111,7 +108,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the left face of this block should be drawn.
-			if (x - 1 < 0 || blockStorage.at(lt) != 600000000){
+			if (x - 1 < 0 || blockStorage[lt][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
@@ -133,7 +130,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the right face of this block should be drawn.
-			if (x + 1 >= 16 || blockStorage.at(rt) != 600000000){
+			if (x + 1 >= 16 || blockStorage[rt][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
@@ -155,7 +152,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the front face of this block should be drawn.
-			if (z + 1 >= 16 || blockStorage.at(fd) != 600000000){
+			if (z + 1 >= 16 || blockStorage[fd][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
@@ -177,7 +174,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the back face of this block should be drawn.
-			if (z - 1 < 0 || blockStorage.at(bk) != 600000000){
+			if (z - 1 < 0 || blockStorage[bk][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.

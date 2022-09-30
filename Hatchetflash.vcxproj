@@ -163,6 +163,7 @@
     <Image Include="Resources\Utility_Images\metallicRoughness.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="BlockShape-IDs.txt" />
     <Text Include="Text Documents\Commenting style.txt" />
     <Text Include="Text Documents\Controls.txt" />
     <Text Include="Text Documents\Linux compatability.txt" />
