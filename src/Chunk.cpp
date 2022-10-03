@@ -29,7 +29,7 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 		index = 256*z + 16*y + x;
 
 		// 600000000
-		blockStorage[index] = ;
+		blockStorage[index] = 600000000;
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
