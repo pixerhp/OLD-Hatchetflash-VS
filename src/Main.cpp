@@ -194,7 +194,7 @@ int main()
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
 
 	// A chunk to be used for testing out the chunk class.
-	Chunk testingChunk(314,0,0);
+	Chunk testingChunk(314,0,0,0);
 	testingChunk.MakeChunkFilledWithTestingBlocks();
 	testingChunk.UpdateChunkMesh();
 
@@ -240,6 +240,9 @@ int main()
 		if (avrgFPS > 0.0f) {
 			text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
 		}
+		text.RenderText(textShader, "\"RetroFuture Dirty\" Kevin MacLeod (incompetech.com)", 5.0f, 90.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+		text.RenderText(textShader, "Licensed under Creative Commons: By Attribution 4.0 License", 5.0f, 65.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+		text.RenderText(textShader, "http://creativecommons.org/licenses/by/4.0/", 5.0f, 40.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
 		//testingMesh.draw();
 		
 		// Shows the half second average of fps in the window's title.

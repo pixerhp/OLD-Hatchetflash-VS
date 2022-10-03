@@ -74,6 +74,9 @@
     <Text Include="Text Documents\Thingo-IDs.txt">
       <Filter>Text Documents</Filter>
     </Text>
+    <Text Include="BlockShape-IDs.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Camera.cpp">
@@ -109,6 +112,9 @@
     <ClCompile Include="src\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Camera.h">
@@ -133,6 +139,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,9 @@
+=-= =-= =-= =-= =-= =-= =-=
+A list of IDs for the shapes of blocks:
+=-= =-= =-= =-= =-= =-= =-=
+0 - The shape of the object is a custom or other model which is defined somehow after this number.
+1-999 - Reserved.
+1000 - A basic cube.
+1001-1008 - All 8 basic combinations of the cube created from removing one vertex.
+. . . (to be continued later.)
+=-= =-= =-= =-= =-= =-= =-=

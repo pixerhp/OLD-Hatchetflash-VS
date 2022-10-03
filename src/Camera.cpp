@@ -65,6 +65,14 @@ void Camera::Inputs(GLFWwindow* window, float dt)
 	{
 		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, -UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
 	}
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS&&!playing) {
+		audioMNGR.playMusic("Resources/Music/RetroFuture Dirty.wav");
+		playing = true;
+	}
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS &&playing) {
+		audioMNGR.stopMusic();
+		playing = false;
+	}
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
 		Position += (movementSpeed * dt) * UpDirection;
