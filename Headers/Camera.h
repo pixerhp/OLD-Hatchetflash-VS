@@ -16,12 +16,10 @@
 
 #include "shaderClass.h"
 #include "Collisions.h"
-#include "Audio.h"
 
 class Camera
 {
 public:
-	Audio audioMNGR;
 	// Stores the main vectors of the camera.
 	glm::vec3 Position;
 	glm::vec3 Orientation = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -29,7 +27,6 @@ public:
 
 	// Prevents the camera from jumping around when first clicking right click.
 	bool firstClick = true;
-	bool playing = false;
 	// (Stores the width and height of the window for the camera to use.)
 	int cameraWindowWidth;
 	int cameraWindowHeight;
