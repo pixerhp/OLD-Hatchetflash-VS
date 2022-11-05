@@ -31,6 +31,9 @@
 #include "Model.h"
 #include "Chunk.h"
 #include "Text.h"
+#include "AudioSystem.h"
+#include "AudioSource.h"
+#include "AudioBuffer.h"
 
 // Testing vertices for a 3D block, (which is itself also used for a testing mesh.)
 std::vector<Vertex> vertices =
@@ -147,6 +150,14 @@ int main()
 
 
 
+	//Init audio
+	AudioSystem audioSystem;
+	
+	AudioBuffer buffer("Resources/Music/RetroFuture Dirty.wav");
+	AudioSource music;
+	music.queueBuffer(buffer.buffer);
+
+
 	// If used rather than commented out, unlocks the fps of the window for testing purposes.
 	//glfwSwapInterval(0);
 	
@@ -221,6 +232,17 @@ int main()
 		camera.Inputs(window, deltaTime);
 		// Updates and exports the camera matrix to the Vertex Shader.
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+
+
+
+		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS&&!music.isPlaying()) {
+			music.play();
+		}
+		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS &&music.isPlaying()) {
+			music.pause();
+		}
+
+
 
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
