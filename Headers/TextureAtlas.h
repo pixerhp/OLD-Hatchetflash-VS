@@ -1,6 +1,5 @@
-/* Texture.h file description:
-* Defines the Texture class, and states all of the functions that it will have.
-* (The functions for this class are definied in "Texture.cpp".)
+/* TextureAtlas.h file description:
+* 
 */
 
 #pragma once

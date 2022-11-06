@@ -96,6 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\Headers;$(ProjectDir)\Libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,6 +190,7 @@
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Text.cpp" />
+    <ClCompile Include="src\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\AudioSystem.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Headers\shaderClass.h" />
     <ClInclude Include="Headers\Texture.h" />
     <ClInclude Include="Headers\Text.h" />
+    <ClInclude Include="Headers\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\default.frag" />
