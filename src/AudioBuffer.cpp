@@ -1,35 +1,21 @@
 #include "AudioBuffer.h"
 #include <AL/al.h>
 #include <AL/alc.h>
-#include "AudioFile/AudioFile.h"
-
-static inline ALenum to_al_format(short channels, short samples)
-{
-	bool stereo = (channels > 1);
-
-	switch (samples) {
-	case 16:
-		if (stereo)
-			return AL_FORMAT_STEREO16;
-		else
-			return AL_FORMAT_MONO16;
-	case 8:
-		if (stereo)
-			return AL_FORMAT_STEREO8;
-		else
-			return AL_FORMAT_MONO8;
-	default:
-		return -1;
-	}
-}
+#define DR_WAV_IMPLEMENTATION
+#include "dr_wav/dr_wav.h"
 
 void loadAudio(ALuint buffer, const char *path) {
-    AudioFile<double> audioFile;
-    audioFile.load(path);
+	unsigned int channels = 0;
+	unsigned int sampleRate = 0;
+	drwav_uint64 totalFrameCount = 0;
+	drwav_int16 *data = drwav_open_file_and_read_pcm_frames_s16(path, &channels, &sampleRate, &totalFrameCount, NULL);
 
-    std::vector<uint8_t> bufferData;
-    audioFile.savePCMToBuffer(bufferData);
-    alBufferData(buffer, to_al_format(audioFile.getNumChannels(), audioFile.getBitDepth()), bufferData.data(), bufferData.size(), audioFile.getSampleRate());
+	//Note: currently doesn't handle audio with > 2 channels.
+	//The *channels*2 is because openal expects total byte count,
+	// while dr_wav provides frame count
+	// (1 frame = 1 sample per channel, 1 sample = 16 bits / 8 bits per byte = 2 bytes)
+	alBufferData(buffer, channels == 2 ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16, data, totalFrameCount*channels*2, sampleRate);
+	drwav_free(data, NULL);
 }
 
 AudioBuffer::AudioBuffer(const char *path) {
