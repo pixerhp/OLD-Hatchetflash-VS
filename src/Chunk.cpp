@@ -67,11 +67,11 @@ void Chunk::UpdateChunkMesh()
 			if (y + 1 >= 16 || blockStorage[up][0] != 600000000){
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
-				// Add all vertices needed for this face.
-				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}}); //Top face.
-				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+				// Add all vertices needed for this face.ThingIDsize
+				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Top face.
+				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);
@@ -90,10 +90,10 @@ void Chunk::UpdateChunkMesh()
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
-				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}}); //Bottom face.
-				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Bottom face.
+				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);
@@ -112,10 +112,10 @@ void Chunk::UpdateChunkMesh()
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
-				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}}); //Left face.
-				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Left face.
+				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);
@@ -134,10 +134,10 @@ void Chunk::UpdateChunkMesh()
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
-				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}}); //Right face.
-				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Right face.
+				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);
@@ -156,10 +156,10 @@ void Chunk::UpdateChunkMesh()
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
-				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}}); //Front face.
-				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Front face.
+				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 0.0f + y, 1.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);
@@ -178,10 +178,10 @@ void Chunk::UpdateChunkMesh()
 				// Reserve room for the new vertices. (This is done for performance.)
 				vertices.reserve(vertices.size() + 4);
 				// Add all vertices needed for this face.
-				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}}); //Back face.
-				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
-				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}}); //Back face.
+				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, (ThingIDmap[blockStorage[i][0]] + 1.0f) / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
+				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, ThingIDmap[blockStorage[i][0]] / (float)ThingIDsize},	{1.0f, 1.0f, 1.0f}});
 
 				// Reserve room for the new indices. (This is done for performance.)
 				indices.reserve(indices.size() + 6);

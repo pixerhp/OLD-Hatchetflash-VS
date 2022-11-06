@@ -5,6 +5,7 @@
 #pragma once
 
 #include <vector>
+#include <map>
 #include "Mesh.h"
 
 
@@ -16,7 +17,8 @@ private:
 	Mesh chunkMesh;
 
 public:
-
+	std::map<int, int> ThingIDmap;
+	int ThingIDsize;
 	unsigned long int seed = 0;
 	int chunkX = 0;
 	int chunkY = 0;
@@ -24,11 +26,13 @@ public:
 	std::vector<unsigned int> blockStorage[4096]; //(Contains an array of 4096 (16^3) unsigned int vectors, which can allow for each array slot (block position in a chunk) to contain multiple actual block thingos.
 
 	// A constructor function for chunk objects (independant from the actual terrain generation.)
-	Chunk(unsigned long int input_seed, int input_chunkX, int input_chunkY, int input_chunkZ) : blockStorage() {
+	Chunk(unsigned long int input_seed, int input_chunkX, int input_chunkY, int input_chunkZ, std::map<int, int> input_ThingIDmap, int input_ThingIDsize) : blockStorage() {
 		seed = input_seed;
 		chunkX = input_chunkX;
 		chunkY = input_chunkY;
 		chunkZ = input_chunkZ;
+		ThingIDmap = input_ThingIDmap;
+		ThingIDsize = input_ThingIDsize;
 	}
 
 	// Used to initiate rendering of the chunk's mesh (which is stored in "chunkMesh".)

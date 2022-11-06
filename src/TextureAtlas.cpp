@@ -2,9 +2,9 @@
 * 
 */
 
-#include <vector>
+
 #include "TextureAtlas.h"
-#include <filesystem>
+
 
 //https://cplusplus.com/forum/windows/189681/
 std::vector<std::string> get_filenames( std::filesystem::path path )
@@ -34,7 +34,7 @@ TextureAtlas::TextureAtlas(const char* folder, GLenum texType, GLenum slot, GLen
 	// Flips the image so it appears right side up for OpenGL use..
 	stbi_set_flip_vertically_on_load(true);
 
-	unsigned int image_count = 0;
+	image_count = 0;
 
 	std::vector<unsigned char> bytes;
 
@@ -84,6 +84,25 @@ void TextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
 	shader.Activate();
 	// Sets the value of the uniform.
 	glUniform1i(texUni, unit);
+}
+
+
+void TextureAtlas::MapThingsToTextureID(const char* mapFile) {
+	std::ifstream f(mapFile);
+	if (!f.is_open()) {
+		printf("Could not open the bloody MapThingsToTextureID file, too bad!"); return;
+	}
+	int from, to;
+	char junk;
+	char line[128];
+	std::stringstream s;
+	while (!f.eof())
+	{
+		f.getline(line, 128);
+		s << line;
+		s >> from >> junk >> to;
+		ThingIDmap[from] = to;
+	}
 }
 
 void TextureAtlas::Bind()

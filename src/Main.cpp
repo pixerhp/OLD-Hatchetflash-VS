@@ -172,6 +172,7 @@ int main()
 	stbi_set_flip_vertically_on_load(true);
 	TextureAtlas testingTexture("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
+	testingTexture.MapThingsToTextureID("Resources/Thingo_ID_Information/Thing-to-Texture-ID-Map.txt");
 
 	// Load a texture for the standford bunny.
 	Texture bunnyTexture("Resources/Utility_Images/metallicRoughness.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -206,7 +207,7 @@ int main()
 	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
 
 	// A chunk to be used for testing out the chunk class.
-	Chunk testingChunk(314,0,0,0);
+	Chunk testingChunk(314,0,0,0,testingTexture.ThingIDmap,testingTexture.image_count);
 	testingChunk.MakeChunkFilledWithTestingBlocks();
 	testingChunk.UpdateChunkMesh();
 
