@@ -101,6 +101,7 @@ void TextureAtlas::MapThingsToTextureID(const char* mapFile) {
 		f.getline(line, 128);
 		s << line;
 		s >> from >> junk >> to;
+		s.clear();
 		ThingIDmap[from] = to;
 	}
 }
