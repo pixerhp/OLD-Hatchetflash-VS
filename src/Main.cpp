@@ -25,6 +25,7 @@
 
 // (Our manually coded header files.)
 #include "Texture.h"
+#include "TextureAtlas.h"
 #include "shaderClass.h"
 #include "Camera.h"
 #include "Mesh.h"
@@ -169,7 +170,7 @@ int main()
 	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 	// (A texture used for testing.)
 	stbi_set_flip_vertically_on_load(true);
-	Texture testingTexture("Resources/Block_Textures/HF_BT_Unknown.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	TextureAtlas testingTexture("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
 	// Load a texture for the standford bunny.
