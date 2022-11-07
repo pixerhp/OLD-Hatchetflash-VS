@@ -194,6 +194,7 @@ int main()
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
 	// Enable depth testing so things are rendered in the correct order.
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 
 
 	Text text;
