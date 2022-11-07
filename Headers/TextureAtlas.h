@@ -30,3 +30,6 @@ public:
 	void Unbind();
 	void Delete();
 };
+
+class CantLoadImageException{};
+class CantLoadMapFileException{};

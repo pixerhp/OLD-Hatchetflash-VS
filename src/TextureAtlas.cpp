@@ -15,7 +15,8 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 
 	std::ifstream f(mapFile);
 	if (!f.is_open()) {
-		printf("Could not open the bloody MapThingsToTextureID file, too bad!"); return;
+		printf("Could not open the bloody MapThingsToTextureID file, too bad!");
+		throw(new CantLoadMapFileException);
 	}
 
 	int from;
@@ -38,6 +39,10 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 
 		// Reads the image from a file and stores it in bytes.
 		unsigned char* image = stbi_load(imageName, &widthImg, &heightImg, &numColCh, 4);
+
+		if (image == nullptr){
+			throw(new CantLoadImageException);
+		}
 
 		bytes.insert(bytes.end(), image, image + widthImg * heightImg * 4);
 
