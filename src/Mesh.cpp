@@ -1,5 +1,4 @@
 /* Mesh.cpp file description:
-*
 * (A Mesh stores information about vertices and such and generates meshes.)
 * (The functions here are also stated in "Mesh.h".)
 */

@@ -1,3 +1,7 @@
+/* Text.cpp file description:
+*
+*/
+
 #include "Text.h"
 
 void Text::initText() {

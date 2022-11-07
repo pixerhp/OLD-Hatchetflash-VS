@@ -1,5 +1,7 @@
 =-= =-= =-= =-= =-= =-= =-=
-A list of "Thingo" IDs:
+A list of Sting IDs used for objects;
+(Note that Sting stands for "Substance-Thing".)
+//(also note that this list may not be final or exact, but just generally gives off a feel of how it'll work.)
 =-= =-= =-= =-= =-= =-= =-=
 0-15 - Reserved.
 16 - Extremely custom thing/object/material which is more manually defined.

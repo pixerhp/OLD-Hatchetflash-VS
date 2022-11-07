@@ -1,3 +1,7 @@
+/* AudioBuffer.cpp file description:
+*
+*/
+
 #include "AudioBuffer.h"
 #include <AL/al.h>
 #include <AL/alc.h>
