@@ -1,29 +1,23 @@
 /*================================J.M.J.================================*/
 /* Main.cpp file description:
-* The core of the program and the game, main() is where the program starts when it begins running.
-* (Will eventually also contain the game's main function calls and gameplay loops.)
+* The core of the program and the game, main() is where the program starts when it begins running. Everything starts here.
 */
 
 // Very necessary for 3D rendering and general glad/glfw window functions:
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 // These are for linear algebra (for rendering and other.)
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 // (Visual Studio automatically adds this but not every IDE does.)
 #include <cmath>
-
-// (Extra helpful things:)
+// Helpful to have. //CHANGE THIS TO BETTER SAY WHAT IT'S BEING USED FOR.
 #include <vector>
-
 // (Used for texture and miscellaneous image-related things.)
 #include <stb/stb_image.h>
-
-// (Our manually coded header files.)
+// Our manually coded header files, unique to this project.
 #include "Texture.h"
 #include "TextureAtlas.h"
 #include "shaderClass.h"

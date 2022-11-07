@@ -1,5 +1,4 @@
 /* Collisions.cpp file description:
-* 
 * (The functions here are also stated in "Collisions.h".)
 */
 

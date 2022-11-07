@@ -1,3 +1,7 @@
+/* Text.h file description:
+* 
+*/
+
 #pragma once
 #pragma comment(lib, "freetype.lib")
 #include <glm/glm.hpp>

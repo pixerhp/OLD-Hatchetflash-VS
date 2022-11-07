@@ -1,3 +1,7 @@
+/* AudioSystem.cpp file description:
+*
+*/
+
 #include "AudioSystem.h"
 
 AudioSystem::AudioSystem() {

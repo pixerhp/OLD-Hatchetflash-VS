@@ -15,7 +15,7 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 
 	std::ifstream f(mapFile);
 	if (!f.is_open()) {
-		printf("Could not open the bloody MapThingsToTextureID file, too bad!"); return;
+		printf("Error: \"Could not open the bloody MapThingsToTextureID file, too bad!\""); return;
 	}
 
 	int from;
