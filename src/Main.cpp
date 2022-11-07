@@ -297,6 +297,7 @@ int main()
 	model.cleanup();
 	// Deletes VAO, VBO and EBO stuff related to the mesh.
 	testingMesh.cleanup();
+	testingChunk.cleanup();
 	
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);

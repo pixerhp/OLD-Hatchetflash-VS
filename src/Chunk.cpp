@@ -20,6 +20,8 @@ void Chunk::Draw()
 // Generates a very basic chunk which can be used for developer-testing purposes.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {
+	int seed = 25600*chunkZ + 1600*chunkY + chunkX;
+	srand(seed);
 	int index = 0;
 	for (int z = 0; z < 16; z++) {
 	for (int y = 0; y < 16; y++) {
@@ -28,7 +30,7 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 		// Converts the set of 3 coordinates into a single index as used for the block array.
 		index = 256*z + 16*y + x;
 
-		blockStorage[index].push_back(600000000 + z%6 - 1); //Set's the block's thingo-ID to a basic one.
+		blockStorage[index].push_back(600000000 + rand()%6 - 1); //Set's the block's thingo-ID to a basic one.
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
@@ -209,4 +211,9 @@ void Chunk::UpdateChunkMesh()
 	chunkMesh.indices = indices;
 	// Regenerate the mesh's VBO and EBO now that the mesh has changed.
 	chunkMesh.regenerateVBOAndEBO();
+}
+
+// Cleans up the mesh.
+void Chunk::cleanup(){
+	chunkMesh.cleanup();
 }

@@ -41,4 +41,7 @@ public:
 	void MakeChunkFilledWithTestingBlocks();
 	// Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
 	void UpdateChunkMesh();
+
+	// Cleans up the mesh.
+    void cleanup();
 };
