@@ -21,7 +21,7 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 	int from;
 	char junk;
 	char line[256];
-	char imageName[128];
+	std::string imageName;
 	std::stringstream s;
 
 	image_count = 0;
@@ -37,7 +37,9 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 		ThingIDmap[from] = image_count;
 
 		// Reads the image from a file and stores it in bytes.
-		unsigned char* image = stbi_load(imageName, &widthImg, &heightImg, &numColCh, 4);
+		unsigned char* image = stbi_load(imageName.c_str(), &widthImg, &heightImg, &numColCh, 4);
+
+
 
 		bytes.insert(bytes.end(), image, image + widthImg * heightImg * 4);
 
