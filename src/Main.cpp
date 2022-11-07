@@ -170,9 +170,8 @@ int main()
 	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 	// (A texture used for testing.)
 	stbi_set_flip_vertically_on_load(true);
-	TextureAtlas testingTexture("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	TextureAtlas testingTexture("Resources/Thingo_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
-	testingTexture.MapThingsToTextureID("Resources/Thingo_ID_Information/Thing-to-Texture-ID-Map.txt");
 
 	// Load a texture for the standford bunny.
 	Texture bunnyTexture("Resources/Utility_Images/metallicRoughness.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);

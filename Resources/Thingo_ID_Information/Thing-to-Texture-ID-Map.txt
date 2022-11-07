@@ -1,5 +1,5 @@
-600000000 : 0
-600000001 : 1
-600000002 : 2
-600000003 : 3
-600000004 : 4
+600000000 : Resources/Block_Textures/HF_BT_Unknown.png
+600000001 : Resources/Block_Textures/HF_BT_DryDirt.png
+600000002 : Resources/Block_Textures/HF_BT_GrayCarpet.png
+600000003 : Resources/Block_Textures/HF_BT_BrownTiles.png
+600000004 : Resources/Block_Textures/HF_BT_WhiteWall.png

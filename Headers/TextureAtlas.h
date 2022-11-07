@@ -1,12 +1,11 @@
 /* TextureAtlas.h file description:
-* 
+*    Very similar to a Texture, but holds loads in many textures into one.
 */
 
 #pragma once
 #include <vector>
 #include <map>
 #include <fstream>
-#include <filesystem>
 #include <sstream>
 
 #include<glad/glad.h>
@@ -25,8 +24,6 @@ public:
 
 	// States a function which assigns a texture unit to a texture.
 	void texUnit(Shader& shader, const char* uniform, GLuint unit);
-
-	void MapThingsToTextureID(const char* mapFile);
 	
 	// States some basic functions as defined in "Texture.cpp".
 	void Bind();

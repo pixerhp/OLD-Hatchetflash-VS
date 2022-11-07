@@ -5,28 +5,7 @@
 
 #include "TextureAtlas.h"
 
-
-//https://cplusplus.com/forum/windows/189681/
-std::vector<std::string> get_filenames( std::filesystem::path path )
-{
-    namespace stdfs = std::filesystem ;
-
-    std::vector<std::string> filenames ;
-
-    // http://en.cppreference.com/w/cpp/experimental/fs/directory_iterator
-    const stdfs::directory_iterator end{} ;
-
-    for( stdfs::directory_iterator iter{path} ; iter != end ; ++iter )
-    {
-        // http://en.cppreference.com/w/cpp/experimental/fs/is_regular_file
-        if( stdfs::is_regular_file(*iter) ) // comment out if all names (names of directories tc.) are required
-            filenames.push_back( iter->path().string() ) ;
-    }
-
-    return filenames ;
-}
-
-TextureAtlas::TextureAtlas(const char* folder, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
+TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
 {
 	type = texType; //(Used for assigning the type of the texture to the texture object.)
 	int widthImg, heightImg, numColCh; //(Used for storing the width, height, and number of color channels of the image.)
@@ -34,13 +13,31 @@ TextureAtlas::TextureAtlas(const char* folder, GLenum texType, GLenum slot, GLen
 	// Flips the image so it appears right side up for OpenGL use..
 	stbi_set_flip_vertically_on_load(true);
 
+	std::ifstream f(mapFile);
+	if (!f.is_open()) {
+		printf("Could not open the bloody MapThingsToTextureID file, too bad!"); return;
+	}
+
+	int from;
+	char junk;
+	char line[256];
+	char imageName[128];
+	std::stringstream s;
+
 	image_count = 0;
 
 	std::vector<unsigned char> bytes;
 
-	for (const auto& name : get_filenames(folder)){
+	while (!f.eof())
+	{
+		f.getline(line, 256);
+		s << line;
+		s >> from >> junk >> imageName;
+		s.clear();
+		ThingIDmap[from] = image_count;
+
 		// Reads the image from a file and stores it in bytes.
-		unsigned char* image = stbi_load(name.c_str(), &widthImg, &heightImg, &numColCh, 4);
+		unsigned char* image = stbi_load(imageName, &widthImg, &heightImg, &numColCh, 4);
 
 		bytes.insert(bytes.end(), image, image + widthImg * heightImg * 4);
 
@@ -49,6 +46,8 @@ TextureAtlas::TextureAtlas(const char* folder, GLenum texType, GLenum slot, GLen
 
 		image_count++;
 	}
+
+	f.close();
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
 	glGenTextures(1, &ID);
@@ -84,26 +83,6 @@ void TextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
 	shader.Activate();
 	// Sets the value of the uniform.
 	glUniform1i(texUni, unit);
-}
-
-
-void TextureAtlas::MapThingsToTextureID(const char* mapFile) {
-	std::ifstream f(mapFile);
-	if (!f.is_open()) {
-		printf("Could not open the bloody MapThingsToTextureID file, too bad!"); return;
-	}
-	int from, to;
-	char junk;
-	char line[128];
-	std::stringstream s;
-	while (!f.eof())
-	{
-		f.getline(line, 128);
-		s << line;
-		s >> from >> junk >> to;
-		s.clear();
-		ThingIDmap[from] = to;
-	}
 }
 
 void TextureAtlas::Bind()
