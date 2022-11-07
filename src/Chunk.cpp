@@ -123,11 +123,11 @@ void Chunk::UpdateChunkMesh()
 				indices.reserve(indices.size() + 6);
 				// Add all indices needed for this face.
 				indices.push_back(index);
-				indices.push_back(index + 1);
-				indices.push_back(index + 3);
 				indices.push_back(index + 3);
 				indices.push_back(index + 1);
+				indices.push_back(index + 3);
 				indices.push_back(index + 2);
+				indices.push_back(index + 1);
 				// Add to the index offset.
 				index += 4;
 			}
@@ -167,11 +167,11 @@ void Chunk::UpdateChunkMesh()
 				indices.reserve(indices.size() + 6);
 				// Add all indices needed for this face.
 				indices.push_back(index);
-				indices.push_back(index + 1);
-				indices.push_back(index + 3);
 				indices.push_back(index + 3);
 				indices.push_back(index + 1);
+				indices.push_back(index + 3);
 				indices.push_back(index + 2);
+				indices.push_back(index + 1);
 				// Add to the index offset.
 				index += 4;
 			}

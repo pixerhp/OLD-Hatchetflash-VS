@@ -1,5 +1,4 @@
 /* Model.cpp file description:
-*
 * (The functions here are also stated in "Model.h".)
 */
 
