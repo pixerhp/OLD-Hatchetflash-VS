@@ -1,5 +1,5 @@
 /* AudioSystem.cpp file description:
-*
+*   Define functions for a class that acts as a Audio Listener (kinda like a microphone).
 */
 
 #include "AudioSystem.h"

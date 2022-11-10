@@ -1,5 +1,5 @@
 /* AudioSystem.h file description:
-*
+*   Declare a class that acts as a Audio Listener (kinda like a microphone).
 */
 
 #pragma once
@@ -7,6 +7,7 @@
 #include <AL/alc.h>
 #include "glm/glm.hpp"
 
+// Declare a class that acts as a Audio Listener (kinda like a microphone).
 class AudioSystem {
 public:
 	ALCdevice *device;

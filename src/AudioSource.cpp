@@ -1,5 +1,5 @@
 /* AudioSource.cpp file description:
-*
+*   Define methods for a class that plays audio.
 */
 
 #include "AudioSource.h"
@@ -7,6 +7,7 @@
 #include <AL/alc.h>
 #include "glm/glm.hpp"
 
+// The constructor takes in an initial position, pitch, and gain.
 AudioSource::AudioSource(glm::vec3 pos, int pitch, int gain) {
     alGenSources((ALuint)1, &source);
     alSourcef(source, AL_PITCH, pitch);
@@ -32,6 +33,7 @@ bool AudioSource::isLooping() {
     return state == AL_LOOPING;
 }
 
+// Add a sound to the sound queue.
 void AudioSource::queueBuffer(ALuint buffer) {
     alSourceQueueBuffers(source, 1, &buffer);
 }

@@ -1,5 +1,5 @@
 /* AudioBuffer.cpp file description:
-*
+*   Define a methods for a class that stores audio data.
 */
 
 #include "AudioBuffer.h"
@@ -8,6 +8,7 @@
 #define DR_WAV_IMPLEMENTATION
 #include "dr_wav/dr_wav.h"
 
+// Load audio from a file.
 void loadAudio(ALuint buffer, const char *path) {
 	unsigned int channels = 0;
 	unsigned int sampleRate = 0;
@@ -22,6 +23,7 @@ void loadAudio(ALuint buffer, const char *path) {
 	drwav_free(data, NULL);
 }
 
+// Constructor takes in path to audio file.
 AudioBuffer::AudioBuffer(const char *path) {
     alGenBuffers(1, &buffer);
     loadAudio(buffer, path);
