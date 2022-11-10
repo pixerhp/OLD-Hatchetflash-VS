@@ -5,8 +5,6 @@
 
 #include "Camera.h"
 
-
-
 // A simple constructor for the camera object.
 Camera::Camera(int width, int height, glm::vec3 position)
 {
@@ -108,7 +106,7 @@ void Camera::Inputs(GLFWwindow* window, float dt)
 		glm::vec3 newOrientation = glm::rotate(Orientation, glm::radians(-rotX), glm::normalize(glm::cross(Orientation, UpDirection)));
 
 		// Determines whether the next vertical Orientation is legal or not.
-		if (abs(glm::angle(newOrientation, UpDirection) - glm::radians(90.0f)) <= glm::radians(85.0f)) //(85 degrees is the set vertical limit here.)
+		if (std::abs(glm::angle(newOrientation, UpDirection) - glm::radians(90.0f)) <= glm::radians(85.0f)) //(85 degrees is the set vertical limit here.)
 		{
 			Orientation = newOrientation;
 		}

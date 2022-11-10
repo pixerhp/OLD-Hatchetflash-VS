@@ -1,5 +1,5 @@
 /* Text.h file description:
-* 
+*   Declare a class that handles text rendering.
 */
 
 #pragma once
@@ -21,7 +21,7 @@ struct Character {
     unsigned int Advance;    // Offset to advance to next glyph
 };
 
-
+// Define a class that handles text rendering.
 class Text {
 public:
     unsigned int VAO, VBO;

@@ -25,13 +25,13 @@ public:
 	glm::vec3 Orientation = glm::vec3(0.0f, 0.0f, -1.0f);
 	glm::vec3 UpDirection = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	// Prevents the camera from jumping around when first clicking right click.
+	// Used to prevent the camera from jumping around when first clicking right click.
 	bool firstClick = true;
 	// (Stores the width and height of the window for the camera to use.)
 	int cameraWindowWidth;
 	int cameraWindowHeight;
 
-	// Sets the speed of the camera's orientational movement + it's sensitivity to turning around.
+	// The speed of the camera's orientational movement + it's sensitivity to turning around.
 	float movementSpeed = 10.0f;
 	float turningSensitivity = 200.0f;
 

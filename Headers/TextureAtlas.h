@@ -1,5 +1,5 @@
 /* TextureAtlas.h file description:
-*    Very similar to a Texture, but holds loads in many textures into one.
+*    Declare a class that stores a bunch of textures as one, big, indexable texture.
 */
 
 #pragma once
@@ -13,6 +13,7 @@
 
 #include"shaderClass.h"
 
+// Declare a class that stores a bunch of textures as one, big, indexable texture.
 class TextureAtlas
 {
 public:

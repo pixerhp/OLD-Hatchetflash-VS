@@ -1,5 +1,5 @@
 /* Text.cpp file description:
-*
+*   Define functions for a class that handles text rendering.
 */
 
 #include "Text.h"

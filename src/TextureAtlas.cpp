@@ -1,5 +1,5 @@
 /* TextureAtlas.cpp file description:
-* 
+*   Define methods for a class that stores a bunch of textures as one, big, indexable texture.
 */
 
 
@@ -13,22 +13,27 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 	// Flips the image so it appears right side up for OpenGL use..
 	stbi_set_flip_vertically_on_load(true);
 
+	// Load in the file that maps image file names to ids
 	std::ifstream f(mapFile);
 	if (!f.is_open()) {
 		printf("Error: \"Could not open the bloody MapThingsToTextureID file, too bad!\"");
 		throw(new CantLoadMapFileException);
 	}
 
+	// Variables to parse the map file.
 	int from;
 	char junk;
 	char line[256];
 	std::string imageName;
 	std::stringstream s;
 
+	// The amount of images loaded.
 	image_count = 0;
 
+	// All the data for the textures.
 	std::vector<unsigned char> bytes;
 
+	// Load in the textures listed in the map file.
 	while (!f.eof())
 	{
 		f.getline(line, 256);
@@ -52,6 +57,8 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLe
 		image_count++;
 	}
 
+	//  /|/|   Be safe. Close files.
+	// (  ^^> /
 	f.close();
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
