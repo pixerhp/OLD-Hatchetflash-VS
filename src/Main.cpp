@@ -1,7 +1,7 @@
-/*================================J.M.J.================================*/
+/* =-= =-= =-= =-= =-= =-= =-= J.M.J. =-= =-= =-= =-= =-= =-= =-= */
 /* Main.cpp file description:
 * The core of the program and the game,
-*     main() is where the program starts when it begins running.
+* main() is where the program starts when it begins running.
 * Everything starts here.
 */
 
@@ -37,7 +37,7 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h){
 	glViewport(0, 0, w, h);
 }
 
-// Declare function to setup GLFW and return a window.
+// Declare a function to setup GLFW and return a window.
 GLFWwindow* setupGLFW();
 
 int main()
