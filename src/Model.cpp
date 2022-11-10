@@ -2,6 +2,10 @@
 * (The functions here are also stated in "Model.h".)
 */
 
+// TODO: Fox didn't really understand all of the code he wrote when following the tutorial.
+// TODO: So therefore fox cannot write any more comments for this file.
+// TODO: So we need to go back to the GLM video to figure out how to comment this.
+
 #include "Model.h"
 
 // A general constructor for a raw Model object.
@@ -17,12 +21,14 @@ Model::Model(const char* file){
     }
 }
 
+// Deletes VAO, VBO and EBO for all the meshes in this model.
 void Model::cleanup(){
     for (unsigned int i = 0; i < JSON["meshes"].size(); i++){
         meshes[i].cleanup();
     }
 }
 
+// Draw all meshes in this model.
 void Model::draw(){
     for (unsigned int i = 0; i < JSON["meshes"].size(); i++){
         meshes[i].draw();

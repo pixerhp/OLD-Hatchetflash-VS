@@ -7,15 +7,11 @@
 #include "Chunk.h"
 #include <iostream>
 
-
-
 // Used to initiate drawing the chunk's mesh.
 void Chunk::Draw()
 {
 	chunkMesh.draw();
 }
-
-
 
 // Generates a very basic chunk which can be used for developer-testing purposes.
 void Chunk::MakeChunkFilledWithTestingBlocks()

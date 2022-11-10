@@ -8,8 +8,6 @@
 #include <map>
 #include "Mesh.h"
 
-
-
 class Chunk {
 private:
 
