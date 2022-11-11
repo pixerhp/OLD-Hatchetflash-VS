@@ -146,7 +146,6 @@ int main()
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
-		break;
 		// Clears the window canvas with it's basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
