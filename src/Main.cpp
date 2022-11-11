@@ -105,9 +105,9 @@ int main()
 
 	// A chunk to be used for testing out the chunk class.
 	std::vector<Chunk> chunks;
-	for (int x = 0; x < 3; x++){
-		for (int y = 0; y < 1; y++){
-			for (int z = 0; z < 3; z++){
+	for (int x = 0; x < 4; x++){
+		for (int y = 0; y < 4; y++){
+			for (int z = 0; z < 4; z++){
 				chunks.push_back(Chunk{314,x,y,z,testingTexture.ThingIDmap,int(testingTexture.image_count)});
 			}
 		}
@@ -144,6 +144,10 @@ int main()
 	// Average FPS, for displaying.
 	float avrgFPS = 0.0f;
 
+	bool showUI = true;
+	// Used to detect if a button was pressed, but only so we check it once per press.
+	bool buttonHeld = false;
+
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
 		// Clears the window canvas with it's basic clear color.
@@ -166,6 +170,14 @@ int main()
 			music.pause();
 		}
 
+		// Toggle the UI if F1 was pressed.
+		if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS){
+			if (!buttonHeld) { showUI = !showUI; }
+			buttonHeld = true;
+		}else{
+			buttonHeld = false;
+		}
+
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
 
@@ -177,14 +189,16 @@ int main()
 			chunk.Draw();
 		}
 
-		// Render some text for debugging.
-		textShader.Activate();
-		if (avrgFPS > 0.0f) {
-			text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
+		if (showUI){
+			// Render some text for debugging.
+			textShader.Activate();
+			if (avrgFPS > 0.0f) {
+				text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
+			}
+			text.RenderText(textShader, "\"RetroFuture Dirty\" Kevin MacLeod (incompetech.com)", 5.0f, 90.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+			text.RenderText(textShader, "Licensed under Creative Commons: By Attribution 4.0 License", 5.0f, 65.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+			text.RenderText(textShader, "http://creativecommons.org/licenses/by/4.0/", 5.0f, 40.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
 		}
-		text.RenderText(textShader, "\"RetroFuture Dirty\" Kevin MacLeod (incompetech.com)", 5.0f, 90.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
-		text.RenderText(textShader, "Licensed under Creative Commons: By Attribution 4.0 License", 5.0f, 65.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
-		text.RenderText(textShader, "http://creativecommons.org/licenses/by/4.0/", 5.0f, 40.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
 		
 		// Shows the half second average of fps in the window's title.
 		if (FPSTimer > 0.5f) {
