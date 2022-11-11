@@ -97,7 +97,7 @@ int main()
 	Shader textShader("Resources/Shaders/text.vert", "Resources/Shaders/text.frag");
 
 	// (A texture atlas used for testing.)
-	TextureAtlas testingTexture("Resources/Thingo_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	TextureAtlas testingTexture("Resources/STING_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	testingTexture.texUnit(shaderProgram, "tex0", 0);
 
 	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
