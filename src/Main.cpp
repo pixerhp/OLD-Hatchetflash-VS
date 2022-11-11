@@ -1,4 +1,5 @@
 /* =-= =-= =-= =-= =-= =-= =-= J.M.J. =-= =-= =-= =-= =-= =-= =-= */
+
 /* Main.cpp file description:
 * The core of the program and the game,
 * main() is where the program starts when it begins running.
@@ -22,7 +23,7 @@
 #include <stb/stb_image.h>
 
 // Our manually coded header files, unique to this project.
-#include "Texture.h"
+//#include "Texture.h" //DO WE NEED THIS AND TEXTURE CPP?///////////////////////
 #include "TextureAtlas.h"
 #include "ShaderClass.h"
 #include "Camera.h"
@@ -46,11 +47,9 @@ int main()
 {
 	std::cout << "Starting Hatchetflash..." << std::endl;
 
-	// Setup GLFW.
+	// Setup GLFW and create the window object.
 	GLFWwindow* window = setupGLFW();
-
-	// If GLFW failed to setup, it returns NULL. If this happens, we close the program.
-	if (window == NULL){
+	if (window == NULL){ //(Errorchecking, if GLFW failed to setup, it returns NULL. If we get a NULL, here we close the program.)
 		return -1;
 	}
 

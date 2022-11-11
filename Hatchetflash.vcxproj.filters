@@ -92,16 +92,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Text Documents\Comment format.txt">
+    <Text Include="Text Documents\Comment-format.txt">
       <Filter>Text Documents</Filter>
     </Text>
-    <Text Include="Text Documents\Game Controls.txt">
+    <Text Include="Text Documents\Game-Controls.txt">
       <Filter>Text Documents</Filter>
     </Text>
-    <Text Include="Text Documents\Sting ID.txt">
+    <Text Include="Text Documents\Sting-ID.txt">
       <Filter>Text Documents</Filter>
     </Text>
-    <Text Include="Shape IDs.txt">
+    <Text Include="Shape-IDs.txt">
       <Filter>Text Documents</Filter>
     </Text>
     <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt">
