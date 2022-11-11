@@ -12,77 +12,83 @@
     <Filter Include="Text Documents">
       <UniqueIdentifier>{5be53ee6-5a89-4f76-99c2-da2ff4ae49e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Resources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Shaders">
+    <Filter Include="Resources\Shaders">
       <UniqueIdentifier>{8e13216b-4a68-468f-a210-304d69d023d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Block_Textures">
+    <Filter Include="Resources\Block_Textures">
       <UniqueIdentifier>{b80333ab-2639-4290-90ba-3f2b9ead635d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Utility_Images">
+    <Filter Include="Resources\Utility_Images">
       <UniqueIdentifier>{e6cf2454-bcd3-4025-93b5-d080966c340d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Fonts">
+      <UniqueIdentifier>{b9b02cab-5589-42e5-9755-45b41ddcb919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Models">
+      <UniqueIdentifier>{cd3400fb-1c01-47a5-9625-2db7fa9f7903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Music">
+      <UniqueIdentifier>{b6b12e31-065d-4523-8383-66d783e1d98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\STING_ID_Information">
+      <UniqueIdentifier>{852fd641-313a-4730-ae83-d31b5d40e750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Sounds">
+      <UniqueIdentifier>{52144427-b9c3-49a7-ad4a-72ff116fe266}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Utility_Images\Album_2_Art.png">
-      <Filter>Resource Files\Utility_Images</Filter>
-    </Image>
-    <Image Include="Resources\Utility_Images\baseColor.png">
-      <Filter>Resource Files\Utility_Images</Filter>
-    </Image>
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png">
-      <Filter>Resource Files\Utility_Images</Filter>
+      <Filter>Resources\Utility_Images</Filter>
     </Image>
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png">
-      <Filter>Resource Files\Utility_Images</Filter>
-    </Image>
-    <Image Include="Resources\Utility_Images\metallicRoughness.png">
-      <Filter>Resource Files\Utility_Images</Filter>
+      <Filter>Resources\Utility_Images</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\cardboard_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\cobble_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\dirt_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\grassy_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\gravel_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\ladder_brassish_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\metal_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\sand_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\shale_gray_side_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\shale_gray_top_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\stone_tile_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\unknown_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\water_surface_32x.png">
-      <Filter>Resource Files\Block_Textures</Filter>
+      <Filter>Resources\Block_Textures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +109,12 @@
     </Text>
     <Text Include="Shape_IDs.txt">
       <Filter>Text Documents</Filter>
+    </Text>
+    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt">
+      <Filter>Resources\STING_ID_Information</Filter>
+    </Text>
+    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt">
+      <Filter>Resources\STING_ID_Information</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -192,16 +204,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\default.frag">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\default.vert">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\text.vert">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\text.frag">
-      <Filter>Resource Files\Shaders</Filter>
+      <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="Resources\Models\bunny.gltf">
+      <Filter>Resources\Models</Filter>
+    </None>
+    <None Include="Resources\Models\scene.bin">
+      <Filter>Resources\Models</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\SpaceGrotesk.ttf">
+      <Filter>Resources\Fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\Music\RetroFuture Dirty.wav">
+      <Filter>Resources\Music</Filter>
+    </Media>
   </ItemGroup>
 </Project>

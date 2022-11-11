@@ -170,13 +170,12 @@
     <Image Include="Resources\Block_Textures\stone_tile_32x.png" />
     <Image Include="Resources\Block_Textures\unknown_32x.png" />
     <Image Include="Resources\Block_Textures\water_surface_32x.png" />
-    <Image Include="Resources\Utility_Images\Album_2_Art.png" />
-    <Image Include="Resources\Utility_Images\baseColor.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />
-    <Image Include="Resources\Utility_Images\metallicRoughness.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt" />
+    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt" />
     <Text Include="Shape_IDs.txt" />
     <Text Include="Text Documents\Commenting_format.txt" />
     <Text Include="Text Documents\Game Controls.txt" />
@@ -216,10 +215,18 @@
     <ClInclude Include="Headers\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Models\bunny.gltf" />
+    <None Include="Resources\Models\scene.bin" />
     <None Include="Resources\Shaders\default.frag" />
     <None Include="Resources\Shaders\default.vert" />
     <None Include="Resources\Shaders\text.frag" />
     <None Include="Resources\Shaders\text.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\SpaceGrotesk.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\Music\RetroFuture Dirty.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
