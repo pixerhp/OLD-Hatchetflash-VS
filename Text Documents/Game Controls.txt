@@ -1,10 +1,5 @@
-=-= =-= =-= =-= =-= =-= =-=
-
-[Camera movement controls:]
-
-=-= =-= =-= =-= =-= =-= =-=
-=-= =-= =-= =-= =-= =-= =-=
-=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+CAMERA RELATED:
 
 Right click - Hold down right click whislt moving your mouse to look around. (Your mouse will be hidden whilst looking around.)
 
@@ -14,10 +9,9 @@ Q & E - Move downwards or upwards (respectively) with respect to your orientatio
 Space - Move upwards.
 Left-Shift - Move downwards.
 
-
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+OTHER CONTROLS:
 
 F1 key - Toggle some debug related text.
 
-=-= =-= =-= =-= =-= =-= =-=
-=-= =-= =-= =-= =-= =-= =-=
-=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

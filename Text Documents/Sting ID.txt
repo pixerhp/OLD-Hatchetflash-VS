@@ -1,8 +1,11 @@
-=-= =-= =-= =-= =-= =-= =-=
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
 A list of Sting IDs used for objects;
 (Note that Sting stands for "Substance-Thing".)
 //(also note that this list may not be final or exact, but just generally gives off a feel of how it'll work.)
-=-= =-= =-= =-= =-= =-= =-=
+
+
+
 0-15 - Reserved.
 16 - Extremely custom thing/object/material which is more manually defined.
 17 - Reserved.
@@ -24,4 +27,5 @@ A list of Sting IDs used for objects;
 1700000000-2099999999 - Reserved for common or regularly makeable objects, such as an ingot of brass, a chair which is generated in towns or a basic shovel.
 2100000000-2299999999 - Reserved for common world-specific objects, such as a painting you made or a uniquely crafted shoe.
 2300000000-4294967295 - Reserved.
-=-= =-= =-= =-= =-= =-= =-=
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
