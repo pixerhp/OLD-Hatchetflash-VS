@@ -26,7 +26,7 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 		// Converts the set of 3 coordinates into a single index as used for the block array.
 		index = 256*z + 16*y + x;
 
-		blockStorage[index].push_back(600000000 + rand()%6 - 1); //Set's the block's thingo-ID to a basic one.
+		blockStorage[index].push_back(600000000 + rand()%15 - 1); //Set's the block's thingo-ID to a basic one.
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)

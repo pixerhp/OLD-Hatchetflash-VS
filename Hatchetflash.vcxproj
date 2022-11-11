@@ -156,11 +156,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="Resources\Block_Textures\HF_BT_BrownTiles.png" />
-    <Image Include="Resources\Block_Textures\HF_BT_DryDirt.png" />
-    <Image Include="Resources\Block_Textures\HF_BT_GrayCarpet.png" />
-    <Image Include="Resources\Block_Textures\HF_BT_Unknown.png" />
-    <Image Include="Resources\Block_Textures\HF_BT_WhiteWall.png" />
+    <Image Include="Resources\Block_Textures\cardboard_32x.png" />
+    <Image Include="Resources\Block_Textures\cobble_32x.png" />
+    <Image Include="Resources\Block_Textures\dirt_32x.png" />
+    <Image Include="Resources\Block_Textures\grassy_32x.png" />
+    <Image Include="Resources\Block_Textures\gravel_32x.png" />
+    <Image Include="Resources\Block_Textures\ladder_brassish_32x.png" />
+    <Image Include="Resources\Block_Textures\metal_32x.png" />
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_32x.png" />
+    <Image Include="Resources\Block_Textures\sand_32x.png" />
+    <Image Include="Resources\Block_Textures\shale_gray_side_32x.png" />
+    <Image Include="Resources\Block_Textures\shale_gray_top_32x.png" />
+    <Image Include="Resources\Block_Textures\stone_tile_32x.png" />
+    <Image Include="Resources\Block_Textures\unknown_32x.png" />
+    <Image Include="Resources\Block_Textures\water_surface_32x.png" />
     <Image Include="Resources\Utility_Images\Album_2_Art.png" />
     <Image Include="Resources\Utility_Images\baseColor.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />

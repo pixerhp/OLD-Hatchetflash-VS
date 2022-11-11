@@ -27,21 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Block_Textures\HF_BT_BrownTiles.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Resources\Block_Textures\HF_BT_DryDirt.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Resources\Block_Textures\HF_BT_GrayCarpet.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Resources\Block_Textures\HF_BT_Unknown.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
-    <Image Include="Resources\Block_Textures\HF_BT_WhiteWall.png">
-      <Filter>Resource Files\Block_Textures</Filter>
-    </Image>
     <Image Include="Resources\Utility_Images\Album_2_Art.png">
       <Filter>Resource Files\Utility_Images</Filter>
     </Image>
@@ -56,6 +41,48 @@
     </Image>
     <Image Include="Resources\Utility_Images\metallicRoughness.png">
       <Filter>Resource Files\Utility_Images</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\cardboard_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\cobble_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\dirt_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\grassy_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\gravel_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\ladder_brassish_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\metal_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\sand_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\shale_gray_side_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\shale_gray_top_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\stone_tile_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\unknown_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\water_surface_32x.png">
+      <Filter>Resource Files\Block_Textures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
