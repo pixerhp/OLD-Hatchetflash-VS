@@ -14,6 +14,10 @@ Q & E - Move downwards or upwards (respectively) with respect to your orientatio
 Space - Move upwards.
 Left-Shift - Move downwards.
 
+
+
+F1 key - Toggle some debug related text.
+
 =-= =-= =-= =-= =-= =-= =-=
 =-= =-= =-= =-= =-= =-= =-=
 =-= =-= =-= =-= =-= =-= =-=

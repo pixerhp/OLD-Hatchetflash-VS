@@ -176,12 +176,10 @@
   <ItemGroup>
     <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt" />
     <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt" />
-    <Text Include="Shape_IDs.txt" />
-    <Text Include="Text Documents\Commenting_format.txt" />
+    <Text Include="Shape IDs.txt" />
+    <Text Include="Text Documents\Comment format.txt" />
     <Text Include="Text Documents\Game Controls.txt" />
-    <Text Include="Text Documents\OS-compatability-specifics.txt" />
-    <Text Include="Text Documents\Sting_ID.txt" />
-    <Text Include="Text Documents\Dont-forget.txt" />
+    <Text Include="Text Documents\Sting ID.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioSystem.cpp" />
@@ -194,7 +192,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\Model.cpp" />
-    <ClCompile Include="src\shaderClass.cpp" />
+    <ClCompile Include="src\ShaderClass.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Text.cpp" />
@@ -209,7 +207,7 @@
     <ClInclude Include="Headers\Collisions.h" />
     <ClInclude Include="Headers\Mesh.h" />
     <ClInclude Include="Headers\Model.h" />
-    <ClInclude Include="Headers\shaderClass.h" />
+    <ClInclude Include="Headers\ShaderClass.h" />
     <ClInclude Include="Headers\Texture.h" />
     <ClInclude Include="Headers\Text.h" />
     <ClInclude Include="Headers\TextureAtlas.h" />
@@ -226,7 +224,7 @@
     <Font Include="Resources\Fonts\SpaceGrotesk.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resources\Music\RetroFuture Dirty.wav" />
+    <Media Include="Resources\Music\Gymnopedie No 1.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
