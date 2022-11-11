@@ -8,6 +8,8 @@
 #include <iostream>
 // (Visual Studio automatically adds this but not every IDE does.)
 #include <cmath>
+// For creating a dynamic array of chunks.
+#include <vector>
 
 // Very necessary for 3D rendering and general glad/glfw window functions:
 #include <glad/glad.h>
@@ -102,9 +104,18 @@ int main()
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// A chunk to be used for testing out the chunk class.
-	Chunk testingChunk(314,0,0,0,testingTexture.ThingIDmap,testingTexture.image_count);
-	testingChunk.MakeChunkFilledWithTestingBlocks();
-	testingChunk.UpdateChunkMesh();
+	std::vector<Chunk> chunks;
+	for (int x = 0; x < 3; x++){
+		for (int y = 0; y < 1; y++){
+			for (int z = 0; z < 3; z++){
+				chunks.push_back(Chunk{314,x,y,z,testingTexture.ThingIDmap,int(testingTexture.image_count)});
+			}
+		}
+	}
+	for (Chunk& chunk: chunks){
+		chunk.MakeChunkFilledWithTestingBlocks();
+		chunk.UpdateChunkMesh();
+	}
 	
 	// Specifies the base color that the window is cleared/drawn-over with.
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
@@ -135,6 +146,7 @@ int main()
 
 	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
 	{
+		break;
 		// Clears the window canvas with it's basic clear color.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -157,11 +169,14 @@ int main()
 
 		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
 		// Bind the texture and draw the chunk.
 		testingTexture.Bind();
-		testingChunk.Draw();
+		for (Chunk& chunk: chunks){
+			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkX * 16, chunk.chunkY * 16, chunk.chunkZ * 16});
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+			chunk.Draw();
+		}
 
 		// Render some text for debugging.
 		textShader.Activate();
@@ -197,7 +212,9 @@ int main()
 	shaderProgram.Delete();
 	
 	// Deletes VAO, VBO and EBO stuff related to the chunk's mesh.
-	testingChunk.cleanup();
+	for (Chunk& chunk: chunks){
+		chunk.cleanup();
+	}
 	
 	// Destroys the window, stops glfw stuff and ends the program.
 	glfwDestroyWindow(window);
