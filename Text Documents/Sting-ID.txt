@@ -6,8 +6,10 @@ A list of Sting IDs used for objects;
 
 
 
+GENERAL::
+
 0-15 - Reserved.
-16 - Extremely custom thing/object/material which is more manually defined.
+16 - Whatever thing is being refered to is a custom thing/object/material which is way more manually defined as per later numbers/info.
 17 - Reserved.
 18 - Customly defined basic chemical substance. (ie. element or quark or other.)
 19 - Customly defined chemical substance. (ie. chemical, such as H2O.)
@@ -27,5 +29,28 @@ A list of Sting IDs used for objects;
 1700000000-2099999999 - Reserved for common or regularly makeable objects, such as an ingot of brass, a chair which is generated in towns or a basic shovel.
 2100000000-2299999999 - Reserved for common world-specific objects, such as a painting you made or a uniquely crafted shoe.
 2300000000-4294967295 - Reserved.
+
+
+
+SPECIFIC::
+
+32 - "-has the SHAPE ID shape:" [SHAPE ID]
+33 - "-has the color effect:" [Red color value] [Green color value] [Blue color value]
+34 - "-is moved and/or rotated by the matrix:" [however many numbers are required to define a matrix like this.]
+
+800000000 - unknown   {REGULAR BLOCK TEXTURE VERSION, NOT THE HARDCODED UNKNOWN IMAGE.}
+800000001 - cobble
+800000002 - gravel
+800000003 - dirt
+800000004 - sand
+800000005 - stone_tile
+800000006 - shale_gray_top
+800000007 - shale_gray_side
+800000008 - metal
+800000009 - poolrooms_tiles_brown
+800000010 - water_surface
+800000011 - grassy
+800000012 - cardboard
+800000013 - ladder_brassish
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
