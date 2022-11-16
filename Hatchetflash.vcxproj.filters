@@ -225,7 +225,7 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resources\Music\Gymnopedie No 1.wav">
+    <Media Include="Resources\Music\Gymnopedie-No-1.wav">
       <Filter>Resources\Music</Filter>
     </Media>
   </ItemGroup>

@@ -84,7 +84,7 @@ int main()
 	AudioSystem audioSystem;
 	
 	// Load a song
-	AudioBuffer buffer("Resources/Music/Gymnopedie No 1.wav");
+	AudioBuffer buffer("Resources/Music/Gymnopedie-No-1.wav");
 	AudioSource music;
 	music.queueBuffer(buffer.buffer);
 
