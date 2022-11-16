@@ -180,6 +180,7 @@
     <Text Include="Text Documents\Comment-format.txt" />
     <Text Include="Text Documents\Game-Controls.txt" />
     <Text Include="Text Documents\Sting-ID.txt" />
+    <Text Include="See-also.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioSystem.cpp" />

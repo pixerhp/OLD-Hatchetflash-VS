@@ -110,6 +110,9 @@
     <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt">
       <Filter>Resources\STING_ID_Information</Filter>
     </Text>
+    <Text Include="See-also.txt">
+      <Filter>Text Documents</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Camera.cpp">
