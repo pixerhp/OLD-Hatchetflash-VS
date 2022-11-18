@@ -1,30 +1,30 @@
-/* =-= =-= =-= =-= =-= =-= =-= J.M.J. =-= =-= =-= =-= =-= =-= =-= */
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= JMJ =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-/* Main.cpp file description:
-* The core of the program and the game,
-* main() is where the program starts when it begins running.
-* Everything starts here.
+/*   Main.cpp file description:
+* Pixer Pinecone.
+* The heart of the game's code, main() is where the program starts up from.
+* [For information about this project and otherwise, see the "See-also.txt" text file.]
 */
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
+// Commonly used basic includes:
 #include <iostream>
-// (Visual Studio automatically adds this but not every IDE does.)
-#include <cmath>
-// For creating a dynamic array of chunks.
-#include <vector>
+#include <cmath> //(Visual Studio automatically adds this but not every IDE does.)
+#include <vector> //(For creating general dynamic arrays.)
 
-// Very necessary for 3D rendering and general glad/glfw window functions:
+// (Used in 3D rendering and glad/glfw window functions.)
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-// These are for linear algebra (for rendering and other.)
+// (Used for linear algebra, which itself is mostly used for 3D rendering.)
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-// (Used for texture and miscellaneous image-related things.)
+// (Used for texture loading and image-related functions.)
 #include <stb/stb_image.h>
 
-// Our manually coded header files, unique to this project.
-//#include "Texture.h" //DO WE NEED THIS AND TEXTURE CPP?///////////////////////
+// (Our project's unique header files.)
 #include "TextureAtlas.h"
+//#include "Texture.h" //CURRENTLY NOT USED.
 #include "ShaderClass.h"
 #include "Camera.h"
 #include "Mesh.h"
@@ -35,226 +35,277 @@
 #include "AudioSource.h"
 #include "AudioBuffer.h"
 
-// Fox's function used to resize the viewport canvas when you resize the program window.
-void framebuffer_size_callback(GLFWwindow* window, int w, int h){
-	glViewport(0, 0, w, h);
-}
 
-// Declare a function to setup GLFW and return a window.
-GLFWwindow* setupGLFW();
+// Function declarations. (Their definitions are below int main().)
+GLFWwindow* setupGLFW(); //(Declares a function which sets up GLFW and returns a window.)
+void framebuffer_size_callback(GLFWwindow* window, int w, int h); //(Declares a function used to resize the viewport canvas when you resize the program's window.)
+
 
 int main()
 {
-	std::cout << "Starting Hatchetflash..." << std::endl;
+	std::cout << "Starting Hatchetflash program...\n" << std::endl;
 
-	// Setup GLFW and create the window object.
-	GLFWwindow* window = setupGLFW();
-	if (window == NULL){ //(Errorchecking, if GLFW failed to setup, it returns NULL. If we get a NULL, here we close the program.)
-		return -1;
+	/////////////////////////////////////////////////
+
+	bool showDebugUI = true; //(Toggles whether debug UI is shown. Debug UI includes the FPS counter.)
+
+	std::cout << "Adjustable booleans instantiated..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	// Sets up GLFW and creates the window object.
+	GLFWwindow* window = setupGLFW(); //(Uses a function below the main function in "main.cpp" (this code file.))
+
+	// Although these are also intially fetched/set in the setupGLFW() function, it's nice to do it again here so that we still have access to your monitor info. (For example, what if you wanted to full-screen the game?)
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor(); //(Creates a pointer to the primary monitor you're using (in case you'd like to reference/use it more directly later.))
+	const GLFWvidmode* monitorVideoMode = glfwGetVideoMode(primaryMonitor); //(Gets the video-mode information of your primary monitor (which includes screen size.))
+	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height; //(Initializes "monitorWidth" and "monitorHeight" to the respective dimensions of your monitor.)
+
+	if (window == NULL) //(Error-checking: if GLFW failed to setup, it's function will return NULL. We check for if we get a NULL and close the program if we do.)
+	{
+		std::cout << "FATAL ERROR: Failed set up GLFW window." << std::endl;
+		return -1; 
 	}
 
-	// Loads GLAD so that it configures opengl, and error checks.
+	// Loads GLAD such that it configures opengl, and also error checks. (Closes the program if GLAD didn't load properly.)
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-		std::cout << "Failed to initilize GLAD." << std::endl;
+		std::cout << "FATAL ERROR: Failed to initilize GLAD." << std::endl;
 		return -1;
 	}
 
-	// Gets the width and height of the window (instead of monitor) after it's created for the viewport, accounting for operating system specific weirdness such as Window's taskbar.
+	std::cout << "Successfully set-up GLFW and initialized GLAD..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	// Gets and stores the width & height of the window after it's created to be used for the viewport. (instead of the size of your raw monitor, which fixes a Windows task-bar issue.)
 	int windowWidth, windowHeight;
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 
-	// Specifies the viewport of opengl in the window.
-	glViewport(0, 0, windowWidth, windowHeight);
+	glViewport(0, 0, windowWidth, windowHeight); //(Specifies opengl's viewport for the window.)
 
-	// Gives the game-window it's icon, which also displays in the Windows taskbar.
-	stbi_set_flip_vertically_on_load(false);
+	// Gives the window it's corner-icon (which is also used for the Windows taskbar icon image.)
+	stbi_set_flip_vertically_on_load(false); //(Normally this needs to be true for textures and rendering, but in this case it needs to be false.)
 	GLFWimage windowIconImage;
 	windowIconImage.pixels = stbi_load("Resources/Utility_Images/Hatchetflash_Window_Icon_A.png", &windowIconImage.width, &windowIconImage.height, 0, 4);
 	glfwSetWindowIcon(window, 1, &windowIconImage);
 	stbi_image_free(windowIconImage.pixels);
 
-	// Enable depth testing so things are rendered in the correct order.
-	glEnable(GL_DEPTH_TEST);
-	// Disables rendering of the back of faces
-	glEnable(GL_CULL_FACE);
+	std::cout << "Hatchetflash Opengl-window created..." << std::endl;
 
-	std::cout << "Hatchetflash Opengl-window created successfully..." << std::endl;
+	/////////////////////////////////////////////////
 
-	// Init audio
-	AudioSystem audioSystem;
-	
-	// Load a song
-	AudioBuffer buffer("Resources/Music/Gymnopedie-No-1.wav");
-	AudioSource music;
-	music.queueBuffer(buffer.buffer);
+	glEnable(GL_DEPTH_TEST); //(Enables depth testing, which makes sure that things are drawn on top of eachother correctly.)
+	glEnable(GL_CULL_FACE); //(Disables rendering the backs of faces.)
+	//glfwSwapInterval(0); //(If not commented out, unlocks the window's fps. Should only be turned on temporarily for testing purposes.)
+	glClearColor(0.02f, 0.15f, 0.17f, 1.0f); //(Specifies the color that the window is cleared / drawn-over with each frame.)
 
-	// If used rather than commented out, unlocks the fps of the window for testing purposes.
-	//glfwSwapInterval(0);
-	
+	std::cout << "Hatchetflash glEnable settings set..." << std::endl;
+
+	/////////////////////////////////////////////////
+
 	// Generates the Shader object using the shaders "defualt.vert" and "default.frag".
 	Shader shaderProgram("Resources/Shaders/default.vert", "Resources/Shaders/default.frag");
 	Shader textShader("Resources/Shaders/text.vert", "Resources/Shaders/text.frag");
 
-	// (A texture atlas used for testing.)
-	TextureAtlas testingTexture("Resources/STING_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-	testingTexture.texUnit(shaderProgram, "tex0", 0);
+	// Used to render any/all text in the program's window.
+	Text textRenderer;
+	textRenderer.initText();
+	textShader.Activate();
 
-	// Intitializes an imperminant testing mat4 which is used for rotating the cube over time.
-	glm::mat4 modelMatrix = glm::mat4(1.0f);
+	std::cout << "Hatchetflash shader-objects created..." << std::endl;
 
-	// A chunk to be used for testing out the chunk class.
+	/////////////////////////////////////////////////
+
+	double FPSTimer = 0.0f; //(Used for counting the time; used in FPS-related calculations.
+	long FPSCnt = 0; //(Increments each time the program's FPS is checked.)
+	double last_FPS_time = glfwGetTime(); //(Used in FPS calculations.)
+	double deltaTime = 1.0f / 60.0f; //(Delta-time. It's not used for very much right now, but it will be integral to the game's movement and physics in the future.)
+	double avrgFPS = 60.0f; //(The program's average FPS from the last batch of frames, this is what's displayed when the fps is stated.)
+	bool buttonHeld = false; //(Used to detect if a button was pressed, but only so we check it once per press.)
+
+	std::cout << "Hatchetflash time and FPS variables instantiated..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	AudioSystem audioSystem; //(Initializes the audio system stuff, currently required for playing audio.)
+	
+	// Loads some testing audio. (Currently, "Gymnopedie No 1".)
+	AudioBuffer buffer("Resources/Music/Gymnopedie-No-1.wav"); //NOTE, SOME OF THE VARIABLE NAMES HERE CAN PROBABLY BE RENAMED TO BE MUCH BETTER.
+	AudioSource music;
+	music.queueBuffer(buffer.buffer);
+
+	std::cout << "Hatchetflash audio instantiated..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	// Creates the camera object.
+	Camera viewCam(windowWidth, windowHeight, glm::vec3(0.0f, 20.0f, 80.0f)); //(Also initializes the camera's position to where you start out already seeing the blocks. This will change later.)
+
+	// Set's up the view-camera's perspective.
+	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);
+	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+	std::cout << "Hatchetflash view-camera object instantiated..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	// A texture atlas used for chunks' block textures.
+	TextureAtlas chunkBlocksTextureAtlas("Resources/STING_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
+
+	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
+
+	/////////////////////////////////////////////////
+
+	glm::mat4 modelMatrix = glm::mat4(1.0f); //(Currently used for positioning chunks.)
+
+	// Creates a cube/prism of chunk objects to be used for testing.
 	std::vector<Chunk> chunks;
+	for (int z = 0; z < 4; z++){
+	for (int y = 0; y < 4; y++){
 	for (int x = 0; x < 4; x++){
-		for (int y = 0; y < 4; y++){
-			for (int z = 0; z < 4; z++){
-				chunks.push_back(Chunk{314,x,y,z,testingTexture.ThingIDmap,int(testingTexture.image_count)});
-			}
-		}
-	}
+		chunks.push_back(Chunk{314,x,y,z,chunkBlocksTextureAtlas.ThingIDmap,int(chunkBlocksTextureAtlas.image_count)}); //(initializes a chunk object.)
+	} //end x
+	} //end y
+	} //end z
+	
+	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
 	for (Chunk& chunk: chunks){
 		chunk.MakeChunkFilledWithTestingBlocks();
 		chunk.UpdateChunkMesh();
 	}
-	
-	// Specifies the base color that the window is cleared/drawn-over with.
-	glClearColor(0.02f, 0.15f, 0.17f, 1.0f);
 
-	// Used for rendering all text in the window.
-	Text text;
-	text.initText();
-	textShader.Activate();
+	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;
 
-	// Creates the camera object.
-	Camera camera(windowWidth, windowHeight, glm::vec3(0.5f, 0.5f, 2.0f));
+	/////////////////////////////////////////////////
 
-	// Setup the camera's perspective.
-	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);
-	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	std::cout << "\nMain while loop reached, starting Hatchetflash!\n" << std::endl;
 
-
-	// Counts the time that will later be used for FPS calculations.
-	double FPSTimer = 0.0f;
-	// Increments every time the FPS is checked.
-	long FPSCnt = 0;
-	// (Used for our current method of getting the fps.)
-	double last_FPS_time = glfwGetTime();
-	// Delta-time. (This is a permanent variable even if the code of getting it may change later.)
-	float deltaTime = 1.0f / 60.0f;
-	// Average FPS, for displaying.
-	float avrgFPS = 0.0f;
-
-	bool showUI = true;
-	// Used to detect if a button was pressed, but only so we check it once per press.
-	bool buttonHeld = false;
-
-	while (!glfwWindowShouldClose(window)) //Checks to see if you've "X-d out" the window.
+	while (!glfwWindowShouldClose(window)) //(Checks if you've prompted closing out the window. (One example would be "X-ing out the window".))
 	{
-		// Clears the window canvas with it's basic clear color.
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //(Clears/fills the window's canvas with the set gl clear color.)
+		shaderProgram.Activate(); //(Tells OpenGL which Shader Program to use.)
 
-		// Tells OpenGL which Shader Program to use.
-		shaderProgram.Activate();
 
-		// Handles camera inputs.
-		camera.Inputs(window, deltaTime);
-		// Updates and exports the camera matrix to the Vertex Shader.
-		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+		viewCam.Inputs(window, deltaTime); //(Checks and handles view-camera key inputs.)
 
-		// Play music.
-		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS&&!music.isPlaying()) {
-			music.play();
-		}
-		// Pause music.
-		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS &&music.isPlaying()) {
-			music.pause();
-		}
+		// (Updates and exports the camera's matrix to the Vertex Shader to be used in rendering.)
+		viewCam.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
-		// Toggle the UI if F1 was pressed.
+
+		// When you press the 'f' key, the default song will play.
+		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS&&!music.isPlaying()) { music.play(); }
+		// When you press the 'f' key, the playing song will pause.
+		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS &&music.isPlaying()) { music.pause(); }
+
+
+		// Toggles the debug UI if the 'F1' key is pressed.
 		if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS){
-			if (!buttonHeld) { showUI = !showUI; }
+			if (!buttonHeld) { showDebugUI = !showDebugUI; }
 			buttonHeld = true;
 		}else{
 			buttonHeld = false;
 		}
 
-		// Assigns a value to the model uniform; NOTE: Must always be done after activating the Shader Program
+
+		// Assigns a value to the model uniform. NOTE: MUST ALWAYS BE DONE *AFTER* ACTIVATING THE SHADER PROGRAM. //Also, model uniform??
 		GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "modelMatrix");
 
-		// Bind the texture and draw the chunk.
-		testingTexture.Bind();
-		for (Chunk& chunk: chunks){
+		// Binds the texture atlas used for chunk blocks and draws the chunks.
+		chunkBlocksTextureAtlas.Bind();
+		for (Chunk& chunk: chunks){ //(Cycles through and runs code for all chunks.)
 			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkX * 16, chunk.chunkY * 16, chunk.chunkZ * 16});
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 			chunk.Draw();
 		}
 
-		if (showUI){
-			// Render some text for debugging.
-			textShader.Activate();
-			if (avrgFPS > 0.0f) {
-				text.RenderText(textShader, std::to_string(avrgFPS).append(" FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
-			}
-			text.RenderText(textShader, "\"Gymnopedie No 1\" Kevin MacLeod (incompetech.com)", 5.0f, 90.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
-			text.RenderText(textShader, "Licensed under Creative Commons: By Attribution 4.0 License", 5.0f, 65.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
-			text.RenderText(textShader, "http://creativecommons.org/licenses/by/4.0/", 5.0f, 40.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
-		}
 		
-		// Shows the half second average of fps in the window's title.
+		// Sets the displayed FPS to the half-second average of the programs's FPS.
 		if (FPSTimer > 0.5f) {
-			avrgFPS = 1.0f / (FPSTimer /FPSCnt);
+			avrgFPS = 1.0f / (FPSTimer/FPSCnt);
 			
-			//Sets the veriables used for measuring the FPS back to 0
+			// (Sets the veriables used for measuring the FPS back to 0.)
 			FPSTimer = 0.0f;
 			FPSCnt = 0;
 		}
+
 		// FPS timer incremented by time between frames, the FPS counter is incremented too
 		FPSTimer += glfwGetTime() - last_FPS_time;
 		FPSCnt++;
-		deltaTime = glfwGetTime() - last_FPS_time; //(Updates dt.)
+		deltaTime = glfwGetTime() - last_FPS_time; //(Updates delta-time.)
 		last_FPS_time = glfwGetTime();
+
+
+		if (showDebugUI) //(If showDebugUI is set to true, render debug text.)
+		{
+			textRenderer.RenderText(textShader, std::to_string(avrgFPS).append(" avg-FPS"), 5.0f, windowHeight - 45, 1.0f, glm::vec3(0.5, 0.8f, 0.5f));
+
+			textRenderer.RenderText(textShader, "Press 'f' for: \"Gymnopedie No 1\" Kevin MacLeod (incompetech.com)", 5.0f, 90.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+			textRenderer.RenderText(textShader, "Licensed under Creative Commons: By Attribution 4.0 License", 5.0f, 65.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+			textRenderer.RenderText(textShader, "http://creativecommons.org/licenses/by/4.0/", 5.0f, 40.0f, 0.5f, glm::vec3(0.5, 0.8f, 0.5f));
+		}
 		
-		//Swaps the window's back buffer canvas and it's front buffer canvas.
-		glfwSwapBuffers(window);
-		// Checks for window events.
-		glfwPollEvents();
+
+		glfwSwapBuffers(window); //(Swaps the window's back buffer canvas with it's front buffer canvas.)
+		glfwPollEvents(); //(Checks for / gets window-events, such as attempting to close the window.)
 	}
-	std::cout << "Closing Hatchetflash..." << std::endl;
-	// Cleanly deletes all of the created rendering-based objects.
-	testingTexture.Delete();
+
+	/////////////////////////////////////////////////
+
+	std::cout << "\nEnding Hatchetflash program..." << std::endl;
+
+
+	// Deletes all of the renderable objects:
+	chunkBlocksTextureAtlas.Delete();
+
+	// Deletes all of the created rendering-based objects:
 	shaderProgram.Delete();
+	textShader.Delete();
 	
-	// Deletes VAO, VBO and EBO stuff related to the chunk's mesh.
+	// Deletes chunk meshes' related VAO, VBO and EBO stuff:
 	for (Chunk& chunk: chunks){
 		chunk.cleanup();
 	}
 	
-	// Destroys the window, stops glfw stuff and ends the program.
+
+	// Destroys the window, stops glfw-related things and fully ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();
+	std::cout << "Hatchetflash program successfully ended." << std::endl;
 	return 0;
+
+	/////////////////////////////////////////////////
 }
 
-// Define function to setup GLFW and return a window.
-GLFWwindow* setupGLFW(){
-	// Initializes glfw and instructs it on it's version and that we will be using it's modern core features.
+
+
+
+
+// A function used to resize the viewport canvas when you resize the program's window. (Thanks again, Fox!)
+void framebuffer_size_callback(GLFWwindow* window, int w, int h) { glViewport(0, 0, w, h); }
+
+
+/* A function which sets up GLFW and returns a window object.
+* (Used early on in the main function.)
+*/
+GLFWwindow* setupGLFW()
+{
+	// Initializes glfw and instructs it on what version it is, and that we'll be using only it's modern (non-legacy) core features.
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// Gets the primary monitor you will be using, and sets a variable to something that points to it in case you'd like to reference/use it more directly later.
-	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
-	// Gets the video-mode information of your primary monitor, including screen size.
-	const GLFWvidmode * monitorVideoMode = glfwGetVideoMode(primaryMonitor);
-	// Initializes monitorWidth and monitorHeight to the respective dimensions of your monitor.
-	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height;
+	// Fetches and sets info regarding your primary monitor. (The temp. version of the variables, the more perminant ones are in main().)
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor(); //(Creates a pointer to the primary monitor you're using (in case you'd like to reference/use it more directly later.))
+	const GLFWvidmode * monitorVideoMode = glfwGetVideoMode(primaryMonitor); //(Gets the video-mode information of your primary monitor (which includes screen size.))
+	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height; //(Initializes "monitorWidth" and "monitorHeight" to the respective dimensions of your monitor.)
 
-	// Creates the window. (If the 4th argument is filled in with primaryMonitor, having the program open will use the entire direct monitor itself, going into fullscreen mode.)
-	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash - Pre-Alpha [Chunk Testing]", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
-	// (Error checking for whether the glfw window was created successfully.)
-	if (window == NULL)
+	// Creates the window. (If the 4th argument is filled in with a pointer to your primary-monitor, the program will fill and mess with you entire monitor itself, AKA fullscreen mode.)
+	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Development]", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
+	if (window == NULL) //(Error-checks whether the glfw window was created successfully or not.)
 	{
-		std::cout << "Failed to create the GLFW window." << std::endl;
+		std::cout << "Failed to create the GLFW window! (created window object == NULL)" << std::endl;
 		glfwTerminate();
 		return NULL;
 	}
@@ -266,3 +317,5 @@ GLFWwindow* setupGLFW(){
 
 	return window;
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

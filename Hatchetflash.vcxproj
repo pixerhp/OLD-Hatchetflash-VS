@@ -177,7 +177,7 @@
     <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt" />
     <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt" />
     <Text Include="Shape-IDs.txt" />
-    <Text Include="Text Documents\Comment-format.txt" />
+    <Text Include="Text Documents\Commenting-style.txt" />
     <Text Include="Text Documents\Game-Controls.txt" />
     <Text Include="Text Documents\Sting-ID.txt" />
     <Text Include="See-also.txt" />

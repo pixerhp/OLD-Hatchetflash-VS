@@ -1,6 +1,7 @@
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 CAMERA RELATED:
 
+
 Right click - Hold down right click whislt moving your mouse to look around. (Your mouse will be hidden whilst looking around.)
 
 WASD - Move around laterally based on your orientation (the direction you're looking towards.)
@@ -11,6 +12,9 @@ Left-Shift - Move downwards.
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 OTHER CONTROLS:
+
+
+F - Play the default testing audio.
 
 F1 key - Toggle some debug related text.
 
