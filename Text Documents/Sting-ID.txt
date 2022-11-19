@@ -1,3 +1,5 @@
+{A BIT OUTDATED DUE TO US LIKELY CHANGING THE AMOUNT OF BITS IN A STING ID}
+
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 A list of Sting IDs used for objects;

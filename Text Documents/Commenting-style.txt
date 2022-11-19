@@ -1,3 +1,5 @@
+{POTENTIALLY SLIGHTLY OUTDATED}
+
 /* Commenting_Style.txt file description:
 * The official standard commenting style for Hatchetflash's code.
 * Written initially by Pixer Pinecone on 9/8/2022. (M/D/YYYY)

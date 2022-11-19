@@ -1,3 +1,5 @@
+{CURRENT PROGRAM CONTROLS}
+
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 CAMERA RELATED:
 
@@ -17,5 +19,15 @@ OTHER CONTROLS:
 F - Play the default testing audio.
 
 F1 key - Toggle some debug related text.
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+
+
+{SOME OF THE PLANNED FUTURE MORE-PERMINANT CONTROLS}
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+F11 - Toggle fullscreen mode.
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
