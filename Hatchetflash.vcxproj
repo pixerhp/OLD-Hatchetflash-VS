@@ -156,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Image Include="Resources\Block_Textures\asremic1_32x.png" />
+    <Image Include="Resources\Block_Textures\asremic2_32x.png" />
     <Image Include="Resources\Block_Textures\cardboard_32x.png" />
     <Image Include="Resources\Block_Textures\cobble_32x.png" />
     <Image Include="Resources\Block_Textures\dirt_32x.png" />

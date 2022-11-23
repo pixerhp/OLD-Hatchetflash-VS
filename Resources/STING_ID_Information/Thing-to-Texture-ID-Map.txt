@@ -12,3 +12,5 @@
 800000011 : Resources/Block_Textures/grassy_32x.png
 800000012 : Resources/Block_Textures/cardboard_32x.png
 800000013 : Resources/Block_Textures/ladder_brassish_32x.png
+800000014 : Resources/Block_Textures/asremic1_32x.png
+800000015 : Resources/Block_Textures/asremic2_32x.png
