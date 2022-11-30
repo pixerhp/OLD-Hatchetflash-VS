@@ -1,12 +1,14 @@
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /* Chunk.h file description:
-* Defines the Chunk class, and states all of the functions that it will have as defined in "Chunk.cpp".
-*/
+* Defines the Chunk class, and states all of it's functions as defined in "Chunk.cpp".
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
 
 #include <vector>
 #include <map>
 #include "Mesh.h"
+
 
 class Chunk {
 private:
@@ -17,7 +19,7 @@ private:
 public:
 	std::map<int, int> ThingIDmap;
 	int ThingIDsize;
-	unsigned long int seed = 0;
+	unsigned long int seed = 314;
 	int chunkX = 0;
 	int chunkY = 0;
 	int chunkZ = 0;
@@ -43,3 +45,5 @@ public:
 	// Cleans up the mesh.
     void cleanup();
 };
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

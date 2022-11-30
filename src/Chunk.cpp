@@ -1,21 +1,21 @@
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /* Chunk.cpp file description:
 * Defines functions and related for cubic chunk objects, which store the blocks and world-stuff that you see in the game.
 * (The functions here are also stated in "Chunk.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "Chunk.h"
-#include <iostream>
+#include <iostream> //(Doesn't seem to need to be stated here, but it's probably good to just do it anyways.)
 
-// Used to initiate drawing the chunk's mesh.
-void Chunk::Draw()
-{
-	chunkMesh.draw();
-}
 
-// Generates a very basic chunk which can be used for developer-testing purposes.
+// A function used to initiate drawing the chunk's mesh.
+void Chunk::Draw(){ chunkMesh.draw(); }
+
+
+// Generates a chunk filled with whatever blocks are defined as needed for pure testing/dev related purposes, won't be used in-game.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {
-	int seed = 409600*chunkZ + 25600*chunkY + 16*chunkX;
+	int seed = 64*chunkZ + 16*chunkY + 4*chunkX;
 	srand(seed);
 	int index = 0;
 	for (int z = 0; z < 16; z++) {
@@ -31,6 +31,7 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 	} //(End of the 'y' for loop.)
 	} //(End of the 'z' for loop.)
 }
+
 
 // Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
 void Chunk::UpdateChunkMesh()
@@ -199,7 +200,8 @@ void Chunk::UpdateChunkMesh()
 	chunkMesh.regenerateVBOAndEBO();
 }
 
-// Cleans up the mesh.
-void Chunk::cleanup(){
-	chunkMesh.cleanup();
-}
+
+// A function used to initiate cleaning up the chunk's mesh, which would mean deleting it's VAO, VBO, and EBO stuff.
+void Chunk::cleanup(){ chunkMesh.cleanup(); }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
