@@ -1,6 +1,6 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /*   Chunk.h file description:
-* Defines the Chunk class, and states all of it's functions as defined in "Chunk.cpp".
+* Defines the Chunk class, and it's object initialization, and states all of it's functions as defined in "Chunk.cpp".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
@@ -12,9 +12,7 @@
 
 class Chunk {
 private:
-
-	// The chunk's mesh to be rendered, which can be updated using "UpdateChunkMesh()".
-	Mesh chunkMesh;
+	Mesh chunkMesh; //(The chunk's mesh which is what's rendered; can be updated using certain functions.)
 
 public:
 	std::map<int, int> ThingIDmap;
@@ -25,7 +23,7 @@ public:
 	int chunkZ = 0;
 	std::vector<unsigned int> blockStorage[4096]; //(Contains an array of 4096 (16^3) unsigned int vectors, which can allow for each array slot (block position in a chunk) to contain multiple actual block thingos.
 
-	// A constructor function for chunk objects (independant from the actual terrain generation.)
+	// The constructor for chunk objects. (Unrelated to how they we be after worldgen stuff, this is just when the raw object is created.)
 	Chunk(unsigned long int input_seed, int input_chunkX, int input_chunkY, int input_chunkZ, std::map<int, int> input_ThingIDmap, int input_ThingIDsize) : blockStorage() {
 		seed = input_seed;
 		chunkX = input_chunkX;
@@ -35,15 +33,13 @@ public:
 		ThingIDsize = input_ThingIDsize;
 	}
 
-	// Used to initiate rendering of the chunk's mesh (which is stored in "chunkMesh".)
-	void Draw();
-	// Used to generate the chunk with blocks as defined for testing, probably usually independantly of the chunk's seed.
-	void MakeChunkFilledWithTestingBlocks();
-	// Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
-	void UpdateChunkMesh();
+	void Draw(); //(Used to initiate rendering the chunk's mesh, which is actually stored in "chunkMesh" and can be updated by certain functions.)
+	
+	void MakeChunkFilledWithTestingBlocks(); //(Used to generate a testing chunk as defined however is for dev purposes, won't be used in the actual game.)
+	
+	void UpdateChunkMesh(); //(Used to update the chunk's mesh/visuals to better represent the current state of the chunk.)
 
-	// Cleans up the mesh.
-    void cleanup();
+    void cleanup(); //(Used for cleaning up the mesh, more specifically it has to do with VBO VAO EBO stuff.)
 };
 
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
