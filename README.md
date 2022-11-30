@@ -1,16 +1,8 @@
 # Hatchetflash
-The official repository for a 3D sandbox indie game named "Hatchetflash".
+The official Hatchetflash repository. Hatchetflash is a 3D cubic-chunk-based sandbox which strives to have genuinly interesting exploration and worldgen, high player movement freedom, logical consistency (if you think that something should work then it should probably work,) cool creatures and perhaps just a little streirdness...
 
-Official Hatchetflash youtube channel: https://www.youtube.com/channel/UCr6XlwGKe2hUjlV7JJ0Q95A
-I (Pixer) also usually state big things regarding the game on my twitter: https://twitter.com/PixerPinecone
-You can feel free to contact me (Pixer) through my discord server (or other, I don't mind pings:) https://discord.com/invite/gtKAmx9tbD
+The "See-also" gdoc relating to the game's development and dev contacts, please see this if you are interested in helping out or learning more: https://docs.google.com/document/d/1mLPusB7MNbXRBAH9oUUa8hkMpNgSxWFHCYIRtaPZ9FI/edit?usp=sharing
 
-Credits: (Accurate as of September 15th 2022:)
-* Pixer Pinecone - Designer/Developer/Windows10-Compatability-Tester;
-* Jcodefox - Developer/Linux-Compatability-Tester;
-* Redstone - General-Helper/Windows8-Compatability-Tester;
-* Steve - Assistant Developer;
+Dedicated Youtube channel: https://www.youtube.com/channel/UCr6XlwGKe2hUjlV7JJ0Q95A
 
-=-=-=-=   =-=-=-=   =-=-=-=
-
-(I tried to add cool 3D-block text art here but it kept getting formatted into nonsense, sorry.)
+Development updates are also commonly on my Twitter: https://twitter.com/PixerPinecone
