@@ -1,11 +1,9 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= JMJ =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-
 /*   Main.cpp file description:
 * Pixer Pinecone.
 * The heart of the game's code, main() is where the program starts up from.
 * [For information about this project and otherwise, see the "See-also.txt" text file.]
-*/
-//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 // Commonly used basic includes:
 #include <iostream>
