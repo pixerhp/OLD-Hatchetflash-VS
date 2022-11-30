@@ -1,6 +1,5 @@
 /* Chunk.cpp file description:
-* Defines functions and other for chunk (physics) objects, and how the meshes for chunks get created.
-* 
+* Defines functions and related for cubic chunk objects, which store the blocks and world-stuff that you see in the game.
 * (The functions here are also stated in "Chunk.h".)
 */
 
