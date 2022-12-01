@@ -21,14 +21,14 @@
 #include <stb/stb_image.h>
 
 // (Our project's unique header files.)
-#include "TextureAtlas.h"
-//#include "Texture.h" //CURRENTLY NOT USED.
+#include "BlockTextureAtlas.h"
+//#include "GeneralTextures.h" //CURRENTLY NOT USED.
 #include "ShaderClass.h"
 #include "Camera.h"
 #include "Mesh.h"
 #include "Model.h"
-#include "Chunk.h"
-#include "Text.h"
+#include "Chunks.h"
+#include "TextRendering.h"
 #include "AudioSystem.h"
 #include "AudioSource.h"
 #include "AudioBuffer.h"

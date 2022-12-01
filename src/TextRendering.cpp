@@ -2,7 +2,7 @@
 *   Define functions for a class that handles text rendering.
 */
 
-#include "Text.h"
+#include "TextRendering.h"
 
 void Text::initText() {
     glEnable(GL_BLEND);

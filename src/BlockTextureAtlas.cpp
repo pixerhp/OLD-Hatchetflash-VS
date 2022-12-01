@@ -1,19 +1,65 @@
-/* Texture.cpp file description:
-* Contains a constructor for textures, which allows images to be used as OpenGL textures.
-* (The functions here are also stated in "Texture.h".)
+/* TextureAtlas.cpp file description:
+*   Define methods for a class that stores a bunch of textures as one, big, indexable texture.
 */
 
-#include "Texture.h"
 
-Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
+#include "BlockTextureAtlas.h"
+
+TextureAtlas::TextureAtlas(const char* mapFile, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
 {
 	type = texType; //(Used for assigning the type of the texture to the texture object.)
 	int widthImg, heightImg, numColCh; //(Used for storing the width, height, and number of color channels of the image.)
 
 	// Flips the image so it appears right side up for OpenGL use..
 	stbi_set_flip_vertically_on_load(true);
-	// Reads the image from a file and stores it in bytes.
-	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 4);
+
+	// Load in the file that maps image file names to ids
+	std::ifstream f(mapFile);
+	if (!f.is_open()) {
+		printf("Error: \"Could not open the bloody MapThingsToTextureID file, too bad!\"");
+		throw(new CantLoadMapFileException);
+	}
+
+	// Variables to parse the map file.
+	int from;
+	char junk;
+	char line[256];
+	std::string imageName;
+	std::stringstream s;
+
+	// The amount of images loaded.
+	image_count = 0;
+
+	// All the data for the textures.
+	std::vector<unsigned char> bytes;
+
+	// Load in the textures listed in the map file.
+	while (!f.eof())
+	{
+		f.getline(line, 256);
+		s << line;
+		s >> from >> junk >> imageName;
+		s.clear();
+		ThingIDmap[from] = image_count;
+
+		// Reads the image from a file and stores it in bytes.
+		unsigned char* image = stbi_load(imageName.c_str(), &widthImg, &heightImg, &numColCh, 4);
+
+		if (image == nullptr){
+			throw(new CantLoadImageException);
+		}
+
+		bytes.insert(bytes.end(), image, image + widthImg * heightImg * 4);
+
+		// Deletes the image data in bytes as it is already in the OpenGL "Texture" object now.
+		stbi_image_free(image);
+
+		image_count++;
+	}
+
+	//  /|/|   Be safe. Close files.
+	// (  ^^> /
+	f.close();
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
 	glGenTextures(1, &ID);
@@ -33,18 +79,15 @@ Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum format, 
 	// glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
 
 	// Assigns the image to the OpenGL "Texture" object.
-	glTexImage2D(texType, 0, GL_RGBA, widthImg, heightImg, 0, format, pixelType, bytes);
+	glTexImage2D(texType, 0, GL_RGBA, widthImg, heightImg * image_count, 0, format, pixelType, bytes.data());
 	// Generates MipMaps of the image.
 	glGenerateMipmap(texType);
-
-	// Deletes the image data in bytes as it is already in the OpenGL "Texture" object now.
-	stbi_image_free(bytes);
 
 	// Unbinds the OpenGL Texture object so that it can't be accidentally modified.
 	glBindTexture(texType, 0);
 }
 
-void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
+void TextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
 {
 	// Gets the location of the uniform.
 	GLuint texUni = glGetUniformLocation(shader.ID, uniform);
@@ -54,17 +97,17 @@ void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
 	glUniform1i(texUni, unit);
 }
 
-void Texture::Bind()
+void TextureAtlas::Bind()
 {
 	glBindTexture(type, ID);
 }
 
-void Texture::Unbind()
+void TextureAtlas::Unbind()
 {
 	glBindTexture(type, 0);
 }
 
-void Texture::Delete()
+void TextureAtlas::Delete()
 {
 	glDeleteTextures(1, &ID);
 }
