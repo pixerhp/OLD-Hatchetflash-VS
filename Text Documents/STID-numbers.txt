@@ -1,12 +1,49 @@
-{A BIT OUTDATED DUE TO US LIKELY CHANGING THE AMOUNT OF BITS IN A STING ID}
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Description:]
+
+A STID number is a number used to know what what's being talked about, kindof like an ID system.
+There are different sets of these numbers, materials may range from 0 to ### and standard objects will probably also range from 0 to ###.
+(Note that different sets/categories of numbers may use a different amount of bytes for their number range.)
+A "Type" STID number is the number that most things where a STID number would be used will start with,
+and it's what chooses the category that's being used, from materials to objects to animals to anything.
+
+(Name origin: Substance-ThING --> STing ID --> stid number)
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Type IDs list:] (1 byte) (Specifies the type of ID or set of STID numbers being worked with.)
+
+0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:"]
+1 - Shape IDs; (1 byte)
+2 - 
+3 - 
+4 - Element IDs; (1 byte)   [Examples: Hydrogen, Helium, Lithium, etc.]
+5 - Substance IDs section 1; (1 bytes)   [Examples: Hydrogen, Helium, Lithium, etc.]
+...
+255 - (Reserved to only being able to be an alternative additional Type ID list.)
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Function IDs list:] (1 byte) ()
+
+0 - 
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Shape IDs list:] (1 byte) ()
+
+0 - 
 
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-A list of Sting IDs used for objects;
-(Note that Sting stands for "Substance-Thing".)
-//(also note that this list may not be final or exact, but just generally gives off a feel of how it'll work.)
 
 
+
+
+
+
+
+
+
+
+{ARCHAIC STUFF:}
 
 GENERAL::
 
@@ -54,5 +91,15 @@ SPECIFIC::
 800000011 - grassy
 800000012 - cardboard
 800000013 - ladder_brassish
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+//A list of IDs used to describe the shapes of blocks and related, doesn't apply to custom models.
+
+0-162 - Reserved for all of the combinations of block shapes formed when you remove 0-4 vertices from a cube's vertices. //163 = sum of nCr(2^3,n) for n = 0,1,2,3 and 4.
+163-1140 - Reserved for all of the combinations created by squishing the 163 shapes into each of the 6 directions, such that for example a cube might become a slab. //(163 to 163 + 163*6)
+[later numbers] - used for common future unrelated or more manually defined shapes.
+[the largest possible number in the ID] - Reserved to indicate a custom model, the next information after this ID should always be/allow for a path to the model in some way.
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
