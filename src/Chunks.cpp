@@ -15,7 +15,7 @@ void Chunk::Draw(){ chunkMesh.draw(); }
 // Generates a chunk filled with whatever blocks are defined as needed for pure testing/dev related purposes, won't be used in-game.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {
-	int seed = 314 + 64* chunkCoordsZ + 16*chunkCoordsY + 4* chunkCoordsX;
+	/*int seed = 314 + 64 * chunkCoordsZ + 16 * chunkCoordsY + 4 * chunkCoordsX;
 	srand(seed);
 	int index = 0;
 	for (int z = 0; z < 4; z++) {
@@ -29,11 +29,12 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
-	} //(End of the 'z' for loop.)
+	} //(End of the 'z' for loop.) */
 }
 
 
 // Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
+/*
 void Chunk::UpdateChunkMesh()
 {
 	// Used to store the vertices and indices of the new mesh being created.
@@ -198,7 +199,7 @@ void Chunk::UpdateChunkMesh()
 	chunkMesh.indices = indices;
 	// Regenerate the mesh's VBO and EBO now that the mesh has changed.
 	chunkMesh.regenerateVBOAndEBO();
-}
+} */
 
 
 // A function used to initiate cleaning up the chunk's mesh, which would mean deleting it's VAO, VBO, and EBO stuff.

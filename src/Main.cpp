@@ -169,8 +169,8 @@ int main()
 	
 	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
 	for (Chunk& chunk: chunks){
-		chunk.MakeChunkFilledWithTestingBlocks();
-		chunk.UpdateChunkMesh();
+		//chunk.MakeChunkFilledWithTestingBlocks();
+		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
 
 	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;
