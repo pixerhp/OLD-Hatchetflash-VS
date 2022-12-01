@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cmath> //(Visual Studio automatically adds this but not every IDE does.)
 #include <vector> //(For creating general dynamic arrays.)
+#include <stdint.h> //(Allows for ints of very defined sizes, such as uint8_t or uint16_t or uint32_t.)
 
 // (Used in 3D rendering and glad/glfw window functions.)
 #include <glad/glad.h>
