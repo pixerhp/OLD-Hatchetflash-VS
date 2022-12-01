@@ -162,7 +162,7 @@ int main()
 	for (int z = 0; z < 4; z++){
 	for (int y = 0; y < 4; y++){
 	for (int x = 0; x < 4; x++){
-		chunks.push_back(Chunk{314,x,y,z,chunkBlocksTextureAtlas.ThingIDmap,int(chunkBlocksTextureAtlas.image_count)}); //(initializes a chunk object.)
+		chunks.push_back(Chunk{314,x,y,z}); //(initializes a chunk object.)
 	} //end x
 	} //end y
 	} //end z
@@ -170,7 +170,7 @@ int main()
 	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
 	for (Chunk& chunk: chunks){
 		chunk.MakeChunkFilledWithTestingBlocks();
-		chunk.UpdateChunkMesh();
+		chunk.UpdateChunkMesh(chunkBlocksTextureAtlas.ThingIDmap, int(chunkBlocksTextureAtlas.image_count));
 	}
 
 	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;

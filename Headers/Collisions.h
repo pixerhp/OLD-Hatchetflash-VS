@@ -5,6 +5,8 @@
 #pragma once
 
 #include<glm/glm.hpp>
+#include<iostream>
+#include<math.h>
 struct AABB {
 	glm::vec3 min;
 	glm::vec3 max;
@@ -15,15 +17,12 @@ struct AABB {
 	}
 };
 
-struct plane {
-	glm::vec3 min;
-	glm::vec3 max;
-	int axis;
-	plane(glm::vec3 mi, glm::vec3 ma,int ax)
-	{
-		min = mi;
-		max = ma;
-		axis = ax; //susie deltarune reference???????????????????????? //YOU IDIOT LOL (-Pixer)
+struct halfDAABB {
+	glm::vec3 centre;
+	float halfdimension;
+	halfDAABB(glm::vec3 c, float hd) {
+		centre = c;
+		halfdimension = hd;
 	}
 };
 
@@ -31,7 +30,8 @@ class Collisions
 {
 public:
 	
-	static void testPColl(glm::vec3& Ppos, glm::vec3 Phead, plane pl, AABB Pexp);
+	static void testPColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AABB Pexp);
 
 };
 
+		

@@ -34,7 +34,7 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 
 
 // Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
-void Chunk::UpdateChunkMesh()
+void Chunk::UpdateChunkMesh(std::map<int, int> ThingIDmap, int ThingIDsize)
 {
 	// Used to store the vertices and indices of the new mesh being created.
 	std::vector<Vertex> vertices;
@@ -65,7 +65,7 @@ void Chunk::UpdateChunkMesh()
 		// Checks if the block is a valid block we know how to work with.
 		if (blockStorage[i][0] >= 800000000) {
 			// Check if the top face of this block should be drawn.
-			if (y + 1 >= 4 || blockStorage[up][0] < 800000000){
+			if (y + 1 >= 4 || blockStorage[up][0] < 800000000 || blockStorage[up][0] == 800000010){
 				// Add all vertices needed for this face.ThingIDsize
 				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}}); //Top face.
 				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}});
@@ -85,7 +85,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the bottom face of this block should be drawn.
-			if (y - 1 < 0 || blockStorage[dn][0] < 800000000){
+			if (y - 1 < 0 || blockStorage[dn][0] < 800000000 || blockStorage[dn][0] == 800000010){
 				// Add all vertices needed for this face.
 				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}}); //Bottom face.
 				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}});
@@ -105,7 +105,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the left face of this block should be drawn.
-			if (x - 1 < 0 || blockStorage[lt][0] < 800000000){
+			if (x - 1 < 0 || blockStorage[lt][0] < 800000000 || blockStorage[lt][0] == 800000010){
 				// Add all vertices needed for this face.
 				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {0.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}}); //Left face.
 				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}});
@@ -125,7 +125,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the right face of this block should be drawn.
-			if (x + 1 >= 4 || blockStorage[rt][0] < 800000000){
+			if (x + 1 >= 4 || blockStorage[rt][0] < 800000000 || blockStorage[rt][0] == 800000010){
 				// Add all vertices needed for this face.
 				vertices.push_back({{1.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}}); //Right face.
 				vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}});
@@ -145,7 +145,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the front face of this block should be drawn.
-			if (z + 1 >= 4 || blockStorage[fd][0] < 800000000){
+			if (z + 1 >= 4 || blockStorage[fd][0] < 800000000 || blockStorage[fd][0] == 800000010){
 				// Add all vertices needed for this face.
 				vertices.push_back({{0.0f + x, 0.0f + y, 1.0f + z},	 {0.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}}); //Front face.
 				vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}});
@@ -165,7 +165,7 @@ void Chunk::UpdateChunkMesh()
 				index += 4;
 			}
 			// Check if the back face of this block should be drawn.
-			if (z - 1 < 0 || blockStorage[bk][0] < 800000000){
+			if (z - 1 < 0 || blockStorage[bk][0] < 800000000 || blockStorage[bk][0] == 800000010){
 				// Add all vertices needed for this face.
 				vertices.push_back({{0.0f + x, 0.0f + y, 0.0f + z},	 {1.0f, UV_Y_A},	{1.0f, 1.0f, 1.0f}}); //Back face.
 				vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, UV_Y_B},	{1.0f, 1.0f, 1.0f}});
