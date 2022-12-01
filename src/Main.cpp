@@ -212,7 +212,7 @@ int main()
 		// Binds the texture atlas used for chunk blocks and draws the chunks.
 		chunkBlocksTextureAtlas.Bind();
 		for (Chunk& chunk: chunks){ //(Cycles through and runs code for all chunks.)
-			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkX * 4, chunk.chunkY * 4, chunk.chunkZ * 4});
+			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkCoordsX * 4, chunk.chunkCoordsY * 4, chunk.chunkCoordsZ * 4});
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 			chunk.Draw();
 		}
