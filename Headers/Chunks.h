@@ -1,7 +1,7 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /*   Chunk.h file description:
 * Defines the Chunk class which is used for chunk objects, which store blocks and a mesh and related things.
-* Has the initializer for when chunk objects are first created, and states all of a chunk's functions as most are defined in "Chunk.cpp".
+* Has the initializer for when chunk objects are first created, and states all of a chunk's functions as most are defined in "Chunks.cpp".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once

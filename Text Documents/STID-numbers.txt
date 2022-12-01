@@ -12,7 +12,7 @@ and it's what chooses the category that's being used, from materials to objects 
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 [Type IDs list:] (1 byte) (Specifies the type of ID or set of STID numbers being worked with.)
 
-0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:"]
+0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:", "item n that this material is made up of is?"]
 1 - Shape IDs; (1 byte)
 2 - 
 3 - 
