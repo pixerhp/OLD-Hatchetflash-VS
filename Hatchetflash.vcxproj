@@ -170,7 +170,7 @@
     <Image Include="Resources\Block_Textures\shale_gray_side.png" />
     <Image Include="Resources\Block_Textures\shale_gray_top.png" />
     <Image Include="Resources\Block_Textures\stone_tile.png" />
-    <Image Include="Resources\Block_Textures\unknown.png" />
+    <Image Include="Resources\Block_Textures\unknown_block_texture.png" />
     <Image Include="Resources\Block_Textures\water_surface.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />

@@ -1,4 +1,4 @@
-800000000 : Resources/Block_Textures/unknown.png
+800000000 : Resources/Block_Textures/unknown_block_texture.png
 800000001 : Resources/Block_Textures/cobble.png
 800000002 : Resources/Block_Textures/gravel.png
 800000003 : Resources/Block_Textures/dirt.png

@@ -84,9 +84,6 @@
     <Image Include="Resources\Block_Textures\stone_tile.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\unknown.png">
-      <Filter>Resources\Block_Textures</Filter>
-    </Image>
     <Image Include="Resources\Block_Textures\water_surface.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
@@ -94,6 +91,9 @@
       <Filter>Resources\Block_Textures</Filter>
     </Image>
     <Image Include="Resources\Block_Textures\asremic2.png">
+      <Filter>Resources\Block_Textures</Filter>
+    </Image>
+    <Image Include="Resources\Block_Textures\unknown_block_texture.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
   </ItemGroup>
