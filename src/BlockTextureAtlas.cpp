@@ -8,7 +8,7 @@
 
 
 // A texture atlas object constructor, used when instantiating a texture atlas object.
-TextureAtlas::TextureAtlas(const char* mapFile, GLenum inputTextureImageType, GLenum slot, GLenum format, GLenum pixelType)
+BlockTextureAtlas::BlockTextureAtlas(const char* mapFile, GLenum inputTextureImageType, GLenum slot, GLenum format, GLenum pixelType)
 {
 	textureImageType = inputTextureImageType; //(Used for assigning the type of the texture to the texture object.)
 	// Used for storing the width, height, and number of color channels of the image:
@@ -32,7 +32,7 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum inputTextureImageType, GL
 	std::string imageName;
 	std::stringstream s;
 
-	image_count = 0; //Used to store the number of images loaded.
+	image_count = 0; //Also used in the h file, we might not need to assign it here. /////////////
 	std::vector<unsigned char> bytes; //(Used to store all of the data for the textures.)
 
 	// Loads in the textures which are listed in the map file.
@@ -84,7 +84,7 @@ TextureAtlas::TextureAtlas(const char* mapFile, GLenum inputTextureImageType, GL
 }
 
 
-void TextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
+void BlockTextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
 {
 	GLuint texUni = glGetUniformLocation(shader.ID, uniform); //(Gets the location of the uniform.)
 	shader.Activate(); // (Needs to be activated before changing the value of a uniform!)
@@ -92,19 +92,19 @@ void TextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit)
 }
 
 
-void TextureAtlas::Bind()
+void BlockTextureAtlas::Bind()
 {
 	glBindTexture(textureImageType, ID);
 }
 
 
-void TextureAtlas::Unbind()
+void BlockTextureAtlas::Unbind()
 {
 	glBindTexture(textureImageType, 0);
 }
 
 
-void TextureAtlas::Delete()
+void BlockTextureAtlas::Delete()
 {
 	glDeleteTextures(1, &ID);
 }

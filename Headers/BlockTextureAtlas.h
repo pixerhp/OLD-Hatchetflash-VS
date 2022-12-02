@@ -18,18 +18,23 @@
 
 
 // Declares a class which can store a bunch of textures as one big indexable texture, known as the/a "texture atlas".
-class TextureAtlas
+class BlockTextureAtlas
 {
 	public:
-		unsigned int image_count;
+		// (Some variables that the texture atlas object stores.)
+		unsigned int image_count = 0; //(Used to know how many total textures are in the texture atlas.)
 		GLuint ID;
 		GLenum textureImageType;
 		std::map<int, int> ThingIDmap;
-		TextureAtlas(const char* folder, GLenum texType, GLenum slot, GLenum format, GLenum pixelType);
+
+		BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData); //States a constructor for a texture atlas object.
 	
-		// States a function which assigns a texture unit to a texture.
-		void texUnit(Shader& shader, const char* uniform, GLuint unit);
+		void texUnit(Shader& shader, const char* uniform, GLuint unit); //(States a function which assigns a texture unit to a texture.)
 		
+		// Custom functions which relate to fetching textures and related from material and related STID numbers.
+		void getTextureCoordinatesFromTwoStidNumbers();
+		void getRGBColorEffectNumbersFromTwoStidNumbers();
+
 		// States some basic functions as defined in "Texture.cpp".
 		void Bind();
 		void Unbind();

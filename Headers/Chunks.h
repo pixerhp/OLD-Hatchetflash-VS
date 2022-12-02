@@ -8,13 +8,16 @@
 
 #include <vector>
 #include <map>
+
 #include "Mesh.h"
+#include "BlockTextureAtlas.h"
 
 
 class Chunk
 {
 	private:
 		Mesh chunkMesh; //(The chunk's mesh which is what's rendered; can be updated using certain functions.)
+		static BlockTextureAtlas chunkBlocksTextureAtlas; /////////////////////////ASSIGN THIS TO A PROPER ACTUAL TEXTURE ATLAS LATER USING A CHUNK OBJECT IN MAIN!!!
 
 
 	public:
