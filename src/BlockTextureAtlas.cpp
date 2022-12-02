@@ -8,18 +8,27 @@
 
 
 // A texture atlas object constructor, used when instantiating a texture atlas object.
-BlockTextureAtlas::BlockTextureAtlas(const char* mapFile, GLenum inputTextureImageType, GLenum slot, GLenum format, GLenum pixelType)
+BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData)
 {
+	numberOfImagesInTextureAtlas = 0; //(It is initialized at 0, so this statement isn't actually needed, but it's nice to have here anyways.)
+
+
+
+
+	
+	numberOfImagesInTextureAtlas += 1;
+
+	/*
 	textureImageType = inputTextureImageType; //(Used for assigning the type of the texture to the texture object.)
 	// Used for storing the width, height, and number of color channels of the image:
-	int widthImg = 32; //(0 is a default input to make sure that they at least have a number, they should be properly assigned before being used though!)
+	int widthImg = 32; //(These are default inputs to make sure that they at least start with something, but they need to be properly assigned later on before being used.)
 	int heightImg = 32;
 	int numColCh = 4;
 
 	stbi_set_flip_vertically_on_load(true); //(Flips the image as is more appropriate for OpenGL use.)
 
 	// Loads the text file that maps image file names to IDs. (It's named "Thing-to-Texture-ID-Map.txt".)
-	std::ifstream f(mapFile);
+	std::ifstream f(inputFolderDirectory);
 	if (!f.is_open()) {
 		printf("Error: Could not open the MapThingsToTextureID file!");
 		throw(new CantLoadMapFileException);
@@ -53,7 +62,7 @@ BlockTextureAtlas::BlockTextureAtlas(const char* mapFile, GLenum inputTextureIma
 
 		stbi_image_free(image); //(Deletes the image data in bytes as it is already in the OpenGL "Texture" object now.)
 
-		image_count++;
+		numberOfImagesInTextureAtlas++;
 	}
 
 	//  /|/|   Be safe. Close files.
@@ -62,7 +71,7 @@ BlockTextureAtlas::BlockTextureAtlas(const char* mapFile, GLenum inputTextureIma
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
 	glGenTextures(1, &ID);
-	glActiveTexture(slot);
+	glActiveTexture(inputGLTextureUnitSlot);
 	glBindTexture(inputTextureImageType, ID);
 
 	// Configures the type of algorithm used to make the image larger or smaller. (Seems to relate/also-relate to mipmapping the textures.)
@@ -77,10 +86,10 @@ BlockTextureAtlas::BlockTextureAtlas(const char* mapFile, GLenum inputTextureIma
 	// float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	// glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
 
-	glTexImage2D(inputTextureImageType, 0, GL_RGBA, widthImg, heightImg * image_count, 0, format, pixelType, bytes.data()); //(Assigns the image to the OpenGL "Texture" object.)
+	glTexImage2D(inputTextureImageType, 0, GL_RGBA, widthImg, heightImg * image_count, 0, inputImageInformationFormat, inputDataTypeOfPixelData, bytes.data()); //(Assigns the image to the OpenGL "Texture" object.)
 	glGenerateMipmap(inputTextureImageType); //(Generates MipMaps of the texture atlas.)
 
-	glBindTexture(inputTextureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.)
+	glBindTexture(inputTextureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.) */
 }
 
 
