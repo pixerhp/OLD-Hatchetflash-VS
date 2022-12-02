@@ -10,6 +10,7 @@
 #include <map>
 #include <fstream>
 #include <sstream>
+#include <filesystem>
 
 #include<glad/glad.h>
 #include<stb/stb_image.h>
@@ -24,7 +25,7 @@ class BlockTextureAtlas
 		// A list of public variables that the block texture atlas object stores.
 		unsigned int numberOfImagesInTextureAtlas = 0; //(Helps us keep track of how many unique images/textures are actually IN the texture atlas.)
 		GLuint ID; //(Used for more complicated OpenGL stuff, specifically relating to binding maybe? Research exactly what it is more and rename it later.)
-		GLenum textureImageType;
+		GLenum textureImageType = GL_TEXTURE_2D; //It will almost certainly always be this, so even if it is assigned in the object construction, it's nice to put this here.
 		std::map<int, int> ThingIDmap; /////////RENAME THIS AND PROBABLY HAVE OTHER MAPS!
 
 		// The main constructor for the texture atlas object and all of it's variables, it's defined in "BlockTextureAtlas.cpp".

@@ -4,19 +4,44 @@
 * Note that some of the functions are defined in "BlockTextureAtlas.h".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-#include "BlockTextureAtlas.h"
+#include "BlockTextureAtlas.h" //Note that this also automatically means we get to work with what's #include-d in the h file.
 
 
 // A texture atlas object constructor, used when instantiating a texture atlas object.
 BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData)
 {
+	const bool showBlockTextureAtlasObjectCreationTextInConsole = true; //(Toggles whether debug text is displayed in the console regarding texture atlas object creation; default is false.)
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "\nCreating a BlockTextureAtlas object..." << std::endl; }
+
+	const uint8_t fileDirectoryNameLengthUntilFileName = 25; //Stores the length of a file's full directory name up until the unique name of the file. (Example: The length of "Resources/Block_Textures/" is 25 characters.)
+	const uint8_t lengthOfFileExtensionIncludingPeriod = 4; //Stores the character length that each of the textures' file extensions will have, *including the period*. (Example: ".png" is 4 characters.)
+
 	numberOfImagesInTextureAtlas = 0; //(It is initialized at 0, so this statement isn't actually needed, but it's nice to have here anyways.)
+	textureImageType = inputTextureImageType;
 
 
+	std::vector<std::filesystem::path> filePathsVectorList{}; //(Used to store the list of file paths to the image files.)
+	std::vector<std::string> imageNamesList{}; //(Used to store the list of image names without the path part or the extension part (which includes not having the period.))
+
+	// Using the folder/directory input, here we get a list of all of the files paths and file names found in the folder/directory. (Both of those things are stored in vectors.)
+	for (const auto& entry : std::filesystem::directory_iterator(inputFolderDirectory))
+	{
+		filePathsVectorList.push_back(entry.path()); //Adds the full file path of a found image to this vector.
+
+		// Adds the unique name of the file without any path or extension stuff to this vector, and then optionally outputs that it found said file to the console.
+		imageNamesList.push_back(entry.path().string().substr(fileDirectoryNameLengthUntilFileName, entry.path().string().size() - (fileDirectoryNameLengthUntilFileName + lengthOfFileExtensionIncludingPeriod)));
+		if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Found texture: " + imageNamesList[imageNamesList.size() - 1] << std::endl; }
+
+		numberOfImagesInTextureAtlas += 1;
+	}
 
 
 	
-	numberOfImagesInTextureAtlas += 1;
+
+
+
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n(You can turn of blocktextureatlas-loading console text using a bool in \"BlockTextureAtlas.cpp\".)\n" << std::endl; }
+
 
 	/*
 	textureImageType = inputTextureImageType; //(Used for assigning the type of the texture to the texture object.)

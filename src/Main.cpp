@@ -149,7 +149,7 @@ int main()
 	/////////////////////////////////////////////////
 
 	// A texture atlas used for chunks' block textures.
-	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/STING_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
 	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
