@@ -7,18 +7,23 @@
 #include "BlockTextureAtlas.h" //Note that this also automatically means we get to work with what's #include-d in the h file.
 
 
-// A texture atlas object constructor, used when instantiating a texture atlas object.
+// The BlockTextureAtlas object constructor, used when creating a block texture-atlas object (which itself is used by chunk stuff.)
 BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData)
 {
+	/////////////////////////////////////////////////
+
 	const bool showBlockTextureAtlasObjectCreationTextInConsole = true; //(Toggles whether debug text is displayed in the console regarding texture atlas object creation; default is false.)
 	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "\nCreating a BlockTextureAtlas object..." << std::endl; }
 
 	const uint8_t fileDirectoryNameLengthUntilFileName = 25; //Stores the length of a file's full directory name up until the unique name of the file. (Example: The length of "Resources/Block_Textures/" is 25 characters.)
 	const uint8_t lengthOfFileExtensionIncludingPeriod = 4; //Stores the character length that each of the textures' file extensions will have, *including the period*. (Example: ".png" is 4 characters.)
+	const unsigned short int standardTextureWidth = 32;
+	const unsigned short int standardTextureHeight = 32;
 
-	numberOfImagesInTextureAtlas = 0; //(It is initialized at 0, so this statement isn't actually needed, but it's nice to have here anyways.)
+	numberOfImagesInTextureAtlas = 0; //(It is initialized at 0 in the h file, so this statement isn't actually needed, but it's nice to also have here anyways.)
 	textureImageType = inputTextureImageType;
 
+	/////////////////////////////////////////////////
 
 	std::vector<std::filesystem::path> filePathsVectorList{}; //(Used to store the list of file paths to the image files.)
 	std::vector<std::string> imageNamesList{}; //(Used to store the list of image names without the path part or the extension part (which includes not having the period.))
@@ -30,15 +35,64 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 
 		// Adds the unique name of the file without any path or extension stuff to this vector, and then optionally outputs that it found said file to the console.
 		imageNamesList.push_back(entry.path().string().substr(fileDirectoryNameLengthUntilFileName, entry.path().string().size() - (fileDirectoryNameLengthUntilFileName + lengthOfFileExtensionIncludingPeriod)));
-		if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Found texture: " + imageNamesList[imageNamesList.size() - 1] << std::endl; }
+		if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Discovered texture : " + imageNamesList[imageNamesList.size() - 1] << std::endl; }
 
 		numberOfImagesInTextureAtlas += 1;
 	}
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Total texture count: " << numberOfImagesInTextureAtlas << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Finished creating a list of image file paths and a list of image names. Creating atlas texture..." << std::endl; }
+
+	/////////////////////////////////////////////////
+
+	std::vector<unsigned char> bytesForTheFullTextureAtlasImage{}; //(Used to store all of the bytes for creating the full big texture atlas image.)
+
+	// the next step is to start making the long line texture atlas image itself, and also make the map which connects the 
+	for (std::filesystem::path filePath : filePathsVectorList) //(Loops through each file path.)
+	{
+		// Some variables used to store information found about the image, preset to what most textures probably will be found to have.
+		int imageWidth = 32;
+		int imageHeight = 32;
+		int numberOfColorChannelsInImage = 4;
+
+		// Gets and stores the bytes of the image.
+		unsigned char* imageBytes = stbi_load(filePath.string().c_str(), &imageWidth, &imageHeight, &numberOfColorChannelsInImage, 4);
+		if (imageBytes == nullptr) { throw(new CantLoadImageException); } //(Error checking stuff.)
+
+		// Adds the image's bytes to the eventual full texture atlas image's bytes.
+		bytesForTheFullTextureAtlasImage.insert(bytesForTheFullTextureAtlasImage.end(), imageBytes, imageBytes + imageWidth * imageHeight * 4); //(Adds the bytes of the image to the main big texture atlas' bytes.)
+		
+		stbi_image_free(imageBytes); //(Delete's the loaded stbi image data of the individual image since we don't need the individual image's data anymore.)
+	}
+
+	// Generates an OpenGL texture object, and assigns it the texture unit and image type;
+	glGenTextures(1, &ID);
+	glActiveTexture(inputGLTextureUnitSlot);
+	glBindTexture(inputTextureImageType, ID);
+
+	// Configures the mipmapping algorithm. (Mipmaping makes it so that a smaller less detailed texture can be used if it's rendered really small anyways.)
+	glTexParameteri(inputTextureImageType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameteri(inputTextureImageType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	// Configures how the texture repeats/wraps for when texture coords exceed 1 or similar (if it should repeat/loop at all.)
+	glTexParameteri(inputTextureImageType, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(inputTextureImageType, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// (These are extra code-lines in case you ever want to use the "GL_CLAMP_TO_BORDER" style.)
+	//float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
+
+	// Assigns the large texture atlas' image data to the newish OpenGL "Texture" object.
+	glTexImage2D(inputTextureImageType, 0, GL_RGBA, standardTextureWidth, standardTextureHeight * numberOfImagesInTextureAtlas, 0, inputImageInformationFormat, inputDataTypeOfPixelData, bytesForTheFullTextureAtlasImage.data());
+	glGenerateMipmap(inputTextureImageType); //(Generates the MipMaps of the image.)
+
+	glBindTexture(inputTextureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.)
 
 
-	
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Atlas texture OpenGL texture object created successfully. Creating texcoord maps..." << std::endl; }
 
+	/////////////////////////////////////////////////
 
+	/// YOU LEFT OFF HERE, YOU GOTTA DO MAP AND STID NUMBERING MAP VARIABLE STUFF HERE. MAKE IT SO THAT YOU CAN ACTUALLY GET TEXTURE COORDINATES AND ALSO SO THAT YOU CAN GET RGB COLOR EFFECT NUMBERS FROM STID NUMBERING.
 
 	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n(You can turn of blocktextureatlas-loading console text using a bool in \"BlockTextureAtlas.cpp\".)\n" << std::endl; }
 
