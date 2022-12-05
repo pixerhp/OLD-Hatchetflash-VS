@@ -23,7 +23,7 @@
 // (Our project's unique header files.)
 #include "TextureAtlas.h"
 //#include "Texture.h" //CURRENTLY NOT USED.
-#include "ShaderClass.h"
+#include "shaderClass.h"
 #include "Camera.h"
 #include "Mesh.h"
 #include "Model.h"
