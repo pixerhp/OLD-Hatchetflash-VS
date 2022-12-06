@@ -25,7 +25,7 @@
 #include "HardcodedUnknownImage.h"
 #include "BlockTextureAtlas.h"
 //#include "GeneralTextures.h" //CURRENTLY NOT USED.
-#include "ShaderClass.h"
+#include "shaderClass.h"
 #include "Camera.h"
 #include "Meshes.h"
 #include "Models.h"
@@ -318,4 +318,4 @@ GLFWwindow* setupGLFW()
 	return window;
 }
 
-//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
