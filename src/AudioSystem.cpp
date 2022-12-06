@@ -5,6 +5,7 @@
 
 #include "AudioSystem.h"
 
+
 AudioSystem::AudioSystem() {
 	device = alcOpenDevice(alcGetString(nullptr, ALC_DEFAULT_DEVICE_SPECIFIER));
 	if (!device) {

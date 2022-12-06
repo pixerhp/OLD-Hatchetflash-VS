@@ -6,6 +6,7 @@
 
 #include "Meshes.h"
 
+
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices)
 {
     Mesh::vertices = vertices;

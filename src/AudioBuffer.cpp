@@ -9,6 +9,7 @@
 #define DR_WAV_IMPLEMENTATION
 #include "dr_wav/dr_wav.h"
 
+
 // Load audio from a file.
 void loadAudio(ALuint buffer, const char *path) {
 	unsigned int channels = 0;

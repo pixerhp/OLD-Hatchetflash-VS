@@ -6,6 +6,7 @@
 
 #include "Camera.h"
 
+
 // A simple constructor for the camera object.
 Camera::Camera(int width, int height, glm::vec3 position)
 {

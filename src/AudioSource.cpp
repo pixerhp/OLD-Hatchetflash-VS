@@ -8,6 +8,7 @@
 #include <AL/alc.h>
 #include "glm/glm.hpp"
 
+
 // The constructor takes in an initial position, pitch, and gain.
 AudioSource::AudioSource(glm::vec3 pos, int pitch, int gain) {
     alGenSources((ALuint)1, &source);
