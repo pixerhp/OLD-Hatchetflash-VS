@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cmath> //(Visual Studio automatically adds this but not every IDE does.)
 #include <vector> //(For creating general dynamic arrays.)
+#include <stdint.h> //(Allows for ints of very defined sizes, such as uint8_t or uint16_t or uint32_t.)
 
 // (Used in 3D rendering and glad/glfw window functions.)
 #include <glad/glad.h>
@@ -21,14 +22,15 @@
 #include <stb/stb_image.h>
 
 // (Our project's unique header files.)
-#include "TextureAtlas.h"
-//#include "Texture.h" //CURRENTLY NOT USED.
-#include "shaderClass.h"
+#include "HardcodedUnknownImage.h"
+#include "BlockTextureAtlas.h"
+//#include "GeneralTextures.h" //CURRENTLY NOT USED.
+#include "ShaderClass.h"
 #include "Camera.h"
-#include "Mesh.h"
-#include "Model.h"
-#include "Chunk.h"
-#include "Text.h"
+#include "Meshes.h"
+#include "Models.h"
+#include "Chunks.h"
+#include "TextRendering.h"
 #include "AudioSystem.h"
 #include "AudioSource.h"
 #include "AudioBuffer.h"
@@ -148,10 +150,10 @@ int main()
 	/////////////////////////////////////////////////
 
 	// A texture atlas used for chunks' block textures.
-	TextureAtlas chunkBlocksTextureAtlas("Resources/STING_ID_Information/Thing-to-Texture-ID-Map.txt", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
-	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
+	std::cout << "Hatchetflash texture-atlases and textures loaded..." << std::endl;
 
 	/////////////////////////////////////////////////
 
@@ -162,15 +164,15 @@ int main()
 	for (int z = 0; z < 4; z++){
 	for (int y = 0; y < 4; y++){
 	for (int x = 0; x < 4; x++){
-		chunks.push_back(Chunk{314,x,y,z,chunkBlocksTextureAtlas.ThingIDmap,int(chunkBlocksTextureAtlas.image_count)}); //(initializes a chunk object.)
+		chunks.push_back(Chunk{314,x,y,z}); //(initializes a chunk objects.)
 	} //end x
 	} //end y
 	} //end z
 	
 	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
 	for (Chunk& chunk: chunks){
-		chunk.MakeChunkFilledWithTestingBlocks();
-		chunk.UpdateChunkMesh();
+		//chunk.MakeChunkFilledWithTestingBlocks();
+		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
 
 	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;
@@ -212,7 +214,7 @@ int main()
 		// Binds the texture atlas used for chunk blocks and draws the chunks.
 		chunkBlocksTextureAtlas.Bind();
 		for (Chunk& chunk: chunks){ //(Cycles through and runs code for all chunks.)
-			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkX * 4, chunk.chunkY * 4, chunk.chunkZ * 4});
+			modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3{chunk.chunkCoordsX * 4, chunk.chunkCoordsY * 4, chunk.chunkCoordsZ * 4});
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 			chunk.Draw();
 		}
@@ -300,7 +302,7 @@ GLFWwindow* setupGLFW()
 	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height; //(Initializes "monitorWidth" and "monitorHeight" to the respective dimensions of your monitor.)
 
 	// Creates the window. (If the 4th argument is filled in with a pointer to your primary-monitor, the program will fill and mess with you entire monitor itself, AKA fullscreen mode.)
-	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Development]", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
+	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Designing & Development]   -   Mid Brainmelting Stage", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	if (window == NULL) //(Error-checks whether the glfw window was created successfully or not.)
 	{
 		std::cout << "Failed to create the GLFW window! (created window object == NULL)" << std::endl;

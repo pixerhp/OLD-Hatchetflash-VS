@@ -156,32 +156,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="Resources\Block_Textures\asremic1_32x.png" />
-    <Image Include="Resources\Block_Textures\asremic2_32x.png" />
-    <Image Include="Resources\Block_Textures\cardboard_32x.png" />
-    <Image Include="Resources\Block_Textures\cobble_32x.png" />
-    <Image Include="Resources\Block_Textures\dirt_32x.png" />
-    <Image Include="Resources\Block_Textures\grassy_32x.png" />
-    <Image Include="Resources\Block_Textures\gravel_32x.png" />
-    <Image Include="Resources\Block_Textures\ladder_brassish_32x.png" />
-    <Image Include="Resources\Block_Textures\metal_32x.png" />
-    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_32x.png" />
-    <Image Include="Resources\Block_Textures\sand_32x.png" />
-    <Image Include="Resources\Block_Textures\shale_gray_side_32x.png" />
-    <Image Include="Resources\Block_Textures\shale_gray_top_32x.png" />
-    <Image Include="Resources\Block_Textures\stone_tile_32x.png" />
-    <Image Include="Resources\Block_Textures\unknown_32x.png" />
-    <Image Include="Resources\Block_Textures\water_surface_32x.png" />
+    <Image Include="Resources\Block_Textures\asremic1.png" />
+    <Image Include="Resources\Block_Textures\asremic2.png" />
+    <Image Include="Resources\Block_Textures\cardboard_default.png" />
+    <Image Include="Resources\Block_Textures\cobble_default.png" />
+    <Image Include="Resources\Block_Textures\dirt_default.png" />
+    <Image Include="Resources\Block_Textures\grassy_default.png" />
+    <Image Include="Resources\Block_Textures\gravel_default.png" />
+    <Image Include="Resources\Block_Textures\ladder_brassish_side.png" />
+    <Image Include="Resources\Block_Textures\metal_default.png" />
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_default.png" />
+    <Image Include="Resources\Block_Textures\sand_default.png" />
+    <Image Include="Resources\Block_Textures\shale_gray_side.png" />
+    <Image Include="Resources\Block_Textures\shale_gray_top.png" />
+    <Image Include="Resources\Block_Textures\stone_tile_default.png" />
+    <Image Include="Resources\Block_Textures\unknown_block_default.png" />
+    <Image Include="Resources\Block_Textures\water_top.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt" />
-    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt" />
-    <Text Include="Shape-IDs.txt" />
+    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes ARCHAIC.txt" />
+    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map ARCHAIC.txt" />
     <Text Include="Text Documents\Commenting-style.txt" />
     <Text Include="Text Documents\Game-Controls.txt" />
-    <Text Include="Text Documents\Sting-ID.txt" />
+    <Text Include="Text Documents\STID-numbering.txt" />
     <Text Include="See-also.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -189,31 +188,32 @@
     <ClCompile Include="src\AudioSource.cpp" />
     <ClCompile Include="src\AudioBuffer.cpp" />
     <ClCompile Include="src\Camera.cpp" />
-    <ClCompile Include="src\Chunk.cpp" />
+    <ClCompile Include="src\Chunks.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Mesh.cpp" />
-    <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\Meshes.cpp" />
+    <ClCompile Include="src\Models.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
     <ClCompile Include="src\stb.cpp" />
-    <ClCompile Include="src\Texture.cpp" />
-    <ClCompile Include="src\Text.cpp" />
-    <ClCompile Include="src\TextureAtlas.cpp" />
+    <ClCompile Include="src\GeneralTextures.cpp" />
+    <ClCompile Include="src\TextRendering.cpp" />
+    <ClCompile Include="src\BlockTextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HardcodedUnknownImage.h" />
     <ClInclude Include="Headers\AudioSystem.h" />
     <ClInclude Include="Headers\AudioSource.h" />
     <ClInclude Include="Headers\AudioBuffer.h" />
     <ClInclude Include="Headers\Camera.h" />
-    <ClInclude Include="Headers\Chunk.h" />
+    <ClInclude Include="Headers\Chunks.h" />
     <ClInclude Include="Headers\Collisions.h" />
-    <ClInclude Include="Headers\Mesh.h" />
-    <ClInclude Include="Headers\Model.h" />
+    <ClInclude Include="Headers\Meshes.h" />
+    <ClInclude Include="Headers\Models.h" />
     <ClInclude Include="Headers\ShaderClass.h" />
-    <ClInclude Include="Headers\Texture.h" />
-    <ClInclude Include="Headers\Text.h" />
-    <ClInclude Include="Headers\TextureAtlas.h" />
+    <ClInclude Include="Headers\GeneralTextures.h" />
+    <ClInclude Include="Headers\TextRendering.h" />
+    <ClInclude Include="Headers\BlockTextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Models\bunny.gltf" />

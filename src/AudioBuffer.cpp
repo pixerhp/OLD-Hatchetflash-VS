@@ -1,12 +1,14 @@
-/* AudioBuffer.cpp file description:
-*   Define a methods for a class that stores audio data.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioBuffer.cpp file description:
+* Define a methods for a class that stores audio data.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "AudioBuffer.h"
 #include <AL/al.h>
 #include <AL/alc.h>
 #define DR_WAV_IMPLEMENTATION
 #include "dr_wav/dr_wav.h"
+
 
 // Load audio from a file.
 void loadAudio(ALuint buffer, const char *path) {
@@ -32,3 +34,5 @@ AudioBuffer::AudioBuffer(const char *path) {
 AudioBuffer::~AudioBuffer() {
     alDeleteBuffers(1, &buffer);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

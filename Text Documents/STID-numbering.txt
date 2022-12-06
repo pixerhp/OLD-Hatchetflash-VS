@@ -1,0 +1,114 @@
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Description:]
+
+A STID number is a number used to know what what's being talked about, kindof like an ID system.
+There are different sets of these numbers, materials may range from 0 to ### and standard objects will probably also range from 0 to ###.
+(Note that different sets/categories of numbers may use a different number of bytes (up to 3 bytes or 8*3 bits) for their number range.)
+A "Type" STID number is the number that most things where a STID number would be used will start with,
+and it's what chooses the category that's being used, from materials to objects to animals to anything.
+
+(Name origin: Substance-ThING --> STing ID --> stid number)
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Type IDs list:] (1 byte) (Specifies the type of ID or set of STID numbers being worked with.)
+
+0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:", "item n that this material is made up of is?"]
+1 - Shape IDs; (1 byte)
+2 - [reserved]
+3 - [reserved]
+4 - Atomic IDs; (1 byte)   [Examples: Hydrogen, Helium, Lithium, etc.]
+5 - Elemental IDs; (1 byte)   [Examples: H2, O2, Diamond, Graphite, Pure metallic iron, etc.]
+5 - Common-Substance IDs; (2 bytes)   [Examples: H2O (water), Table salt, Hematite, Common air, etc.]
+6 - Rare-Substance IDs; (3 bytes)   [Examples: (random obscure-er chemicals,) Gluconic acid, Polonium monoxide, etc.]
+7 - Common-Material IDs; (2 bytes)
+8 - Rare-Material IDs; (3 bytes)
+9 - Part-Type IDs; (1 byte)
+10 - Common Part IDs; (2 bytes)
+11 - Rare Part IDs; (3 bytes)
+12 - Common-Object IDs; (2 bytes)
+13 - Rare-Object IDs; (3 bytes)
+...
+255 - (Reserved to only being able to be an alternative additional Type ID list.)
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Function IDs list:] (1 byte) ()
+
+0 - 
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+[Shape IDs list:] (1 byte) ()
+
+0 - 
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+
+
+
+
+
+
+
+
+
+
+{ARCHAIC STUFF:}
+
+GENERAL::
+
+0-15 - Reserved.
+16 - Whatever thing is being refered to is a custom thing/object/material which is way more manually defined as per later numbers/info.
+17 - Reserved.
+18 - Customly defined basic chemical substance. (ie. element or quark or other.)
+19 - Customly defined chemical substance. (ie. chemical, such as H2O.)
+20 - Customly defined basic material.
+21 - Customly defined complex material.
+22 - Customly defined living thing.
+23 - Customly defined common object.
+24-31 - Reserved.
+32-99999999 - Reserved for indicating differerent additional info with regards to the previous thingo specified (such as stating that A is infected/contaminated with B.)
+100000000-149999999 - Reserved for basic chemical elements, including all possible isotopes of everything, quarks if they exist yet, etc.
+150000000-499999999 - Reserved for basic chemical substances (such as O2, H2O or sugars.)
+500000000-799999999 - Reserved for basic materials composed of serveral substances (such as basic solutions or minerals.)
+800000000-1099999999 - Reserved for complex materials composed of many substances or multiple basic materials (such as dirt types or paints.)
+1100000000-1299999999 - Reserved for common living things which can be seen, such as recurring plants, bugs and animals.
+1300000000-1499999999 - Reserved for common living (or close enough) things which can't be seen, such as bacteria, viruses or things of similar nature.
+1500000000-1699999999 - IDs for world-specific living things, such as named animals or NPCs with any significant info about them.
+1700000000-2099999999 - Reserved for common or regularly makeable objects, such as an ingot of brass, a chair which is generated in towns or a basic shovel.
+2100000000-2299999999 - Reserved for common world-specific objects, such as a painting you made or a uniquely crafted shoe.
+2300000000-4294967295 - Reserved.
+
+
+
+SPECIFIC::
+
+32 - "-has the SHAPE ID shape:" [SHAPE ID]
+33 - "-has the color effect:" [Red color value] [Green color value] [Blue color value]
+34 - "-is moved and/or rotated by the matrix:" [however many numbers are required to define a matrix like this.]
+
+800000000 - unknown   {REGULAR BLOCK TEXTURE VERSION, NOT THE HARDCODED UNKNOWN IMAGE.}
+800000001 - cobble
+800000002 - gravel
+800000003 - dirt
+800000004 - sand
+800000005 - stone_tile
+800000006 - shale_gray_top
+800000007 - shale_gray_side
+800000008 - metal
+800000009 - poolrooms_tiles_brown
+800000010 - water_surface
+800000011 - grassy
+800000012 - cardboard
+800000013 - ladder_brassish
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+//A list of IDs used to describe the shapes of blocks and related, doesn't apply to custom models.
+
+0-162 - Reserved for all of the combinations of block shapes formed when you remove 0-4 vertices from a cube's vertices. //163 = sum of nCr(2^3,n) for n = 0,1,2,3 and 4.
+163-1140 - Reserved for all of the combinations created by squishing the 163 shapes into each of the 6 directions, such that for example a cube might become a slab. //(163 to 163 + 163*6)
+[later numbers] - used for common future unrelated or more manually defined shapes.
+[the largest possible number in the ID] - Reserved to indicate a custom model, the next information after this ID should always be/allow for a path to the model in some way.
+
+=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

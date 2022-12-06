@@ -1,8 +1,10 @@
-/* Text.cpp file description:
-*   Define functions for a class that handles text rendering.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   TextRendering.cpp file description:
+* Define functions for a class that handles text rendering.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-#include "Text.h"
+#include "TextRendering.h"
+
 
 void Text::initText() {
     glEnable(GL_BLEND);
@@ -123,3 +125,5 @@ void Text::RenderText(Shader& s, std::string text, float x, float y, float scale
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 1);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

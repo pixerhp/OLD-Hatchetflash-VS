@@ -1,10 +1,12 @@
-/* shaderClass.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   ShaderClass.cpp file description:
 * Makes the vertex shader and fragment shader usable by our proram.
 * (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO.)
 * (The functions here are also stated in "shaderClass.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "shaderClass.h"
+
 
 // Reads a text file and outputs a string with everything in the said text file.
 std::string get_file_contents(const char* filename)
@@ -101,3 +103,5 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		}
 	}
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

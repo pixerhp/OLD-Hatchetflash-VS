@@ -48,52 +48,52 @@
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png">
       <Filter>Resources\Utility_Images</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\cardboard_32x.png">
+    <Image Include="Resources\Block_Textures\cardboard_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\cobble_32x.png">
+    <Image Include="Resources\Block_Textures\cobble_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\dirt_32x.png">
+    <Image Include="Resources\Block_Textures\dirt_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\grassy_32x.png">
+    <Image Include="Resources\Block_Textures\grassy_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\gravel_32x.png">
+    <Image Include="Resources\Block_Textures\gravel_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\ladder_brassish_32x.png">
+    <Image Include="Resources\Block_Textures\ladder_brassish_side.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\metal_32x.png">
+    <Image Include="Resources\Block_Textures\metal_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_32x.png">
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\sand_32x.png">
+    <Image Include="Resources\Block_Textures\sand_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\shale_gray_side_32x.png">
+    <Image Include="Resources\Block_Textures\shale_gray_side.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\shale_gray_top_32x.png">
+    <Image Include="Resources\Block_Textures\shale_gray_top.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\stone_tile_32x.png">
+    <Image Include="Resources\Block_Textures\stone_tile_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\unknown_32x.png">
+    <Image Include="Resources\Block_Textures\water_top.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\water_surface_32x.png">
+    <Image Include="Resources\Block_Textures\asremic1.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\asremic1_32x.png">
+    <Image Include="Resources\Block_Textures\asremic2.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
-    <Image Include="Resources\Block_Textures\asremic2_32x.png">
+    <Image Include="Resources\Block_Textures\unknown_block_default.png">
       <Filter>Resources\Block_Textures</Filter>
     </Image>
   </ItemGroup>
@@ -104,16 +104,13 @@
     <Text Include="Text Documents\Game-Controls.txt">
       <Filter>Text Documents</Filter>
     </Text>
-    <Text Include="Text Documents\Sting-ID.txt">
+    <Text Include="Text Documents\STID-numbering.txt">
       <Filter>Text Documents</Filter>
     </Text>
-    <Text Include="Shape-IDs.txt">
-      <Filter>Text Documents</Filter>
-    </Text>
-    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt">
+    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes ARCHAIC.txt">
       <Filter>Resources\STING_ID_Information</Filter>
     </Text>
-    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt">
+    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map ARCHAIC.txt">
       <Filter>Resources\STING_ID_Information</Filter>
     </Text>
     <Text Include="See-also.txt">
@@ -124,7 +121,7 @@
     <ClCompile Include="src\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chunk.cpp">
+    <ClCompile Include="src\Chunks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Collisions.cpp">
@@ -136,10 +133,10 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
+    <ClCompile Include="src\Meshes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model.cpp">
+    <ClCompile Include="src\Models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ShaderClass.cpp">
@@ -148,10 +145,10 @@
     <ClCompile Include="src\stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Texture.cpp">
+    <ClCompile Include="src\GeneralTextures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Text.cpp">
+    <ClCompile Include="src\TextRendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AudioSystem.cpp">
@@ -163,7 +160,7 @@
     <ClCompile Include="src\AudioBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextureAtlas.cpp">
+    <ClCompile Include="src\BlockTextureAtlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -171,25 +168,25 @@
     <ClInclude Include="Headers\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Chunk.h">
+    <ClInclude Include="Headers\Chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Collisions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Mesh.h">
+    <ClInclude Include="Headers\Meshes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Model.h">
+    <ClInclude Include="Headers\Models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\ShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Texture.h">
+    <ClInclude Include="Headers\GeneralTextures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Text.h">
+    <ClInclude Include="Headers\TextRendering.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\AudioSystem.h">
@@ -201,7 +198,10 @@
     <ClInclude Include="Headers\AudioBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\TextureAtlas.h">
+    <ClInclude Include="Headers\BlockTextureAtlas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HardcodedUnknownImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

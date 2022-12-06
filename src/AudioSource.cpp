@@ -1,11 +1,13 @@
-/* AudioSource.cpp file description:
-*   Define methods for a class that plays audio.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioSource.cpp file description:
+* Define methods for a class that plays audio.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "AudioSource.h"
 #include <AL/al.h>
 #include <AL/alc.h>
 #include "glm/glm.hpp"
+
 
 // The constructor takes in an initial position, pitch, and gain.
 AudioSource::AudioSource(glm::vec3 pos, int pitch, int gain) {
@@ -65,3 +67,5 @@ void AudioSource::play() {
 void AudioSource::pause() {
     alSourcePause(source);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

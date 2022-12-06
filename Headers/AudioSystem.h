@@ -1,6 +1,7 @@
-/* AudioSystem.h file description:
-*   Declare a class that acts as a Audio Listener (kinda like a microphone).
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioSystem.h file description:
+* Declare a class that acts as a Audio Listener (kinda like a microphone).
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
 #include <AL/al.h>
@@ -24,3 +25,5 @@ public:
 
 // (Used in "AudioSystem.cpp" for throwing a pretty recognizable error for when/if the audio device can't be initialized.)
 class AudioInitException{};
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

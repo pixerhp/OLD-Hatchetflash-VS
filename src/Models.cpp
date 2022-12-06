@@ -1,17 +1,19 @@
-/* Model.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   Models.cpp file description:
 * (The functions here are also stated in "Model.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 // TODO: Fox didn't really understand all of the code he wrote when following the tutorial.
 // TODO: So therefore fox cannot write any more comments for this file.
 // TODO: So we need to go back to the GLM video to figure out how to comment this.
 
-#include "Model.h"
+#include "Models.h"
+
 
 // A general constructor for a raw Model object.
 Model::Model(const char* file){
     std::string text = get_file_contents(file);
-    JSON = json::parse(text);
+    JSON = nlohmann::json::parse(text);
 
     Model::file = file;
     data = getData();
@@ -21,6 +23,7 @@ Model::Model(const char* file){
     }
 }
 
+
 // Deletes VAO, VBO and EBO for all the meshes in this model.
 void Model::cleanup(){
     for (unsigned int i = 0; i < JSON["meshes"].size(); i++){
@@ -28,12 +31,14 @@ void Model::cleanup(){
     }
 }
 
+
 // Draw all meshes in this model.
 void Model::draw(){
     for (unsigned int i = 0; i < JSON["meshes"].size(); i++){
         meshes[i].draw();
     }
 }
+
 
 void Model::loadMesh(unsigned int indMesh){
     unsigned int posAccInd = JSON["meshes"][indMesh]["primitives"][0]["attributes"]["POSITION"];
@@ -54,6 +59,7 @@ void Model::loadMesh(unsigned int indMesh){
     meshes.push_back(Mesh(vertices, indicies));
 }
 
+
 std::vector<unsigned char> Model::getData(){
     std::string bytesText;
     std::string uri = JSON["buffers"][0]["uri"];
@@ -68,7 +74,8 @@ std::vector<unsigned char> Model::getData(){
     return data;
 }
 
-std::vector<float> Model::getFloats(json accessor){
+
+std::vector<float> Model::getFloats(nlohmann::json accessor){
     std::vector<float> floatVec;
 
     unsigned int buffViewInd = accessor.value("bufferView", 1);
@@ -76,7 +83,7 @@ std::vector<float> Model::getFloats(json accessor){
     unsigned int accByteOffset = accessor.value("byteOffset", 0);
     std::string  type = accessor["type"];
 
-    json bufferView = JSON["bufferViews"][buffViewInd];
+    nlohmann::json bufferView = JSON["bufferViews"][buffViewInd];
     unsigned int byteOffset = bufferView["byteOffset"];
 
     unsigned int numPerVert;
@@ -99,7 +106,8 @@ std::vector<float> Model::getFloats(json accessor){
     return floatVec;
 }
 
-std::vector<GLuint> Model::getIndices(json accessor){
+
+std::vector<GLuint> Model::getIndices(nlohmann::json accessor){
     std::vector<GLuint> indices;
 
     unsigned int buffViewInd = accessor.value("bufferView", 0);
@@ -107,7 +115,7 @@ std::vector<GLuint> Model::getIndices(json accessor){
     unsigned int accByteOffset = accessor.value("byteOffset", 0);
     unsigned int componentType = accessor["componentType"];
 
-    json bufferView = JSON["bufferViews"][buffViewInd];
+    nlohmann::json bufferView = JSON["bufferViews"][buffViewInd];
     unsigned int byteOffset = bufferView["byteOffset"];
 
     unsigned int beginningOfData = byteOffset + accByteOffset;
@@ -141,6 +149,7 @@ std::vector<GLuint> Model::getIndices(json accessor){
     return indices;
 }
 
+
 std::vector<Vertex> Model::assembleVertices(
     std::vector<glm::vec3> positions,
     std::vector<glm::vec3> normals,
@@ -154,6 +163,7 @@ std::vector<Vertex> Model::assembleVertices(
     return vertices;
 }
 
+
 std::vector<glm::vec2> Model::groupFloatsVec2(std::vector<float> floatVec){
     std::vector<glm::vec2> vectors;
     for (int i = 0; i < floatVec.size(); i){
@@ -161,6 +171,7 @@ std::vector<glm::vec2> Model::groupFloatsVec2(std::vector<float> floatVec){
     }
     return vectors;
 }
+
 
 std::vector<glm::vec3> Model::groupFloatsVec3(std::vector<float> floatVec){
     std::vector<glm::vec3> vectors;
@@ -170,6 +181,7 @@ std::vector<glm::vec3> Model::groupFloatsVec3(std::vector<float> floatVec){
     return vectors;
 }
 
+
 std::vector<glm::vec4> Model::groupFloatsVec4(std::vector<float> floatVec){
     std::vector<glm::vec4> vectors;
     for (int i = 0; i < floatVec.size(); i){
@@ -177,3 +189,5 @@ std::vector<glm::vec4> Model::groupFloatsVec4(std::vector<float> floatVec){
     }
     return vectors;
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

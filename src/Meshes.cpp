@@ -1,9 +1,11 @@
-/* Mesh.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   Meshes.cpp file description:
 * (A Mesh stores information about vertices and such and generates meshes.)
 * (The functions here are also stated in "Mesh.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-#include "Mesh.h"
+#include "Meshes.h"
+
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices)
 {
@@ -81,3 +83,5 @@ void Mesh::cleanup(){
     glDeleteBuffers(1, &VBOID);
     glDeleteBuffers(1, &EBOID);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

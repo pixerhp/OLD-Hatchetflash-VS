@@ -1,9 +1,10 @@
-/* Texture.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   GeneralTextures.cpp file description:
 * Contains a constructor for textures, which allows images to be used as OpenGL textures.
 * (The functions here are also stated in "Texture.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-#include "Texture.h"
+#include "GeneralTextures.h"
 
 Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
 {
