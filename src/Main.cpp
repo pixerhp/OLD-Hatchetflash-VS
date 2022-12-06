@@ -22,6 +22,7 @@
 #include <stb/stb_image.h>
 
 // (Our project's unique header files.)
+#include "HardcodedUnknownImage.h"
 #include "BlockTextureAtlas.h"
 //#include "GeneralTextures.h" //CURRENTLY NOT USED.
 #include "ShaderClass.h"
@@ -153,12 +154,6 @@ int main()
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
 	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
-
-	std::cout << "State an image name and I'll tell you it's top-left texcoord." << std::endl;
-	std::string testingString;
-	std::cin >> testingString;
-	auto it = chunkBlocksTextureAtlas.imageNameToTexcoordsMap.find(testingString);
-	std::cout << "Texcoord top-left num: " << it->first << " = " << it->second << std::endl;
 
 	/////////////////////////////////////////////////
 

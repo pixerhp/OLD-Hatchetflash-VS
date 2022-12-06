@@ -98,7 +98,6 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	/// DOUBLE CHECK LATER TO ENSURE THAT THE TEXCOORDS FROM NAMES THING IS ACTUALLY FUNCTIONALLY CORRECT AND NOT BACKWARDS.
 
 
-
 	// Sets up the "imageNameToTexcoordsMap" map.
 	for (int i = 0; i < numberOfImagesInTextureAtlas; i++) //(Note that we already know that the order of imageNamesList is the same order as how images were added to the texture atlas.)
 	{
@@ -106,6 +105,38 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	}
 
 	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBlockTextureAtlasObjectCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n" << std::endl; }
+
+
+
+
+
+
+
+
+	// testing stuff relating to trying to get a hardcoded image working.
+	/*
+	// Write to the file
+	int dumbness;
+	unsigned char* hopeFulImageBytes = stbi_load("Resources/Block_Textures/unknown_block_texture.png", &dumbness, &dumbness, &dumbness, 4);
+	
+	std::cout << "Here we go : \n";
+	printf("%c", hopeFulImageBytes);
+	std::cout << "\nHere we go : \n";
+	
+	// Create and open a text file
+	std::ofstream MyFile("UNKOWN IMAGE DATA.txt");
+
+	// Write to the file
+	MyFile << "";
+
+	// Close the file
+	MyFile.close();
+	*/
+
+
+
+
+
 
 
 	/*

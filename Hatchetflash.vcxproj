@@ -201,6 +201,7 @@
     <ClCompile Include="src\BlockTextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HardcodedUnknownImage.h" />
     <ClInclude Include="Headers\AudioSystem.h" />
     <ClInclude Include="Headers\AudioSource.h" />
     <ClInclude Include="Headers\AudioBuffer.h" />
