@@ -1,5 +1,5 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-/*   TextureAtlas.h file description:
+/*   BlockTextureAtlas.h file description:
 * A texture atlas is a large texture composed of a bunch of smaller textures, such as a grid of block textures in this case.
 * Many of the functions are defined in "BlockTextureAtlas.cpp".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

@@ -1,8 +1,9 @@
-/* shaderClass.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   ShaderClass.cpp file description:
 * Makes the vertex shader and fragment shader usable by our proram.
 * (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO.)
 * (The functions here are also stated in "shaderClass.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "ShaderClass.h"
 
@@ -101,3 +102,5 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		}
 	}
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

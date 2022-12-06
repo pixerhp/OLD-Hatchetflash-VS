@@ -1,5 +1,5 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-/*   Chunk.h file description:
+/*   Chunks.h file description:
 * Defines the Chunk class which is used for chunk objects, which store blocks and a mesh and related things.
 * Has the initializer for when chunk objects are first created, and states all of a chunk's functions as most are defined in "Chunks.cpp".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
@@ -10,7 +10,7 @@
 #include <map>
 #include <iostream> //(Doesn't seem to need to be stated here, but it's probably good to just do it anyways.)
 
-#include "Mesh.h"
+#include "Meshes.h"
 #include "BlockTextureAtlas.h"
 
 

@@ -1,6 +1,7 @@
-/* Text.h file description:
-*   Declare a class that handles text rendering.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   TextRendering.h file description:
+* Declare a class that handles text rendering.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
 #pragma comment(lib, "freetype.lib")
@@ -14,19 +15,24 @@
 #include "shaderClass.h"
 #include FT_FREETYPE_H  
 
-struct Character {
+
+struct Character
+{
     unsigned int TextureID;  // ID handle of the glyph texture
     glm::ivec2   Size;       // Size of glyph
     glm::ivec2   Bearing;    // Offset from baseline to left/top of glyph
     unsigned int Advance;    // Offset to advance to next glyph
 };
 
-// Define a class that handles text rendering.
-class Text {
-public:
-    unsigned int VAO, VBO;
-    std::map<char, Character> Characters;
-	void initText();
-    void RenderText(Shader& s, std::string text, float x, float y, float scale, glm::vec3 color);
 
+// Defines a class which handles text-based rendering.
+class Text 
+{
+    public:
+        unsigned int VAO, VBO;
+        std::map<char, Character> Characters;
+	    void initText();
+        void RenderText(Shader& s, std::string text, float x, float y, float scale, glm::vec3 color);
 };
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

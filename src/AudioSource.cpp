@@ -1,6 +1,7 @@
-/* AudioSource.cpp file description:
-*   Define methods for a class that plays audio.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioSource.cpp file description:
+* Define methods for a class that plays audio.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "AudioSource.h"
 #include <AL/al.h>
@@ -65,3 +66,5 @@ void AudioSource::play() {
 void AudioSource::pause() {
     alSourcePause(source);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

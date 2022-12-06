@@ -1,6 +1,7 @@
-/* AudioBuffer.cpp file description:
-*   Define a methods for a class that stores audio data.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioBuffer.cpp file description:
+* Define a methods for a class that stores audio data.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "AudioBuffer.h"
 #include <AL/al.h>
@@ -32,3 +33,5 @@ AudioBuffer::AudioBuffer(const char *path) {
 AudioBuffer::~AudioBuffer() {
     alDeleteBuffers(1, &buffer);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

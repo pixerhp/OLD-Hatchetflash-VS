@@ -1,7 +1,8 @@
-/* Camera.cpp file description:
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   Camera.cpp file description:
 * Contains a contructor for the Camera Object, a function for calculating camera matrix math and checks keyboard and mouse inputs for camera movement.
 * (The functions here are also stated in "Camera.h".)
-*/
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "Camera.h"
 
@@ -126,3 +127,5 @@ void Camera::Inputs(GLFWwindow* window, float dt)
 		firstClick = true;
 	}
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

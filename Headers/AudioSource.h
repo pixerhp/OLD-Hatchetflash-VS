@@ -1,6 +1,7 @@
-/* AudioSource.h file description:
-*   Declare a class that plays audio.
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioSource.h file description:
+* Declare a class that plays audio.
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
 #include <AL/al.h>
@@ -29,3 +30,5 @@ public:
     void play();
     void pause();
 };
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

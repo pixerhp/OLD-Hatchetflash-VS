@@ -158,29 +158,29 @@
   <ItemGroup>
     <Image Include="Resources\Block_Textures\asremic1.png" />
     <Image Include="Resources\Block_Textures\asremic2.png" />
-    <Image Include="Resources\Block_Textures\cardboard.png" />
-    <Image Include="Resources\Block_Textures\cobble.png" />
-    <Image Include="Resources\Block_Textures\dirt.png" />
-    <Image Include="Resources\Block_Textures\grassy.png" />
-    <Image Include="Resources\Block_Textures\gravel.png" />
-    <Image Include="Resources\Block_Textures\ladder_brassish.png" />
-    <Image Include="Resources\Block_Textures\metal.png" />
-    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown.png" />
-    <Image Include="Resources\Block_Textures\sand.png" />
+    <Image Include="Resources\Block_Textures\cardboard_default.png" />
+    <Image Include="Resources\Block_Textures\cobble_default.png" />
+    <Image Include="Resources\Block_Textures\dirt_default.png" />
+    <Image Include="Resources\Block_Textures\grassy_default.png" />
+    <Image Include="Resources\Block_Textures\gravel_default.png" />
+    <Image Include="Resources\Block_Textures\ladder_brassish_side.png" />
+    <Image Include="Resources\Block_Textures\metal_default.png" />
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_default.png" />
+    <Image Include="Resources\Block_Textures\sand_default.png" />
     <Image Include="Resources\Block_Textures\shale_gray_side.png" />
     <Image Include="Resources\Block_Textures\shale_gray_top.png" />
-    <Image Include="Resources\Block_Textures\stone_tile.png" />
-    <Image Include="Resources\Block_Textures\unknown_block_texture.png" />
-    <Image Include="Resources\Block_Textures\water_surface.png" />
+    <Image Include="Resources\Block_Textures\stone_tile_default.png" />
+    <Image Include="Resources\Block_Textures\unknown_block_default.png" />
+    <Image Include="Resources\Block_Textures\water_top.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes.txt" />
-    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map.txt" />
+    <Text Include="Resources\STING_ID_Information\Substances_Element-Isotopes ARCHAIC.txt" />
+    <Text Include="Resources\STING_ID_Information\Thing-to-Texture-ID-Map ARCHAIC.txt" />
     <Text Include="Text Documents\Commenting-style.txt" />
     <Text Include="Text Documents\Game-Controls.txt" />
-    <Text Include="Text Documents\STID-numbers.txt" />
+    <Text Include="Text Documents\STID-numbering.txt" />
     <Text Include="See-also.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -192,8 +192,8 @@
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Mesh.cpp" />
-    <ClCompile Include="src\Model.cpp" />
+    <ClCompile Include="src\Meshes.cpp" />
+    <ClCompile Include="src\Models.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\GeneralTextures.cpp" />
@@ -208,8 +208,8 @@
     <ClInclude Include="Headers\Camera.h" />
     <ClInclude Include="Headers\Chunks.h" />
     <ClInclude Include="Headers\Collisions.h" />
-    <ClInclude Include="Headers\Mesh.h" />
-    <ClInclude Include="Headers\Model.h" />
+    <ClInclude Include="Headers\Meshes.h" />
+    <ClInclude Include="Headers\Models.h" />
     <ClInclude Include="Headers\ShaderClass.h" />
     <ClInclude Include="Headers\GeneralTextures.h" />
     <ClInclude Include="Headers\TextRendering.h" />

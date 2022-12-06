@@ -1,6 +1,7 @@
-/* AudioSystem.cpp file description:
-*   Define functions for a class that acts as a Audio Listener (kinda like a microphone).
-*/
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+/*   AudioSystem.cpp file description:
+* Define functions for a class that acts as a Audio Listener (kinda like a microphone).
+*////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "AudioSystem.h"
 
@@ -45,3 +46,5 @@ void AudioSystem::setListenerDir(glm::vec3 front) {
     ALfloat ori[] = {front.x, front.y, front.z, 0.0f, 1.0f, 0.0f};
     alListenerfv(AL_ORIENTATION, ori);
 }
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

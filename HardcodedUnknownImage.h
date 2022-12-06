@@ -6,8 +6,8 @@
 #ifndef HARDCODEDUNKNOWNIMAGE_H
 #define HARDCODEDUNKNOWNIMAGE_H
 
-#include <stb/stb_image.h>
-
-//extern const unsigned char unknown_image[] = [];
+//TO DO: Make there be a universal hardcoded "unknown" texture/image which can be included by including the h file into any c++ file it's needed in.
 
 #endif
+
+//=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

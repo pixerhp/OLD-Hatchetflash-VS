@@ -27,8 +27,8 @@
 //#include "GeneralTextures.h" //CURRENTLY NOT USED.
 #include "ShaderClass.h"
 #include "Camera.h"
-#include "Mesh.h"
-#include "Model.h"
+#include "Meshes.h"
+#include "Models.h"
 #include "Chunks.h"
 #include "TextRendering.h"
 #include "AudioSystem.h"
@@ -153,7 +153,7 @@ int main()
 	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
-	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
+	std::cout << "Hatchetflash texture-atlases and textures loaded..." << std::endl;
 
 	/////////////////////////////////////////////////
 
@@ -302,7 +302,7 @@ GLFWwindow* setupGLFW()
 	int monitorWidth = monitorVideoMode->width; int monitorHeight = monitorVideoMode->height; //(Initializes "monitorWidth" and "monitorHeight" to the respective dimensions of your monitor.)
 
 	// Creates the window. (If the 4th argument is filled in with a pointer to your primary-monitor, the program will fill and mess with you entire monitor itself, AKA fullscreen mode.)
-	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Designing & Development]", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
+	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Designing & Development]   -   Mid Brainmelting Stage", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	if (window == NULL) //(Error-checks whether the glfw window was created successfully or not.)
 	{
 		std::cout << "Failed to create the GLFW window! (created window object == NULL)" << std::endl;

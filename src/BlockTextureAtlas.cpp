@@ -1,6 +1,7 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-/*   TextureAtlas.cpp file description:
+/*   BlockTextureAtlas.cpp file description:
 * Defines methods for a class that can store a collection of textures as one big indexable texture known as a "texture atlas".
+* Also defines some maps relating to texcoord-getting as well as some STID numbering stuff.
 * Note that some of the functions are defined in "BlockTextureAtlas.h".
 * The texture atlas, when creating it from a series of individual textures, is (most likely) created in the order: "FIRST to LAST ---> TOP to BOTTOM".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
@@ -101,45 +102,12 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	// Sets up the "imageNameToTexcoordsMap" map.
 	for (int i = 0; i < numberOfImagesInTextureAtlas; i++) //(Note that we already know that the order of imageNamesList is the same order as how images were added to the texture atlas.)
 	{
-		imageNameToTexcoordsMap.insert({ imageNamesList.at(i), ((float)((float)numberOfImagesInTextureAtlas - (float)i) / (float)numberOfImagesInTextureAtlas)});
+		imageNameToTexcoordsMap.insert({imageNamesList.at(i), ((float)((float)numberOfImagesInTextureAtlas - (float)i) / (float)numberOfImagesInTextureAtlas)});
 	}
 
 	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBlockTextureAtlasObjectCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n" << std::endl; }
 
-
-
-
-
-
-
-
-	// testing stuff relating to trying to get a hardcoded image working.
-	/*
-	// Write to the file
-	int dumbness;
-	unsigned char* hopeFulImageBytes = stbi_load("Resources/Block_Textures/unknown_block_texture.png", &dumbness, &dumbness, &dumbness, 4);
-	
-	std::cout << "Here we go : \n";
-	printf("%c", hopeFulImageBytes);
-	std::cout << "\nHere we go : \n";
-	
-	// Create and open a text file
-	std::ofstream MyFile("UNKOWN IMAGE DATA.txt");
-
-	// Write to the file
-	MyFile << "";
-
-	// Close the file
-	MyFile.close();
-	*/
-
-
-
-
-
-
-
-	/*
+	/* OLD CODE, REMOVE IT ONCE DONE WITH CODE RELATING TO STID NUMBERING AND MAPS, OR ARE VERY CERTAIN YOU WON'T NEED TO REFERENCE IT ANYMORE.
 	textureImageType = inputTextureImageType; //(Used for assigning the type of the texture to the texture object.)
 	// Used for storing the width, height, and number of color channels of the image:
 	int widthImg = 32; //(These are default inputs to make sure that they at least start with something, but they need to be properly assigned later on before being used.)
