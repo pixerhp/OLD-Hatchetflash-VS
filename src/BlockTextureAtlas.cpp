@@ -2,6 +2,7 @@
 /*   TextureAtlas.cpp file description:
 * Defines methods for a class that can store a collection of textures as one big indexable texture known as a "texture atlas".
 * Note that some of the functions are defined in "BlockTextureAtlas.h".
+* The texture atlas, when creating it from a series of individual textures, is (most likely) created in the order: "FIRST to LAST ---> TOP to BOTTOM".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "BlockTextureAtlas.h" //Note that this also automatically means we get to work with what's #include-d in the h file.
@@ -88,13 +89,23 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	glBindTexture(inputTextureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.)
 
 
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Atlas texture OpenGL texture object created successfully. Creating texcoord maps..." << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Atlas texture OpenGL texture object created successfully. Creating texcoord + other maps..." << std::endl; }
 
 	/////////////////////////////////////////////////
 
 	/// YOU LEFT OFF HERE, YOU GOTTA DO MAP AND STID NUMBERING MAP VARIABLE STUFF HERE. MAKE IT SO THAT YOU CAN ACTUALLY GET TEXTURE COORDINATES AND ALSO SO THAT YOU CAN GET RGB COLOR EFFECT NUMBERS FROM STID NUMBERING.
 
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n(You can turn of blocktextureatlas-loading console text using a bool in \"BlockTextureAtlas.cpp\".)\n" << std::endl; }
+	/// DOUBLE CHECK LATER TO ENSURE THAT THE TEXCOORDS FROM NAMES THING IS ACTUALLY FUNCTIONALLY CORRECT AND NOT BACKWARDS.
+
+
+
+	// Sets up the "imageNameToTexcoordsMap" map.
+	for (int i = 0; i < numberOfImagesInTextureAtlas; i++) //(Note that we already know that the order of imageNamesList is the same order as how images were added to the texture atlas.)
+	{
+		imageNameToTexcoordsMap.insert({ imageNamesList.at(i), ((float)((float)numberOfImagesInTextureAtlas - (float)i) / (float)numberOfImagesInTextureAtlas)});
+	}
+
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBlockTextureAtlasObjectCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n" << std::endl; }
 
 
 	/*

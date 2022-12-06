@@ -22,13 +22,11 @@
 class BlockTextureAtlas
 {
 	public:
-		// A list of public variables that the block texture atlas object stores.
+		// A list of public variables that a block-texture-atlas object stores.
 		unsigned int numberOfImagesInTextureAtlas = 0; //(Helps us keep track of how many unique images/textures are actually IN the texture atlas.)
 		GLuint ID = 0; //(0 is the equivalent of unbound, it's only assigned here since VS likes it initialized. It's used for complicated OpenGL stuff, specifically binding-related. Research/rename it later.)
 		GLenum textureImageType = GL_TEXTURE_2D; //It will almost certainly always be this, so even if it is assigned in the object construction, it's nice to put this here.
-		
-
-		std::map<int, int> ThingIDmap; /////////RENAME THIS AND PROBABLY HAVE OTHER MAPS!
+		std::map<std::string, float> imageNameToTexcoordsMap;
 
 		// The main constructor for the texture atlas object and all of it's variables, it's defined in "BlockTextureAtlas.cpp".
 		BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData);

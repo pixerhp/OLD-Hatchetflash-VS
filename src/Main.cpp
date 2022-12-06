@@ -154,6 +154,12 @@ int main()
 
 	std::cout << "Hatchetflash textures and texture-atlases loaded..." << std::endl;
 
+	std::cout << "State an image name and I'll tell you it's top-left texcoord." << std::endl;
+	std::string testingString;
+	std::cin >> testingString;
+	auto it = chunkBlocksTextureAtlas.imageNameToTexcoordsMap.find(testingString);
+	std::cout << "Texcoord top-left num: " << it->first << " = " << it->second << std::endl;
+
 	/////////////////////////////////////////////////
 
 	glm::mat4 modelMatrix = glm::mat4(1.0f); //(Currently used for positioning chunks.)

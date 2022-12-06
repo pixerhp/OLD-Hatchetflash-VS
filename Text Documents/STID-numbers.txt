@@ -3,7 +3,7 @@
 
 A STID number is a number used to know what what's being talked about, kindof like an ID system.
 There are different sets of these numbers, materials may range from 0 to ### and standard objects will probably also range from 0 to ###.
-(Note that different sets/categories of numbers may use a different amount of bytes for their number range.)
+(Note that different sets/categories of numbers may use a different number of bytes (up to 3 bytes or 8*3 bits) for their number range.)
 A "Type" STID number is the number that most things where a STID number would be used will start with,
 and it's what chooses the category that's being used, from materials to objects to animals to anything.
 
@@ -14,10 +14,19 @@ and it's what chooses the category that's being used, from materials to objects 
 
 0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:", "item n that this material is made up of is?"]
 1 - Shape IDs; (1 byte)
-2 - 
-3 - 
-4 - Element IDs; (1 byte)   [Examples: Hydrogen, Helium, Lithium, etc.]
-5 - Substance IDs section 1; (1 bytes)   [Examples: Hydrogen, Helium, Lithium, etc.]
+2 - [reserved]
+3 - [reserved]
+4 - Atomic IDs; (1 byte)   [Examples: Hydrogen, Helium, Lithium, etc.]
+5 - Elemental IDs; (1 byte)   [Examples: H2, O2, Diamond, Graphite, Pure metallic iron, etc.]
+5 - Common-Substance IDs; (2 bytes)   [Examples: H2O (water), Table salt, Hematite, Common air, etc.]
+6 - Rare-Substance IDs; (3 bytes)   [Examples: (random obscure-er chemicals,) Gluconic acid, Polonium monoxide, etc.]
+7 - Common-Material IDs; (2 bytes)
+8 - Rare-Material IDs; (3 bytes)
+9 - Part-Type IDs; (1 byte)
+10 - Common Part IDs; (2 bytes)
+11 - Rare Part IDs; (3 bytes)
+12 - Common-Object IDs; (2 bytes)
+13 - Rare-Object IDs; (3 bytes)
 ...
 255 - (Reserved to only being able to be an alternative additional Type ID list.)
 
