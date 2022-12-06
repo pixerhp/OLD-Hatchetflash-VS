@@ -2,10 +2,10 @@
 /*   ShaderClass.cpp file description:
 * Makes the vertex shader and fragment shader usable by our proram.
 * (A shader in this context makes default.frag and default.vert usable alongside the VBO, EBO and VAO.)
-* (The functions here are also stated in "shaderClass.h".)
+* (The functions here are also stated in "ShaderClass.h".)
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
-#include "shaderClass.h"
+#include "ShaderClass.h"
 
 
 // Reads a text file and outputs a string with everything in the said text file.
