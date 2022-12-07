@@ -5,7 +5,6 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "Chunk.h"
-#include <iostream> //(Doesn't seem to need to be stated here, but it's probably good to just do it anyways.)
 
 
 // A function used to initiate drawing the chunk's mesh.
@@ -64,6 +63,7 @@ void Chunk::UpdateChunkMesh(std::map<int, int> ThingIDmap, int ThingIDsize)
 
 		// Checks if the block is a valid block we know how to work with.
 		if (blockStorage[i][0] >= 800000000) {
+			collStorage.push_back(halfDAABB(glm::vec3(x+(chunkX*4)+0.5f,y + (chunkY * 4) + 0.5f,z + (chunkZ * 4) + 0.5f),0.5f));
 			// Check if the top face of this block should be drawn.
 			if (y + 1 >= 4 || blockStorage[up][0] < 800000000 || blockStorage[up][0] == 800000010){
 				// Add all vertices needed for this face.ThingIDsize

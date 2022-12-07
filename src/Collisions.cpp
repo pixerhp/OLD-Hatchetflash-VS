@@ -5,15 +5,57 @@
 #include "Collisions.h"
 
 int sgn(float n) {
-	return (n > 0)?1:-1;
+	return n > 0?1:-1;
 }
 
-void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AABB Pexp)
-{
-	// Smal boy box (useful)
-	AABB SmalBox(glm::vec3(Ppos + Pexp.min+Phead), glm::vec3(Ppos + Pexp.max + Phead));
+glm::vec3 Collisions::testAllColl(glm::vec3& Ppos, glm::vec3 Phead, std::vector<halfDAABB> halb, AABB Pexp) {
+	std::vector<halfDAABB> halbd;
+	for (const halfDAABB& h : halb) {
+		if (abs(h.centre.x - Ppos.x) < 3.0f) {
+			halbd.push_back(h);
+			continue;
+		}
+		if (abs(h.centre.y - Ppos.y) < 3.0f) {
+			halbd.push_back(h);
+			continue;
+		}
+		if (abs(h.centre.z - Ppos.z) < 3.0f) {
+			halbd.push_back(h);
+			continue;
+		}
+	}
+	glm::vec3 NewPos = Ppos;
+	glm::vec3 NewHead=Phead;
+	int w;
+	for (const halfDAABB& h : halb) {
+		
+		w = testColl(NewPos, NewHead, h, Pexp);
+		switch (w)
+		{
+		case 0:
+			NewHead.x = 0.0f;
+			break;
+		case 1:
+			NewHead.y = 0.0f;
+			break;
+		case 2:
+			NewHead.z = 0.0f;
+			break;
+		default:
+			break;
+		}
+	}
+	Ppos = NewPos;
+	return NewHead;
+}
 
-	glm::vec3 intersect, collvec=glm::vec3(0,0,0), newHead;
+int Collisions::testColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AABB Pexp)
+{
+
+	// Smal boy box (useful)
+	AABB SmalBox(glm::vec3(Ppos + Pexp.max+Phead), glm::vec3(Ppos + Pexp.min + Phead));
+
+	glm::vec3 intersect,collvec=glm::vec3(0,0,0);
 
 	// some basic AABB on AABB action
 	if (!(SmalBox.min.x <= halb.centre.x + halb.halfdimension &&
@@ -22,14 +64,15 @@ void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AAB
 		  SmalBox.max.y >= halb.centre.y - halb.halfdimension &&
 		  SmalBox.min.z <= halb.centre.z + halb.halfdimension &&
 		  SmalBox.max.z >= halb.centre.z - halb.halfdimension))
-	{Ppos += Phead; return;}	
-	
+	{return -1;}	
 
 	intersect.x = abs(halb.centre.x + halb.halfdimension - SmalBox.min.x) < abs(halb.centre.x - halb.halfdimension - SmalBox.max.x) ? halb.centre.x + halb.halfdimension - SmalBox.min.x : halb.centre.x - halb.halfdimension - SmalBox.max.x;
 	intersect.y = abs(halb.centre.y + halb.halfdimension - SmalBox.min.y) < abs(halb.centre.y - halb.halfdimension - SmalBox.max.y) ? halb.centre.y + halb.halfdimension - SmalBox.min.y : halb.centre.y - halb.halfdimension - SmalBox.max.y;
 	intersect.z = abs(halb.centre.z + halb.halfdimension - SmalBox.min.z) < abs(halb.centre.z - halb.halfdimension - SmalBox.max.z) ? halb.centre.z + halb.halfdimension - SmalBox.min.z : halb.centre.z - halb.halfdimension - SmalBox.max.z;
 	
-	if (abs(intersect.x) < abs(intersect.y)){
+
+
+	if (abs(intersect.x) < abs(intersect.y)) {
 		if (abs(intersect.x) < abs(intersect.z))
 			collvec.x = sgn(intersect.x);
 		else
@@ -39,51 +82,36 @@ void Collisions::testPColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AAB
 		if (abs(intersect.y) < abs(intersect.z))
 			collvec.y = sgn(intersect.y);
 		else
-			collvec.z = sgn(intersect.z); 
+			collvec.z = sgn(intersect.z);
 	}
-	std::cout << intersect.x << " " << intersect.y << " " << intersect.z << "\n";
-	std::cout << collvec.x << " " << collvec.y <<" " << collvec.z<<"\n";
-	newHead = Phead;
 	if (collvec.x != 0) {
 		if (collvec.x > 0) {
-			newHead.x = 0;
-			Ppos += newHead;
-			Ppos.x = halb.centre.x + halb.halfdimension+Pexp.max.x;
+			Ppos.x = halb.centre.x + halb.halfdimension + Pexp.min.x;
 		}
 		else {
-			newHead.x = 0;
-			Ppos += newHead;
-			Ppos.x = halb.centre.x - halb.halfdimension-Pexp.max.x;
+			Ppos.x = halb.centre.x - halb.halfdimension + Pexp.max.x;
 		}
-		return;
+		return 0;
 	}
 	if (collvec.y != 0) {
 		if (collvec.y > 0) {
-			newHead.y = 0;
-			Ppos += newHead;
-			Ppos.y = halb.centre.y + halb.halfdimension + Pexp.max.y;
+			Ppos.y = halb.centre.y + halb.halfdimension + Pexp.min.y;
 		}
 		else {
-			newHead.y = 0;
-			Ppos += newHead;
-			Ppos.y = halb.centre.y - halb.halfdimension - Pexp.max.y;
+			Ppos.y = halb.centre.y - halb.halfdimension + Pexp.max.y;
 		}
-		return;
+		return 1;
 	}
 	if (collvec.z != 0) {
 		if (collvec.z > 0) {
-			newHead.z = 0;
-			Ppos += newHead;
-			Ppos.z = halb.centre.z + halb.halfdimension + Pexp.max.z;
+			Ppos.z = halb.centre.z + halb.halfdimension + Pexp.min.z;
 		}
 		else {
-			newHead.z = 0;
-			Ppos += newHead;
-			Ppos.z = halb.centre.z - halb.halfdimension - Pexp.max.z;
+			Ppos.z = halb.centre.z - halb.halfdimension + Pexp.max.z;
 		}
-		return;
+		return 2;
 	}
-	
-	return;
+
+	return -1;
 }
 

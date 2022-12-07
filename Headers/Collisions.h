@@ -6,6 +6,8 @@
 
 #include<glm/glm.hpp>
 #include<iostream>
+#include<vector>
+#include<array>
 #include<math.h>
 struct AABB {
 	glm::vec3 min;
@@ -29,8 +31,9 @@ struct halfDAABB {
 class Collisions
 {
 public:
-	
-	static void testPColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AABB Pexp);
+	static glm::vec3 testAllColl(glm::vec3& Ppos, glm::vec3 Phead, std::vector<halfDAABB> halb, AABB Pexp);
+private:	
+	static int testColl(glm::vec3& Ppos, glm::vec3 Phead, halfDAABB halb, AABB Pexp);
 
 };
 

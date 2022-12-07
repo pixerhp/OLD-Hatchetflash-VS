@@ -30,7 +30,7 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shade
 }
 
 // Checks keyboard and mouse inputs as used for camera movement.
-void Camera::Inputs(GLFWwindow* window, float dt)
+void Camera::Inputs(GLFWwindow* window, float dt,std::vector<halfDAABB> coll)
 {
 	// Re-get the actual size of the window.
 	glfwGetWindowSize(window, &cameraWindowWidth, &cameraWindowHeight);
@@ -38,39 +38,44 @@ void Camera::Inputs(GLFWwindow* window, float dt)
 	if (cameraWindowWidth == 0){ cameraWindowWidth = 1; }
 	if (cameraWindowHeight == 0){ cameraWindowHeight = 1; }
 
+	glm::vec3 heading;
+	heading = glm::vec3(0.0f, 0.0f, 0.0f);
+
 	// (Keyboard inputs.)
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		Collisions::testPColl(Position, (movementSpeed * dt) * Orientation, halfDAABB(glm::vec3(0.5f,0.5f,0.5f),0.5f), AABB(glm::vec3(-0.3f, -0.3f, -0.3f), glm::vec3(0.3f, 0.3f, 0.3f)));
+		heading += (movementSpeed * dt)* Orientation;
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * -glm::normalize(glm::cross(Orientation, UpDirection));
+		heading += (movementSpeed * dt) * -glm::normalize(glm::cross(Orientation, UpDirection));
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * -Orientation;
+		heading += (movementSpeed * dt) * -Orientation;
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, UpDirection));
+		heading += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, UpDirection));
 	}
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
+		heading += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
 	}
 	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, -UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
+		heading += (movementSpeed * dt) * glm::normalize(glm::cross(Orientation, glm::normalize(glm::cross(Orientation, -UpDirection)))); //THIS CAN PROBABLY BE SIMPLIFIED.
 	}
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * UpDirection;
+		heading += (movementSpeed * dt) * UpDirection;
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 	{
-		Position += (movementSpeed * dt) * -UpDirection;
+		heading += (movementSpeed * dt) * -UpDirection;
 	}
+	Position += Collisions::testAllColl(Position, heading, coll, AABB(glm::vec3(0.3f, 0.3f, 0.3f), glm::vec3(-0.3f, -0.3f, -0.3f)));
+	
 	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
 	{
 		movementSpeed = 40.0f;

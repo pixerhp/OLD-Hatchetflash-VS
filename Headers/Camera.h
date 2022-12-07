@@ -40,5 +40,5 @@ public:
 	// States a function which updates/calculates and exports the camera matrix to the Vertex Shader.
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	// States a function which handles camera mouse/keyboard inputs.
-	void Inputs(GLFWwindow* window, float dt);
+	void Inputs(GLFWwindow* window, float dt, std::vector<halfDAABB> coll);
 };

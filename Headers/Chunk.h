@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 #include "Mesh.h"
-
+#include "Collisions.h"
 
 class Chunk {
 private:
@@ -20,6 +20,7 @@ public:
 	int chunkX = 0;
 	int chunkY = 0;
 	int chunkZ = 0;
+	std::vector<halfDAABB> collStorage;
 	std::vector<unsigned int> blockStorage[4096]; //(Contains an array of 4096 (16^3) unsigned int vectors, which can allow for each array slot (block position in a chunk) to contain multiple actual block thingos.
 
 	// The constructor for chunk objects. (Unrelated to how they we be after worldgen stuff, this is just when the raw object is created.)

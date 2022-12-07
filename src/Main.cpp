@@ -32,6 +32,7 @@
 #include "AudioSystem.h"
 #include "AudioSource.h"
 #include "AudioBuffer.h"
+#include "Collisions.h"
 
 
 // Function declarations. (Their definitions are below int main().)
@@ -168,9 +169,11 @@ int main()
 	} //end z
 	
 	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
+	std::vector<halfDAABB> collisions;
 	for (Chunk& chunk: chunks){
 		chunk.MakeChunkFilledWithTestingBlocks();
 		chunk.UpdateChunkMesh(chunkBlocksTextureAtlas.ThingIDmap, int(chunkBlocksTextureAtlas.image_count));
+		collisions.insert(collisions.end(), chunk.collStorage.begin(), chunk.collStorage.end());
 	}
 
 	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;
@@ -185,7 +188,7 @@ int main()
 		shaderProgram.Activate(); //(Tells OpenGL which Shader Program to use.)
 
 
-		viewCam.Inputs(window, deltaTime); //(Checks and handles view-camera key inputs.)
+		viewCam.Inputs(window, deltaTime,collisions); //(Checks and handles view-camera key inputs.)
 
 		// (Updates and exports the camera's matrix to the Vertex Shader to be used in rendering.)
 		viewCam.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
