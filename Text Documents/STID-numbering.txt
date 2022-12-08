@@ -1,4 +1,23 @@
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+__  A T T E N T I O N : __
+
+This doc is currently quite outdated in most aspects as current planning is instead happening in/with a google doc:
+https://docs.google.com/document/d/1Er-pP9TVKNel8hs8fKd28KRU6UMuj8N4sUTlV-DlINo/view
+
+Once STID numbering logistics/mechanics are much more created, decided on and satisfying, 
+much of the information will be brought here and this text document will again be updated.
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+
+
+
+
+
+
+
+
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 [Description:]
 
 A STID number is a number used to know what what's being talked about, kindof like an ID system.
