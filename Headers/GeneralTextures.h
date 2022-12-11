@@ -9,7 +9,7 @@
 #include<glad/glad.h>
 #include<stb/stb_image.h>
 
-#include"shaderClass.h"
+#include"ShaderClass.h"
 
 
 class Texture

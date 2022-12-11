@@ -16,7 +16,7 @@
 #include<glad/glad.h>
 #include<stb/stb_image.h>
 
-#include"shaderClass.h"
+#include"ShaderClass.h"
 
 
 // Declares a class which can store a bunch of textures as one big indexable texture, known as the/a "texture atlas".

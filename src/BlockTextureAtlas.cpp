@@ -7,7 +7,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "BlockTextureAtlas.h" //Note that this also automatically means we get to work with what's #include-d in the h file.
-
+#include "Logger.hpp"
 
 // The BlockTextureAtlas object constructor, used when creating a block texture-atlas object (which itself is used by chunk stuff.)
 BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData)
@@ -15,7 +15,7 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	/////////////////////////////////////////////////
 
 	const bool showBlockTextureAtlasObjectCreationTextInConsole = true; //(Toggles whether debug text is displayed in the console regarding texture atlas object creation; default is false.)
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "\nCreating a BlockTextureAtlas object..." << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO) << "\nCreating a BlockTextureAtlas object...\n"; }
 
 	const uint8_t fileDirectoryNameLengthUntilFileName = 25; //Stores the length of a file's full directory name up until the unique name of the file. (Example: The length of "Resources/Block_Textures/" is 25 characters.)
 	const uint8_t lengthOfFileExtensionIncludingPeriod = 4; //Stores the character length that each of the textures' file extensions will have, *including the period*. (Example: ".png" is 4 characters.)
@@ -37,12 +37,12 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 
 		// Adds the unique name of the file without any path or extension stuff to this vector, and then optionally outputs that it found said file to the console.
 		imageNamesList.push_back(entry.path().string().substr(fileDirectoryNameLengthUntilFileName, entry.path().string().size() - (fileDirectoryNameLengthUntilFileName + lengthOfFileExtensionIncludingPeriod)));
-		if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Discovered texture : " + imageNamesList[imageNamesList.size() - 1] << std::endl; }
+		if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO)  << "Discovered texture : " + imageNamesList[imageNamesList.size() - 1] << "\n"; }
 
 		numberOfImagesInTextureAtlas += 1;
 	}
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Total texture count: " << numberOfImagesInTextureAtlas << std::endl; }
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Finished creating a list of image file paths and a list of image names. Creating atlas texture..." << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO) << "Total texture count: " << numberOfImagesInTextureAtlas << "\n"; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO) << "Finished creating a list of image file paths and a list of image names. Creating atlas texture...\n"; }
 
 	/////////////////////////////////////////////////
 
@@ -90,7 +90,7 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	glBindTexture(inputTextureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.)
 
 
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "Atlas texture OpenGL texture object created successfully. Creating texcoord + other maps..." << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO) << "Atlas texture OpenGL texture object created successfully. Creating texcoord + other maps...\n"; }
 
 	/////////////////////////////////////////////////
 
@@ -105,7 +105,7 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 		imageNameToTexcoordsMap.insert({imageNamesList.at(i), ((float)((float)numberOfImagesInTextureAtlas - (float)i) / (float)numberOfImagesInTextureAtlas)});
 	}
 
-	if (showBlockTextureAtlasObjectCreationTextInConsole) { std::cout << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBlockTextureAtlasObjectCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n" << std::endl; }
+	if (showBlockTextureAtlasObjectCreationTextInConsole) { Logger::Log(Logger::INFO) << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBlockTextureAtlasObjectCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n\n"; }
 
 	/* OLD CODE, REMOVE IT ONCE DONE WITH CODE RELATING TO STID NUMBERING AND MAPS, OR ARE VERY CERTAIN YOU WON'T NEED TO REFERENCE IT ANYMORE.
 	textureImageType = inputTextureImageType; //(Used for assigning the type of the texture to the texture object.)

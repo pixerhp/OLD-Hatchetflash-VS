@@ -6,7 +6,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "ShaderClass.h"
-
+#include "Logger.hpp"
 
 // Reads a text file and outputs a string with everything in the said text file.
 std::string get_file_contents(const char* filename)
@@ -90,7 +90,7 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-			std::cout << "SHADER COMPILATION ERROR for:" << type << "\n" << infoLog << std::endl;
+			Logger::Log(Logger::ERROR) << "SHADER COMPILATION ERROR for:" << type << "\n" << infoLog << "\n";
 		}
 	}
 	else
@@ -99,7 +99,7 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-			std::cout << "SHADER LINKING ERROR for:" << type << "\n" << infoLog << std::endl;
+			Logger::Log(Logger::ERROR) << "SHADER LINKING ERROR for:" << type << "\n" << infoLog << "\n";
 		}
 	}
 }

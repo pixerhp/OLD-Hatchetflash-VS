@@ -12,7 +12,7 @@
 
 #include <json/json.hpp>
 #include "Meshes.h"
-#include "shaderClass.h"
+#include "ShaderClass.h"
    
 
 // Uncomment this and redo un-undo this change later if desired, note that you'll have to do it a few times in the cpp file too.

@@ -12,7 +12,7 @@
 #include <map>
 #include <string>
 #include <glm/ext/matrix_clip_space.hpp>
-#include "shaderClass.h"
+#include "ShaderClass.h"
 #include FT_FREETYPE_H  
 
 

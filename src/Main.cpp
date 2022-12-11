@@ -21,6 +21,9 @@
 // (Used for texture loading and image-related functions.)
 #include <stb/stb_image.h>
 
+// (Used in replacement of cout, writes to console and a log file)
+#include "Logger.hpp"
+
 // (Our project's unique header files.)
 #include "HardcodedUnknownImage.h"
 #include "BlockTextureAtlas.h"
@@ -43,13 +46,13 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h); //(Declares a 
 
 int main()
 {
-	std::cout << "Starting Hatchetflash program...\n" << std::endl;
+	Logger::Log(Logger::INFO) << "Starting Hatchetflash program...\n" << "\n";
 
 	/////////////////////////////////////////////////
 
 	bool showDebugUI = true; //(Toggles whether debug UI is shown. Debug UI includes the FPS counter.)
 
-	std::cout << "Adjustable booleans instantiated..." << std::endl;
+	Logger::Log(Logger::INFO) << "Adjustable booleans instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -63,17 +66,17 @@ int main()
 
 	if (window == NULL) //(Error-checking: if GLFW failed to setup, it's function will return NULL. We check for if we get a NULL and close the program if we do.)
 	{
-		std::cout << "FATAL ERROR: Failed set up GLFW window." << std::endl;
+		Logger::Log(Logger::ERROR) << "FATAL ERROR: Failed set up GLFW window." << "\n";
 		return -1; 
 	}
 
 	// Loads GLAD such that it configures opengl, and also error checks. (Closes the program if GLAD didn't load properly.)
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-		std::cout << "FATAL ERROR: Failed to initilize GLAD." << std::endl;
+		Logger::Log(Logger::ERROR) << "FATAL ERROR: Failed to initilize GLAD." << "\n";
 		return -1;
 	}
 
-	std::cout << "Successfully set-up GLFW and initialized GLAD..." << std::endl;
+	Logger::Log(Logger::INFO) << "Successfully set-up GLFW and initialized GLAD..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -90,7 +93,7 @@ int main()
 	glfwSetWindowIcon(window, 1, &windowIconImage);
 	stbi_image_free(windowIconImage.pixels);
 
-	std::cout << "Hatchetflash Opengl-window created..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash Opengl-window created..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -99,7 +102,7 @@ int main()
 	//glfwSwapInterval(0); //(If not commented out, unlocks the window's fps. Should only be turned on temporarily for testing purposes.)
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f); //(Specifies the color that the window is cleared / drawn-over with each frame.)
 
-	std::cout << "Hatchetflash glEnable settings set..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash glEnable settings set..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -112,7 +115,7 @@ int main()
 	textRenderer.initText();
 	textShader.Activate();
 
-	std::cout << "Hatchetflash shader-objects created..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash shader-objects created..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -123,7 +126,7 @@ int main()
 	double avrgFPS = 60.0f; //(The program's average FPS from the last batch of frames, this is what's displayed when the fps is stated.)
 	bool buttonHeld = false; //(Used to detect if a button was pressed, but only so we check it once per press.)
 
-	std::cout << "Hatchetflash time and FPS variables instantiated..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash time and FPS variables instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -134,7 +137,7 @@ int main()
 	AudioSource music;
 	music.queueBuffer(buffer.buffer);
 
-	std::cout << "Hatchetflash audio instantiated..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash audio instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -145,7 +148,7 @@ int main()
 	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);
 	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-	std::cout << "Hatchetflash view-camera object instantiated..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash view-camera object instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -153,7 +156,7 @@ int main()
 	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
-	std::cout << "Hatchetflash texture-atlases and textures loaded..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash texture-atlases and textures loaded..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -175,11 +178,11 @@ int main()
 		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
 
-	std::cout << "Hatchetflash pre-while-loop initializations ran..." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash pre-while-loop initializations ran..." << "\n";
 
 	/////////////////////////////////////////////////
 
-	std::cout << "\nMain while loop reached, starting Hatchetflash!\n" << std::endl;
+	Logger::Log(Logger::INFO) << "\nMain while loop reached, starting Hatchetflash!\n" << "\n";
 
 	while (!glfwWindowShouldClose(window)) //(Checks if you've prompted closing out the window. (One example would be "X-ing out the window".))
 	{
@@ -252,7 +255,7 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	std::cout << "\nEnding Hatchetflash program..." << std::endl;
+	Logger::Log(Logger::INFO) << "\nEnding Hatchetflash program..." << "\n";
 
 
 	// Deletes all of the renderable objects:
@@ -271,7 +274,7 @@ int main()
 	// Destroys the window, stops glfw-related things and fully ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	std::cout << "Hatchetflash program successfully ended." << std::endl;
+	Logger::Log(Logger::INFO) << "Hatchetflash program successfully ended." << "\n";
 	return 0;
 
 	/////////////////////////////////////////////////
@@ -305,7 +308,7 @@ GLFWwindow* setupGLFW()
 	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Designing & Development]   -   Mid Brainmelting Stage", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	if (window == NULL) //(Error-checks whether the glfw window was created successfully or not.)
 	{
-		std::cout << "Failed to create the GLFW window! (created window object == NULL)" << std::endl;
+		Logger::Log(Logger::ERROR) << "Failed to create the GLFW window! (created window object == NULL)" << "\n";
 		glfwTerminate();
 		return NULL;
 	}
