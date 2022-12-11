@@ -1,4 +1,4 @@
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 ATTENTION: Note that this text file expresses very similar information (and thus may be out of sync with) this google document:
 https://docs.google.com/document/d/1Er-pP9TVKNel8hs8fKd28KRU6UMuj8N4sUTlV-DlINo/view
 You may want to refer to / check both in case if you're seeking up-to-date information on STID numbering.
@@ -6,9 +6,9 @@ You may want to refer to / check both in case if you're seeking up-to-date infor
 
 [If you don't have access to see the document but would like access, please contact Pixer Pinecone or a member of the HF dev team.]
 
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 (Copied over STID description/explaination from the google doc:)
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 Description/explanation:
 
 STID numbering is a kind of ID system invented by Pixer for Hatchetflash’s engine. Functionally, it’s a way for blocks, 
@@ -48,7 +48,7 @@ the 1 byte type ID with the 1/2/3 bytes additional ID before interpreting the wh
 set contained 4+ byte integers, then there would be an error when concatenating it with the 1 byte type ID and assigning 
 the now 5+ byte long integer to a 4 byte integer variable/container.)
 
-=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 Extra notes about STID numbering:
 
 * Both “[r]”, “[reserved]” and/or a blank line/space may be used in documents like this to denote that a Type ID number 
@@ -65,7 +65,7 @@ ID sets.
 	game should/will probably just use any/all ID sets in general, in fact probably hardly touching “Custom” ones as 
 	compared to regular ones.
 
-=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 Type IDs   (1 byte)   {specifies the type of ID or set of STID numbers which is being worked with.}
 
 
@@ -331,4 +331,4 @@ Type IDs   (1 byte)   {specifies the type of ID or set of STID numbers which is 
 254 - 
 255 - [reserved only for the possibility of being an additional/alt Type-ID list]
 
-=-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=            =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
