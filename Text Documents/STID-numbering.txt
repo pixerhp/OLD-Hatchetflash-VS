@@ -1,133 +1,334 @@
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-__  A T T E N T I O N : __
-
-This doc is currently quite outdated in most aspects as current planning is instead happening in/with a google doc:
+ATTENTION: Note that this text file expresses very similar information (and thus may be out of sync with) this google document:
 https://docs.google.com/document/d/1Er-pP9TVKNel8hs8fKd28KRU6UMuj8N4sUTlV-DlINo/view
+You may want to refer to / check both in case if you're seeking up-to-date information on STID numbering.
+(In the case of a discrepancy, likely consider the google doc first before this text file.)
 
-Once STID numbering logistics/mechanics are much more created, decided on and satisfying, 
-much of the information will be brought here and this text document will again be updated.
-
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-
-
-
-
-
-
-
-
+[If you don't have access to see the document but would like access, please contact Pixer Pinecone or a member of the HF dev team.]
 
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-[Description:]
-
-A STID number is a number used to know what what's being talked about, kindof like an ID system.
-There are different sets of these numbers, materials may range from 0 to ### and standard objects will probably also range from 0 to ###.
-(Note that different sets/categories of numbers may use a different number of bytes (up to 3 bytes or 8*3 bits) for their number range.)
-A "Type" STID number is the number that most things where a STID number would be used will start with,
-and it's what chooses the category that's being used, from materials to objects to animals to anything.
-
-(Name origin: Substance-ThING --> STing ID --> stid number)
-
+(Copied over STID description/explaination from the google doc:)
 =-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-[Type IDs list:] (1 byte) (Specifies the type of ID or set of STID numbers being worked with.)
+Description/explanation:
 
-0 - Function IDs; (1 byte)   [Examples: "-is rotated/scaled by the matrix:", "-also contains an x amount of:", "item n that this material is made up of is?"]
-1 - Shape IDs; (1 byte)
-2 - [reserved]
-3 - [reserved]
-4 - Atomic IDs; (1 byte)   [Examples: Hydrogen, Helium, Lithium, etc.]
-5 - Elemental IDs; (1 byte)   [Examples: H2, O2, Diamond, Graphite, Pure metallic iron, etc.]
-5 - Common-Substance IDs; (2 bytes)   [Examples: H2O (water), Table salt, Hematite, Common air, etc.]
-6 - Rare-Substance IDs; (3 bytes)   [Examples: (random obscure-er chemicals,) Gluconic acid, Polonium monoxide, etc.]
-7 - Common-Material IDs; (2 bytes)
-8 - Rare-Material IDs; (3 bytes)
-9 - Part-Type IDs; (1 byte)
-10 - Common Part IDs; (2 bytes)
-11 - Rare Part IDs; (3 bytes)
-12 - Common-Object IDs; (2 bytes)
-13 - Rare-Object IDs; (3 bytes)
-...
-255 - (Reserved to only being able to be an alternative additional Type ID list.)
+STID numbering is a kind of ID system invented by Pixer for Hatchetflash’s engine. Functionally, it’s a way for blocks, 
+entities, any other kind of thing in the game as well as any extra information about anything to have the ability to both 
+be stored as + recognized from a series of 1 byte integers in a vector.
 
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-[Function IDs list:] (1 byte) ()
+STID numbering consists of tons of sets of IDs, where each set is about a different thing. There’s a set of IDs called 
+“Common Material IDs” which stores numbers which represent generally the 256 most common “Materials” in the world. 
+Another example would be the “Common Custom Hand-Garment IDs” ID set, which is used to pick between the 256 most common 
+hand-garment/clothing related items which are unique to that particular saved world, like a type of mittens you’ve knit 
+yourself which have a pretty pattern on them.
 
-0 - 
+Since there are lots of different ID sets, there needed to be an actual way to choose one of the sets so that you could 
+start working with it. This issue is solved by having “Type IDs”, itself a 1-byte range ID set which stores the list of 
+ID sets. When working with STID numbering, the program always expects and process the first number (as well as the first 
+number after a piece of information is concluded but where there are still more numbers anyway) we see as said “Type ID”, 
+which lets us pick from any of the other ID sets so that we can use them to define something.
 
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-[Shape IDs list:] (1 byte) ()
+The system may sound a bit complicated at first, but here’s a general example of it in use:
+	Let’s say we have a chunk with stuff in it, and we try to analyze the first item of stuff which is stored in the chunk. 
+	Usually for a block there’d be a flag of sorts which tells us to expect information which defines a block. Manually 
+	defining the block may work something like this: The next number we see is a type ID which specifies that we’re to 
+	expect a material is stated, then a material ID is stated (let’s say that it’s for common dirt,) then a type ID 
+	specifying that we’re to expect a shape ID is stated, then said shape ID is stated (let’s say that it tells us that the 
+	block’s shape is a cube,) then a flag type ID is stated that tells us to expect a matrix, and then we get information 
+	about a matrix which finally alters the shape of the block.
 
-0 - 
+The reason that different ID sets are allowed to have an integer range of 1 byte numbers, 2 byte numbers OR 3 byte numbers 
+is for the sake of reducing RAM and ROM usage for stored objects. Usually, a kind of thing an ID set may be for (like 
+“materials” for example) may use multiple ID sets, labeled things like “Common”, “Uncommon” and “Rare”. By having all of 
+the most common of a thing (“materials” in this case) use an ID set which only needs 1 byte, you can define the material 
+using only two bytes total. (Type ID is one byte, Common Material ID would be the second byte.) Much rarer things which 
+you usually don’t see can then be defined by the larger amounts of bytes, up to the limit of an ID set using 3 bytes. 
 
-=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-
-
-
-
-
-
-
-
-
-
-
-{ARCHAIC STUFF:}
-
-GENERAL::
-
-0-15 - Reserved.
-16 - Whatever thing is being refered to is a custom thing/object/material which is way more manually defined as per later numbers/info.
-17 - Reserved.
-18 - Customly defined basic chemical substance. (ie. element or quark or other.)
-19 - Customly defined chemical substance. (ie. chemical, such as H2O.)
-20 - Customly defined basic material.
-21 - Customly defined complex material.
-22 - Customly defined living thing.
-23 - Customly defined common object.
-24-31 - Reserved.
-32-99999999 - Reserved for indicating differerent additional info with regards to the previous thingo specified (such as stating that A is infected/contaminated with B.)
-100000000-149999999 - Reserved for basic chemical elements, including all possible isotopes of everything, quarks if they exist yet, etc.
-150000000-499999999 - Reserved for basic chemical substances (such as O2, H2O or sugars.)
-500000000-799999999 - Reserved for basic materials composed of serveral substances (such as basic solutions or minerals.)
-800000000-1099999999 - Reserved for complex materials composed of many substances or multiple basic materials (such as dirt types or paints.)
-1100000000-1299999999 - Reserved for common living things which can be seen, such as recurring plants, bugs and animals.
-1300000000-1499999999 - Reserved for common living (or close enough) things which can't be seen, such as bacteria, viruses or things of similar nature.
-1500000000-1699999999 - IDs for world-specific living things, such as named animals or NPCs with any significant info about them.
-1700000000-2099999999 - Reserved for common or regularly makeable objects, such as an ingot of brass, a chair which is generated in towns or a basic shovel.
-2100000000-2299999999 - Reserved for common world-specific objects, such as a painting you made or a uniquely crafted shoe.
-2300000000-4294967295 - Reserved.
-
-
-
-SPECIFIC::
-
-32 - "-has the SHAPE ID shape:" [SHAPE ID]
-33 - "-has the color effect:" [Red color value] [Green color value] [Blue color value]
-34 - "-is moved and/or rotated by the matrix:" [however many numbers are required to define a matrix like this.]
-
-800000000 - unknown   {REGULAR BLOCK TEXTURE VERSION, NOT THE HARDCODED UNKNOWN IMAGE.}
-800000001 - cobble
-800000002 - gravel
-800000003 - dirt
-800000004 - sand
-800000005 - stone_tile
-800000006 - shale_gray_top
-800000007 - shale_gray_side
-800000008 - metal
-800000009 - poolrooms_tiles_brown
-800000010 - water_surface
-800000011 - grassy
-800000012 - cardboard
-800000013 - ladder_brassish
+(The size limit for an ID set is 3 bytes because many std::maps and switch statements use which process ID stuff concatenate 
+the 1 byte type ID with the 1/2/3 bytes additional ID before interpreting the whole thing as a 4 byte integer. If an ID 
+set contained 4+ byte integers, then there would be an error when concatenating it with the 1 byte type ID and assigning 
+the now 5+ byte long integer to a 4 byte integer variable/container.)
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+Extra notes about STID numbering:
+
+* Both “[r]”, “[reserved]” and/or a blank line/space may be used in documents like this to denote that a Type ID number 
+is either not defined at the moment, reserved for a particular use, or otherwise open and available for potentially being 
+defined later on in the future.
+
+* When “Custom” is stated in the name of an ID set, it almost always if-not-always implies that the ID will be used 
+exclusively for items under a similar set name but which are unique to the world. For example, all worlds will probably 
+have a Plant ID of sorts for a certain type of bush, but if a weird mutation of that bush is very common in a particular 
+world but unheard of in others, that mutated bush may take up a slot in a Custom Plants ID set of sorts. Similarly, 
+unique player-made things (especially which also exist as multiple or are mass produced) will commonly use “Custom” 
+ID sets.
+	* Also note that “Custom” does not particularly refer to being open to be used for game mods. Any mods made for the 
+	game should/will probably just use any/all ID sets in general, in fact probably hardly touching “Custom” ones as 
+	compared to regular ones.
+
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+Type IDs   (1 byte)   {specifies the type of ID or set of STID numbers which is being worked with.}
 
-//A list of IDs used to describe the shapes of blocks and related, doesn't apply to custom models.
 
-0-162 - Reserved for all of the combinations of block shapes formed when you remove 0-4 vertices from a cube's vertices. //163 = sum of nCr(2^3,n) for n = 0,1,2,3 and 4.
-163-1140 - Reserved for all of the combinations created by squishing the 163 shapes into each of the 6 directions, such that for example a cube might become a slab. //(163 to 163 + 163*6)
-[later numbers] - used for common future unrelated or more manually defined shapes.
-[the largest possible number in the ID] - Reserved to indicate a custom model, the next information after this ID should always be/allow for a path to the model in some way.
+{ALTHOUGH THIS LIST IS PRESENTED HERE, EXPECT IT TO BE INNACURATE AS THE FINAL VERSION IS STILL BEING WORKED/DECIDED ON.}
+{THIS TEXT WILL BE REMOVED WHEN THE LIST IS MUCH MORE FINALIZED AND NO LONGER SUBJECT TO CHANGE IN THE NEAR FUTURE.}
+
+{{NUMBERS ARE NOT YET ACCURATE. (they need to be revised/made-accurate after further list frankensteining.)}}
+
+
+0 - [A null/functionless type ID which does nothing / takes up space, used for testing. If required to return something, returns a “%”. ]
+1 - [A type ID built to crash where it’s used or to otherwise intentionally cause a major error, to be used for the sake of error testing.]
+2 - Type Category IDs   (1 byte)   {specifies the general kind of thing a certain type ID is about, kindof like these minor descriptions.}
+3 - Type IDs   (1 byte)   {yes, literally the same list which you’re already looking through. Not for regular game use, just testing.}
+4 - Custom Block Flag (doesn’t expect anything in particular immediately after, requires being more manually defined piece-by-piece.)
+5 - Block Flag (expects a material/substance/etc to be fully defined, and then expects a shape ID and then a rotation/flipping/scaling.)
+6 - 
+7 - 
+8 - 
+9 - 
+10 - 
+11 - 
+12 - 
+13 - 
+14 - 
+15 - 
+17 - Function Category IDs   (1 byte)
+18 - Common Function IDs   (1 byte)
+19 - Uncommon Function IDs   (2 bytes)
+20 - Rare Function IDs   (3 bytes)
+21 - Information Category IDs   (1 byte)
+22 - Common Information IDs   (1 byte)
+23 - Uncommon Information IDs   (2 bytes)
+24 - Rare Information IDs   (3 bytes)
+25 - Shape Category IDs   (1 byte)
+26 - Common Shape IDs   (1 byte)
+27 - Uncommon Shape IDs   (2 bytes)
+28 - Rare Shape IDs   (3 bytes)
+29 - 
+30 - 
+31 - 
+32 - 
+33 - 
+34 - 
+35 - 
+36 - Superpiome IDs   (1 byte)
+37 - Piome IDs   (1 byte)
+38 - 
+39 - 
+40 - Dimension IDs
+41 - Planet IDs
+42 - 
+43 - 
+44 - 
+45 - 
+46 - 
+47 - 
+48 - Particle Category IDs   (1 byte)            {specifies the general type of particle something is.}
+49 - Common Particle IDs   (1 byte)            {examples: hydrogen atom, zinc atom, neutron, up quark, etc.}
+50 - Uncommon Particle IDs   (2 bytes)
+51 - Rare Particle IDs   (3 bytes)
+52 - Common Custom Particle IDs   (1 byte)
+53 - Uncommon Custom Particle IDs   (2 bytes)
+54 - Rare Custom Particle IDs   (3 bytes)
+55 - Substance Category IDs   (1 byte)            {specifies the general kind of substance a substance is, like “Acid” or ‘Metal”.}
+56 - Common Substance IDs   (1 byte)            {examples: H2, O2, H2O, salts, sugars, rusts, different acids, etc etc.}
+57 - Uncommon Substance IDs   (2 byte)
+58 - Rare Substance IDs   (3 byte)
+59 - Common Custom Substance IDs   (1 byte)
+60 - Uncommon Custom Substance IDs   (2 byte)
+61 - Rare Custom Substance IDs   (3 byte)
+62 - 
+63 - 
+64 -    (reserved for anything vaguely material-ish, but potentially specifically for whatever organelles, enzymes etc would count as.)
+65 - 
+66 - 
+67 - 
+68 - 
+69 - Material Category IDs   (2 byte)            {specifies what general material a thing is. Examples: “metal”, “sedimentary stone”, etc.}
+70 - Common Material IDs   (1 byte)
+71 - Uncommon Material IDs   (2 byte)
+72 - Rare Material IDs   (3 byte)
+73 - Common Custom Material IDs   (1 byte)
+74 - Uncommon Custom Material IDs   (2 byte)
+75 - Rare Custom Material IDs   (3 byte)
+76 - 
+77 - 
+78 -    (reserved for anything vaguely material-ish, but potentially specifically for whatever wild resources / composites would count as.)
+79 - 
+80 - 
+81 - 
+82 - 
+83 - Part Category IDs   (2 bytes)            {specifies the general type of part a part is, like “screw”, “nail”, “plate”, “rope-cordage”, etc.}
+84 - Common Part IDs   (1 byte)            {examples include: “iron sheet”, “steel 5mm screw”, etc etc.}
+85 - Uncommon Part IDs   (2 bytes)
+86 - Rare Part IDs   (3 Bytes)
+87 - Common Custom Part IDs   (1 byte)
+88 - Uncommon Custom Part IDs   (2 bytes)
+89 - Rare Custom Part IDs   (3 Bytes)
+90 - Tool Category IDs   (2 bytes)            {specifies the general tool a tool is, like “shovel”, “plow”, “gun”, “axe”, etc.}
+91 - Common Tool IDs   (1 byte)
+92 - Uncommon Tool IDs   (2 bytes)
+93 - Rare Tool IDs   (3 Bytes)
+94 - Common Custom Tool IDs   (1 byte)
+95 - Uncommon Custom Tool IDs   (2 bytes)
+96 - Rare Custom Tool IDs   (3 Bytes)
+97 - Object Category IDs   (2 bytes)            {specifies the general type of object an object is.}
+98 - Common Object IDs   (1 byte)
+99 - Uncommon Object IDs   (2 bytes)
+100 - Rare Object IDs   (3 Bytes)
+101 - Common Custom Object IDs   (1 byte)
+102 - Uncommon Custom Object IDs   (2 bytes)
+103 - Rare Custom Object IDs   (3 Bytes)
+104 - 
+105 - 
+106 - 
+107 - 
+108 - 
+109 - 
+110 - 
+111 - Garment Category IDs   (3 bytes)
+112 - Common Head-Garment IDs   (1 byte)            {hats, helmets, headwear, etc.}
+113 - Uncommon Head-Garment IDs   (2 bytes)
+114 - Rare Head-Garment IDs   (3 bytes)
+115 - Common Custom Head-Garment IDs   (1 byte)
+116 - Uncommon Custom Head-Garment IDs   (2 bytes)
+117 - Rare Custom Head-Garment IDs   (3 bytes)
+118 - Common Hand-Garment IDs   (1 byte)            {gloves, gauntlets, mittens, etc.}
+119 - Uncommon Hand-Garment IDs   (2 bytes)
+120 - Rare Hand-Garment IDs   (3 bytes)
+121 - Common Custom Hand-Garment IDs   (1 byte)
+122 - Uncommon Custom Hand-Garment IDs   (2 bytes)
+123 - Rare Custom Hand-Garment IDs   (3 bytes)
+124 - Common Torso-Garment IDs   (1 byte)            {shirts, chestplates, jackets, etc.}
+125 - Uncommon Torso-Garment IDs   (2 bytes)
+126 - Rare Torso-Garment IDs   (3 bytes)
+127 - Common Custom Torso-Garment IDs   (1 byte)
+128 - Uncommon Custom Torso-Garment IDs   (2 bytes)
+129 - Rare Custom Torso-Garment IDs   (3 bytes)
+130 - Common Legs-Garment IDs   (1 byte)            {pants, leggings, leg armor, etc.}
+131 - Uncommon Legs-Garment IDs   (2 bytes)
+132 - Rare Legs-Garment IDs   (3 bytes)
+133 - Common Custom Legs-Garment IDs   (1 byte)
+134 - Uncommon Custom Legs-Garment IDs   (2 bytes)
+135 - Rare Custom Legs-Garment IDs   (3 bytes)
+136 - Common Foot-Garment IDs   (1 byte)            {socks, shoes, etc..}
+137 - Uncommon Foot-Garment IDs   (2 bytes)
+138 - Rare Foot-Garment IDs   (3 bytes)
+139 - Common Custom Foot-Garment IDs   (1 byte)
+140 - Uncommon Custom Foot-Garment IDs   (2 bytes)
+141 - Rare Custom Foot-Garment IDs   (3 bytes)
+142 - Common Accessory-Garment IDs   (1 byte)            {rings, bands, necklaces, trinkets, etc.}
+143 - Uncommon Accessory-Garment IDs   (2 bytes)
+144 - Rare Accessory-Garment IDs   (3 bytes)
+145 - Common Custom Accessory-Garment IDs   (1 byte)
+146 - Uncommon Custom Accessory-Garment IDs   (2 bytes)
+147 - Rare Custom Accessory-Garment IDs   (3 bytes)
+148 - Common Other-Garment IDs   (1 byte)            {used for any clothing-ish items which don’t fit into the other ID sets very well.}
+149 - Uncommon Other-Garment IDs   (2 bytes)
+150 - Rare Other-Garment IDs   (3 bytes)
+151 - Common Custom Other-Garment IDs   (1 byte)
+152 - Uncommon Custom Other-Garment IDs   (2 bytes)
+153 - Rare Custom Other-Garment IDs   (3 bytes)
+154 - 
+155 - 
+156 - 
+157 - 
+158 - 
+159 - 
+160 - 
+161 - Giome Category ID   (2 bytes)
+162 - Common Giome IDs   (1 byte)
+163 - Uncommon Giome IDs   (2 bytes)
+164 - Rare Giome IDs   (3 bytes)
+165 - Common Custom Giome IDs   (1 byte)
+166 - Uncommon Custom Giome IDs   (2 bytes)
+167 - Rare Custom Giome IDs   (3 bytes)
+168 - Structure Category ID   (2 bytes)
+169 - Common Structure IDs   (1 byte)
+170 - Uncommon Structure IDs   (2 bytes)
+171 - Rare Structure IDs   (3 bytes)
+172 - Common Custom Structure IDs   (1 byte)
+173 - Uncommon Custom Structure IDs   (2 bytes)
+174 - Rare Custom Structure IDs   (3 bytes)
+175 - 
+176 - 
+177 - 
+178 - 
+179 - 
+180 - 
+181 - 
+182 - 
+183 - 
+184 - 
+185 - 
+186 - 
+187 - 
+188 - 
+189 - Functional-AI-Style Category ID   (2 bytes)
+190 - Common Functional-AI-Style ID   (1 byte)
+191 - Uncommon Functional-AI-Style ID   (2 byte)
+192 - Rare Functional-AI-Style ID   (3 byte)
+193 - Common Custom Functional-AI-Style ID   (1 byte)
+194 - Uncommon Custom Functional-AI-Style ID   (2 byte)
+195 - Rare Custom Functional-AI-Style ID   (3 byte)
+196 - Entity Category ID   (3 bytes)
+197 - Common Entity ID   (1 bytes)
+198 - Uncommon Entity ID   (2 bytes)
+199 - Rare Entity ID   (3 bytes)
+200 - [r]
+201 - [r]          (potentially for npcs saved between worlds?
+202 - [r]
+203 - 
+204 - 
+205 - 
+206 - 
+207 - 
+208 - 
+209 - 
+210 - Creature Category IDs   (1 byte)
+211 - Common Creature IDs   (1 byte)            {creatures and animals, from sapients to baddies to anything else which is like an entity.}
+212 - Uncommon Creature IDs   (2 bytes)
+213 - Rare Creature IDs   (3 bytes)
+214 - Common Custom Creature IDs   (1 byte)
+215 - Uncommon Custom Creature IDs   (2 bytes)
+216 - Rare Custom Creature IDs   (3 bytes)
+217 - Common Plant IDs   (1 byte)            {plants which exist, also including anything which is functionally plant-like.}
+218 - Uncommon Plant IDs   (2 bytes)
+219 - Rare Plant IDs   (3 bytes)
+220 - Common Custom Plant IDs   (1 byte)
+221 - Uncommon Custom Plant IDs   (2 bytes)
+222 - Rare Custom Plant IDs   (3 bytes)
+223 - 
+224 - 
+225 - 
+226 - 
+227 - 
+228 - 
+229 - 
+230 - 
+231 - 
+232 - 
+233 - 
+234 - 
+235 - 
+236 - 
+237 - 
+238 - 
+239 - 
+240 - 
+241 - 
+242 - 
+243 - 
+244 - 
+245 - 
+246 - 
+247 - 
+248 - 
+249 - 
+250 - 
+251 - 
+252 - 
+253 - 
+254 - 
+255 - [reserved only for the possibility of being an additional/alt Type-ID list]
 
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
