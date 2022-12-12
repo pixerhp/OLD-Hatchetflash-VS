@@ -67,9 +67,9 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	}
 
 	// Generates an OpenGL texture object, and assigns it the texture unit and image type;
-	glGenTextures(1, &ID);
+	glGenTextures(1, &internalTextureID);
 	glActiveTexture(inputGLTextureUnitSlot);
-	glBindTexture(inputTextureImageType, ID);
+	glBindTexture(inputTextureImageType, internalTextureID);
 
 	// Configures the mipmapping algorithm. (Mipmaping makes it so that a smaller less detailed texture can be used if it's rendered really small anyways.)
 	glTexParameteri(inputTextureImageType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
@@ -159,9 +159,9 @@ BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum in
 	f.close();
 
 	// Generates an OpenGL texture object, and assigns the texture unit.
-	glGenTextures(1, &ID);
+	glGenTextures(1, &internalTextureID);
 	glActiveTexture(inputGLTextureUnitSlot);
-	glBindTexture(inputTextureImageType, ID);
+	glBindTexture(inputTextureImageType, internalTextureID);
 
 	// Configures the type of algorithm used to make the image larger or smaller. (Seems to relate/also-relate to mipmapping the textures.)
 	glTexParameteri(inputTextureImageType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
@@ -192,7 +192,7 @@ void BlockTextureAtlas::texUnit(Shader& shader, const char* uniform, GLuint unit
 
 void BlockTextureAtlas::Bind()
 {
-	glBindTexture(textureImageType, ID);
+	glBindTexture(textureImageType, internalTextureID);
 }
 
 
@@ -204,7 +204,7 @@ void BlockTextureAtlas::Unbind()
 
 void BlockTextureAtlas::Delete()
 {
-	glDeleteTextures(1, &ID);
+	glDeleteTextures(1, &internalTextureID);
 }
 
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
