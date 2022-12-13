@@ -22,7 +22,7 @@
 #include <stb/stb_image.h>
 
 // (Used in replacement of cout, writes to console and a log file)
-#include "Logger.hpp"
+#include "Logger.h"
 
 // (Our project's unique header files.)
 #include "HardcodedUnknownImage.h"
@@ -50,9 +50,10 @@ int main()
 
 	/////////////////////////////////////////////////
 
+	const std::string hatchetflashVersion = "PREALPHA_0"; //A global variable used such that the code knows what version Hatchetflash is on, since this may affect saving/loading, etc.
 	bool showDebugUI = true; //(Toggles whether debug UI is shown. Debug UI includes the FPS counter.)
 
-	Logger::Log(Logger::INFO) << "Adjustable booleans instantiated..." << "\n";
+	Logger::Log(Logger::INFO) << "Global vars and consts instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 

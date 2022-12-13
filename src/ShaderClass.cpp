@@ -6,7 +6,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "ShaderClass.h"
-#include "Logger.hpp"
+#include "Logger.h"
 
 // Reads a text file and outputs a string with everything in the said text file.
 std::string get_file_contents(const char* filename)

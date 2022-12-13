@@ -7,7 +7,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "BlockTextureAtlas.h" //Note that this also automatically means we get to work with what's #include-d in the h file.
-#include "Logger.hpp"
+#include "Logger.h"
 
 // The BlockTextureAtlas object constructor, used when creating a block texture-atlas object (which itself is used by chunk stuff.)
 BlockTextureAtlas::BlockTextureAtlas(const char* inputFolderDirectory, GLenum inputTextureImageType, GLenum inputGLTextureUnitSlot, GLenum inputImageInformationFormat, GLenum inputDataTypeOfPixelData)
