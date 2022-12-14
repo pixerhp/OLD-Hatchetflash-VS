@@ -18,7 +18,9 @@ class Chunk
 {
 	private:
 		Mesh chunkMesh; //(The chunk's mesh which is what's rendered; can be updated using certain functions.)
-		static BlockTextureAtlas chunkBlocksTextureAtlas; /////////////////////////ASSIGN THIS TO A PROPER ACTUAL TEXTURE ATLAS LATER USING A CHUNK OBJECT IN MAIN!!!
+		//static BlockTextureAtlas chunkBlocksTextureAtlas; 
+		static BlockTextureAtlas& blockTextureAtlas; //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
+		/////////////////////////^^^^ ASSIGN THIS TO A PROPER ACTUAL TEXTURE ATLAS LATER USING A CHUNK OBJECT IN MAIN!!!
 
 
 	public:
@@ -71,13 +73,17 @@ class Chunk
 			chunkBlockStorage = inputChunkBlockStorage;
 		}
 
-	void Draw(); //(Used to initiate rendering the chunk's mesh, which is actually stored in "chunkMesh" and can be updated by certain functions.)
-	
-	void MakeChunkFilledWithTestingBlocks(); //(Used to generate a testing chunk as defined however is for dev purposes, won't be used in the actual game.)
-	
-	void UpdateChunkMesh(); //(Used to update the chunk's mesh/visuals to better represent the current state of the chunk.)
+		void AssignBlockTextureAtlasReference() {
+			blockTextureAtlas = BlockTextureAtlas::getInstance();
+		}
 
-    void cleanup(); //(Used for cleaning up the mesh, more specifically it has to do with VBO VAO EBO stuff.)
+		void Draw(); //(Used to initiate rendering the chunk's mesh, which is actually stored in "chunkMesh" and can be updated by certain functions.)
+	
+		void MakeChunkFilledWithTestingBlocks(); //(Used to generate a testing chunk as defined however is for dev purposes, won't be used in the actual game.)
+	
+		void UpdateChunkMesh(); //(Used to update the chunk's mesh/visuals to better represent the current state of the chunk.)
+
+		void cleanup(); //(Used for cleaning up the mesh, more specifically it has to do with VBO VAO EBO stuff.)
 };
 
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

@@ -153,8 +153,8 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	// A texture atlas used for chunks' block textures.
-	BlockTextureAtlas chunkBlocksTextureAtlas("Resources/Block_Textures/", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	// The block texture atlas which is used for chunks' block textures.
+	BlockTextureAtlas& chunkBlocksTextureAtlas = BlockTextureAtlas::getInstance(); //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
 	Logger::Log(Logger::INFO) << "Hatchetflash texture-atlases and textures loaded..." << "\n";
