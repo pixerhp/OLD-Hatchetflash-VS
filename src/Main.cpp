@@ -157,7 +157,7 @@ int main()
 	BlockTextureAtlas& chunkBlocksTextureAtlas = BlockTextureAtlas::getInstance(); //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
-	Logger::Log(Logger::INFO) << "Hatchetflash texture-atlases and textures loaded..." << "\n";
+	Logger::Log(Logger::INFO) << "Hatchetflash Block-Texture-Atlas created..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -183,7 +183,8 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	Logger::Log(Logger::INFO) << "\nMain while loop reached, starting Hatchetflash!\n" << "\n";
+	std::cout << std::endl;
+	Logger::Log(Logger::INFO) << "Main while loop reached, starting Hatchetflash!\n" << "\n";
 
 	while (!glfwWindowShouldClose(window)) //(Checks if you've prompted closing out the window. (One example would be "X-ing out the window".))
 	{
@@ -256,7 +257,8 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	Logger::Log(Logger::INFO) << "\nEnding Hatchetflash program..." << "\n";
+	std::cout << std::endl;
+	Logger::Log(Logger::INFO) << "Ending Hatchetflash program..." << "\n";
 
 
 	// Deletes all of the renderable objects:

@@ -201,13 +201,13 @@
     <ClCompile Include="src\BlockTextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HardcodedUnknownImage.h" />
     <ClInclude Include="Headers\AudioSystem.h" />
     <ClInclude Include="Headers\AudioSource.h" />
     <ClInclude Include="Headers\AudioBuffer.h" />
     <ClInclude Include="Headers\Camera.h" />
     <ClInclude Include="Headers\Chunks.h" />
     <ClInclude Include="Headers\Collisions.h" />
+    <ClInclude Include="Headers\HardcodedUnknownImage.h" />
     <ClInclude Include="Headers\Logger.h" />
     <ClInclude Include="Headers\Meshes.h" />
     <ClInclude Include="Headers\Models.h" />

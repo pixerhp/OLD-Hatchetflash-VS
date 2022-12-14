@@ -1,7 +1,7 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /*   Chunks.h file description:
-* Defines the Chunk class which is used for chunk objects, which store blocks and a mesh and related things.
-* Has the initializer for when chunk objects are first created, and states all of a chunk's functions as most are defined in "Chunks.cpp".
+* Defines the Chunk class, which is used to create and do things using chunk objects, which store blocks, a mesh and other related things individual chunks would have.
+* Note that most of the functions used for or regarding chunk objects are declared here and/or defined in the "Chunks.cpp" file.
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
@@ -18,9 +18,7 @@ class Chunk
 {
 	private:
 		Mesh chunkMesh; //(The chunk's mesh which is what's rendered; can be updated using certain functions.)
-		//static BlockTextureAtlas chunkBlocksTextureAtlas; 
-		static BlockTextureAtlas& blockTextureAtlas; //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
-		/////////////////////////^^^^ ASSIGN THIS TO A PROPER ACTUAL TEXTURE ATLAS LATER USING A CHUNK OBJECT IN MAIN!!!
+		//static BlockTextureAtlas& blockTextureAtlas; //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
 
 
 	public:
@@ -32,37 +30,15 @@ class Chunk
 		int32_t chunkCoordsX = 0;
 		int32_t chunkCoordsY = 0;
 		int32_t chunkCoordsZ = 0;
-// NOTE TO SELF FOR THE FUTURE: CHANGE THE DEFAULT CHUNK MATERIAL TO AIR INSTEAD OF NOTHING LATER WHEN YOU CAN!
 		std::vector<uint8_t> defaultChunkMaterial{}; //Used for defining the chunk is defaultly filled with, usually air or water. it's a vector of single byte ints since the material may have extra info.
+		// ^^^^ NOTE TO FUTURE SELF, CHANGE THE DEFAULT CHUNK MATERIAL ABOVE TO BE AIR/VACUUM INSTEAD OF HAVING NOTHING DEFINED. DO THIS AFTER STID NUMBERING WORK.
 		std::vector<std::vector<uint8_t>> chunkBlockStorage{}; //A vector of vectors of single bytes, used for storing a list of all of the blocks within the chunk.
 		
 
-		// A selection of different chunk-object constructors. (It's unrelated to world generation, this is just for when the raw class object itself is created.)
+		//(Object constructors) (It's unrelated to world generation, this is just for when the raw class object itself is created.)
 		Chunk() {
 		}
-		Chunk(uint32_t inputChunkWorldgenSeed, int32_t inputChunkCoordsX, int32_t inputChunkCoordsY, int32_t inputChunkCoordsZ) {
-			chunkWorldgenSeed = inputChunkWorldgenSeed;
-			chunkCoordsX = inputChunkCoordsX;
-			chunkCoordsY = inputChunkCoordsY;
-			chunkCoordsZ = inputChunkCoordsZ;
-		}
-		Chunk(uint32_t inputChunkWorldgenSeed, int32_t inputChunkCoordsX, int32_t inputChunkCoordsY, int32_t inputChunkCoordsZ, std::vector<uint8_t> inputDefaultChunkMaterial, std::vector<std::vector<uint8_t>> inputChunkBlockStorage) {
-			chunkWorldgenSeed = inputChunkWorldgenSeed;
-			chunkCoordsX = inputChunkCoordsX;
-			chunkCoordsY = inputChunkCoordsY;
-			chunkCoordsZ = inputChunkCoordsZ;
-			defaultChunkMaterial = inputDefaultChunkMaterial;
-			chunkBlockStorage = inputChunkBlockStorage;
-		}
-		Chunk(uint32_t inputChunkWorldgenSeed, uint8_t inputChunkPiome, uint16_t inputChunkBiome, int32_t inputChunkCoordsX, int32_t inputChunkCoordsY, int32_t inputChunkCoordsZ) {
-			chunkWorldgenSeed = inputChunkWorldgenSeed;
-			chunkPiome = inputChunkPiome;
-			chunkBiome = inputChunkBiome;
-			chunkCoordsX = inputChunkCoordsX;
-			chunkCoordsY = inputChunkCoordsY;
-			chunkCoordsZ = inputChunkCoordsZ;
-		}
-		Chunk(uint32_t inputChunkWorldgenSeed, uint8_t inputChunkPiome, uint16_t inputChunkBiome, int32_t inputChunkCoordsX, int32_t inputChunkCoordsY, int32_t inputChunkCoordsZ, std::vector<uint8_t> inputDefaultChunkMaterial, std::vector<std::vector<uint8_t>> inputChunkBlockStorage) {
+		Chunk(uint32_t inputChunkWorldgenSeed = 314, uint8_t inputChunkPiome = 0, uint16_t inputChunkBiome = 0, int32_t inputChunkCoordsX = 0, int32_t inputChunkCoordsY = 0, int32_t inputChunkCoordsZ = 0, std::vector<uint8_t> inputDefaultChunkMaterial = {}, std::vector<std::vector<uint8_t>> inputChunkBlockStorage = {}) {
 			chunkWorldgenSeed = inputChunkWorldgenSeed;
 			chunkPiome = inputChunkPiome;
 			chunkBiome = inputChunkBiome;
@@ -73,9 +49,8 @@ class Chunk
 			chunkBlockStorage = inputChunkBlockStorage;
 		}
 
-		void AssignBlockTextureAtlasReference() {
-			blockTextureAtlas = BlockTextureAtlas::getInstance();
-		}
+
+		// Some public functions which can be used on/with indiviudal chunk objects:
 
 		void Draw(); //(Used to initiate rendering the chunk's mesh, which is actually stored in "chunkMesh" and can be updated by certain functions.)
 	

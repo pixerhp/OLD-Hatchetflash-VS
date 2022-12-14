@@ -4,6 +4,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #pragma once
+
 #pragma comment(lib, "freetype.lib")
 #include <glm/glm.hpp>
 #include <glad/glad.h>

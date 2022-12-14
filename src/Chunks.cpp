@@ -11,6 +11,7 @@
 void Chunk::Draw(){ chunkMesh.draw(); }
 
 
+//THE REASON THAT ALL OF THIS IS COMMENTED OUT IS THAT IT IS ARCHAIC, AS THE NEW METHODS FOR CHUNK GENERATION STILL HAVE TO BE DESIGNED.
 // Generates a chunk filled with whatever blocks are defined as needed for pure testing/dev related purposes, won't be used in-game.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {

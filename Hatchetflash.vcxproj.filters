@@ -201,10 +201,10 @@
     <ClInclude Include="Headers\BlockTextureAtlas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HardcodedUnknownImage.h">
+    <ClInclude Include="Headers\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Logger.h">
+    <ClInclude Include="Headers\HardcodedUnknownImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
