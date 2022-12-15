@@ -1,5 +1,29 @@
-This doc contains a list of tipes regarding comment formating choices/styles which are being used in Hatchetflash's development.
+This doc contains a list of tips regarding comment formating choices/styles which are being used in Hatchetflash's development.
+You technically don't *have* to follow these but probably do:
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{ARCHAIC TEXT:}
 
 ==> Most (if not all) code files should have a multi-line file description at the start of the file like this:
 
