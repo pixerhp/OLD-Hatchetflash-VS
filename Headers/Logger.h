@@ -22,11 +22,11 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 	enum logTypes{ERROR, WARNING, INFO, TITLELESS, LOGGERFUNCTION, DEBUG}; //(Note that `DEBUG` needs to be last option due to certain checks in our code.)
 
 
-	// This code block is used to determine whether you're compiling in debug mode or not, and affects logMode accordingly.
+	// This code block is used to determine whether you're compiling in debug mode or not, and affects lastmostUsableLogType accordingly.
 	#ifndef NDEBUG
-		const logTypes logType = DEBUG;
+		const logTypes lastmostUsableLogType = DEBUG;
 	#else
-		const logTypes logType = INFO;
+		const logTypes lastmostUsableLogType = LOGGERFUNCTION;
 	#endif
 
 
@@ -48,7 +48,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 				currentlogType = logTypes;
 
 				// (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
-				if (!(currentlogType <= logType)) { return; }
+				if (!(currentlogType <= lastmostUsableLogType)) { return; }
 					
 				switch (currentlogType)
 				{
@@ -94,7 +94,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		template <typename varType>
 		Log & operator << (varType const & value)
 		{
-			if (currentlogType <= logType) { // (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
+			if (currentlogType <= lastmostUsableLogType) { // (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
 				buffer << value;
 			}
 			return *this;
@@ -104,7 +104,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		~Log() //(Note that all of this code is ran everytime a Log object is deconstructed, such as for example when a Log object is created but then not stored anywhere.)
 		{
 			// (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
-			if (!(currentlogType <= logType)) { return; }
+			if (!(currentlogType <= lastmostUsableLogType)) { return; }
 
 			switch (loggerOutputtingMode)
 			{
