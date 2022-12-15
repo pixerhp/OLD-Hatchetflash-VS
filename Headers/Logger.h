@@ -18,8 +18,8 @@
 
 namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 {
-	// A list of the types of logs which can be made. (They can be referenced externally using code such as: "Logger::ERROR", etc.) (Note that `DEBUG` needs to be last option due to certain checks in our code.)
-	enum LogLevel{ERROR, WARNING, INFO, TITLELESS, LOGGERFUNCTION, DEBUG};
+	// A list of the types of logs which can be made. (They can be referenced externally using code such as: "Logger::ERROR", etc.)
+	enum LogLevel{ERROR, WARNING, INFO, TITLELESS, LOGGERFUNCTION, DEBUG}; //(Note that `DEBUG` needs to be last option due to certain checks in our code.)
 
 
 	// This code block is used to determine whether you're compiling in debug mode or not, and affects logMode accordingly.
@@ -87,8 +87,8 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 				}
 			}
 
-			// (A declaration for a function which processes logfunctions which aren't unique to every `loggerOutputtingMode`.)
-			std::string inline process_nonunique_LOGGERFUNCTION_commands(std::string inputCommandName);
+			// (A declaration for a function which processes common logfunctions which aren't unique to individual `loggerOutputtingMode` modes.)
+			void inline process_nonunique_LOGGERFUNCTION_commands(std::string inputCommandName);
 			
 		// Defines what should happen when/if the `<<` operator is used to concatenate a string or character onto a created log object. (This is regularly done when logging text.)
 		template <typename varType>
@@ -199,22 +199,22 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 	*/
 
 
-	// (Although there isn't much here yet, it's more of a placeholder for when/if nonunique functions get added.)
-	inline std::string Log::process_nonunique_LOGGERFUNCTION_commands(std::string inputCommandName)
+	// (Currently just a placeholder.)
+	inline void Log::process_nonunique_LOGGERFUNCTION_commands(std::string inputCommandName)
 	{
-		std::string returnedString = "The reason this returns a string is in case a non-unique function should optionally output to a log or the console but not both.\n";
-
-		return returnedString;
+		return;
 	}
 }
 
 
 // ( Unrelatedly, here's some fun pastable comment-text art! )
 
+// [Of Jcodefox]
 //     /|/|      |\|\       /|/|      |\|\       |\|\      |\|\      /|/|        |\|\     |\_/|
 //    (  ^^>    <^^  )     (  ''_>  <_''  )     (  ;;_>  <_;;   )    ( , '_>  <_' , )      o o 
 //    /   |      |   \     /   | /  \ |   \     /  (|      |)  \    /  /|        |\  \    /_^_\
 
+// [Of Pixer Pinecone]
 //    \///¯>    <¯\\\/     \//0^0    0^0\\/     \//0^0    0^0\\/     \//0^0    0^0\\/    \/)^()\
 //    /( 0^>    <^0 )\     /( o >    < o )\     /(^O >    < O^)\     /( . >    < . )\    /  v  )
 //    _/  ¯_    _¯  \_     _/  ¯_    _¯  \_     _/  ^_    _^  \_     _/  ¯_    _¯  \_     _ ¯ _ 
