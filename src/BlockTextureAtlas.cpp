@@ -15,8 +15,7 @@ BlockTextureAtlas::BlockTextureAtlas()
 	/////////////////////////////////////////////////
 
 	const bool showBTAtlasCreationTextInConsole = false; //(Toggles whether debug text is displayed in the console regarding texture atlas object creation; default is false.)
-	if (showBTAtlasCreationTextInConsole) { std::cout << std::endl; }
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "Creating a BlockTextureAtlas object...\n"; }
+	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::TITLELESS) << "\n"; Logger::Log(Logger::INFO) << "Creating a BlockTextureAtlas object...\n"; }
 
 	const uint8_t fileDirectoryNameLengthUntilFileName = 25; //Stores the length of a file's full directory name up until the unique name of the file. (Example: The length of "Resources/Block_Textures/" is 25 characters.)
 	const uint8_t lengthOfFileExtensionIncludingPeriod = 4; //Stores the character length that each of the textures' file extensions will have, *including the period*. (Example: ".png" is 4 characters.)
@@ -110,7 +109,10 @@ BlockTextureAtlas::BlockTextureAtlas()
 		imageNameToTexcoordsMap.insert({ imageNamesList.at(i), ((float)((float)numberOfImagesInTextureAtlas - (float)i) / (float)numberOfImagesInTextureAtlas) });
 	}
 
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "BlockTextureAtlas object created successfully!\n[To turn off this text, use the showBTAtlasCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n\n"; }
+	if (showBTAtlasCreationTextInConsole) {
+		Logger::Log(Logger::INFO) << "BlockTextureAtlas object created successfully!\n";
+		Logger::Log(Logger::DEBUG) << "[To turn off this text, use the showBTAtlasCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n\n";
+	}
 }
 
 

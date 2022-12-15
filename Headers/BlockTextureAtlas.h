@@ -1,6 +1,6 @@
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 /*   BlockTextureAtlas.h file description:
-* (The block texture class is a singleton class.)
+* Note that the block texture class is a singleton class, meaning that there is only ever one BlockTextureAtlas object in memory.
 * A texture atlas is a large texture composed of a bunch of smaller textures, such as a grid of block textures in this case.
 * Many of the functions are defined in "BlockTextureAtlas.cpp".
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 

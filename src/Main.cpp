@@ -46,6 +46,7 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h); //(Declares a 
 
 int main()
 {
+	Logger::Log(Logger::LOGGERFUNCTION) << "program_start";
 	Logger::Log(Logger::INFO) << "Starting Hatchetflash program...\n" << "\n";
 
 	/////////////////////////////////////////////////
@@ -163,12 +164,12 @@ int main()
 
 	glm::mat4 modelMatrix = glm::mat4(1.0f); //(Currently used for positioning chunks.)
 
-	// Creates a cube/prism of chunk objects to be used for testing.
+	// Creates a cube/prism of chunk objects to be used for testing. THIS NEEDS TO BE REPLACED ONCE YOU GET TO DYNAMIC CHUNK LOADING.
 	std::vector<Chunk> chunks;
 	for (int z = 0; z < 4; z++){
 	for (int y = 0; y < 4; y++){
 	for (int x = 0; x < 4; x++){
-		chunks.push_back(Chunk{314,x,y,z}); //(initializes a chunk objects.)
+		chunks.push_back(Chunk{});
 	} //end x
 	} //end y
 	} //end z
@@ -183,7 +184,6 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	std::cout << std::endl;
 	Logger::Log(Logger::INFO) << "Main while loop reached, starting Hatchetflash!\n" << "\n";
 
 	while (!glfwWindowShouldClose(window)) //(Checks if you've prompted closing out the window. (One example would be "X-ing out the window".))
@@ -257,7 +257,7 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	std::cout << std::endl;
+	Logger::Log(Logger::TITLELESS) << "\n";
 	Logger::Log(Logger::INFO) << "Ending Hatchetflash program..." << "\n";
 
 
@@ -278,6 +278,7 @@ int main()
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	Logger::Log(Logger::INFO) << "Hatchetflash program successfully ended." << "\n";
+	Logger::Log(Logger::LOGGERFUNCTION) << "program_end";
 	return 0;
 
 	/////////////////////////////////////////////////

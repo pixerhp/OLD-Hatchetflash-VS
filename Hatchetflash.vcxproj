@@ -83,12 +83,14 @@
     <AllProjectIncludesArePublic>false</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Headers;C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\16072\Documents\GitHub\Hatchetflash\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\16072\Documents\GitHub\Hatchetflash\Headers;C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\16072\Documents\GitHub\Hatchetflash\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\16072\Documents\GitHub\Hatchetflash\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,6 +99,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,6 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +133,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\Headers;$(ProjectDir)\Libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +151,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

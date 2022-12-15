@@ -35,9 +35,7 @@ class Chunk
 		std::vector<std::vector<uint8_t>> chunkBlockStorage{}; //A vector of vectors of single bytes, used for storing a list of all of the blocks within the chunk.
 		
 
-		//(Object constructors) (It's unrelated to world generation, this is just for when the raw class object itself is created.)
-		Chunk() {
-		}
+		// The object constructor used for when creating a chunk object. (It's unrelated to world generation, this is just for when the raw class object itself is created.)
 		Chunk(uint32_t inputChunkWorldgenSeed = 314, uint8_t inputChunkPiome = 0, uint16_t inputChunkBiome = 0, int32_t inputChunkCoordsX = 0, int32_t inputChunkCoordsY = 0, int32_t inputChunkCoordsZ = 0, std::vector<uint8_t> inputDefaultChunkMaterial = {}, std::vector<std::vector<uint8_t>> inputChunkBlockStorage = {}) {
 			chunkWorldgenSeed = inputChunkWorldgenSeed;
 			chunkPiome = inputChunkPiome;
