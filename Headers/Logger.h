@@ -19,14 +19,14 @@
 namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 {
 	// A list of the types of logs which can be made. (They can be referenced externally using code such as: "Logger::ERROR", etc.)
-	enum LogLevel{ERROR, WARNING, INFO, TITLELESS, LOGGERFUNCTION, DEBUG}; //(Note that `DEBUG` needs to be last option due to certain checks in our code.)
+	enum logTypes{ERROR, WARNING, INFO, TITLELESS, LOGGERFUNCTION, DEBUG}; //(Note that `DEBUG` needs to be last option due to certain checks in our code.)
 
 
 	// This code block is used to determine whether you're compiling in debug mode or not, and affects logMode accordingly.
 	#ifndef NDEBUG
-		const LogLevel logMode = DEBUG;
+		const logTypes logType = DEBUG;
 	#else
-		const LogLevel logMode=INFO;
+		const logTypes logType = INFO;
 	#endif
 
 
@@ -35,7 +35,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 	{
 		private:
 			std::ostringstream buffer;
-			LogLevel currentLogLevel;
+			logTypes currentlogType;
 			static const unsigned short int loggerOutputtingMode = 3; // (Used to determine how you want log files to work. To see the different availible options, look at the code in the `~Log()` function.)
 			static const bool shouldOutputToConsole = true;
 			static const bool shouldNonUniqueLoggerFunctionCommandsBeProcessed = true;
@@ -43,14 +43,14 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 			const std::string defaultSingularLogFileName = "log";
 	
 		public:
-			Log (LogLevel logLevel = INFO) // (An object constructor for Log objects, the default logging type is "INFO")
+			Log (logTypes logTypes = INFO) // (An object constructor for Log objects, the default logging type is "INFO")
 			{
-				currentLogLevel = logLevel;
+				currentlogType = logTypes;
 
 				// (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
-				if (!(currentLogLevel <= logMode)) { return; }
+				if (!(currentlogType <= logType)) { return; }
 					
-				switch (currentLogLevel)
+				switch (currentlogType)
 				{
 					case ERROR:{
 						buffer << "[ERROR] ";
@@ -94,7 +94,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		template <typename varType>
 		Log & operator << (varType const & value)
 		{
-			if (currentLogLevel <= logMode) { // (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
+			if (currentlogType <= logType) { // (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
 				buffer << value;
 			}
 			return *this;
@@ -104,7 +104,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		~Log() //(Note that all of this code is ran everytime a Log object is deconstructed, such as for example when a Log object is created but then not stored anywhere.)
 		{
 			// (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
-			if (!(currentLogLevel <= logMode)) { return; }
+			if (!(currentlogType <= logType)) { return; }
 
 			switch (loggerOutputtingMode)
 			{
@@ -114,7 +114,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 				}
 				// Output mode: Only can output to the console, doesn't output to any log files.
 				case 1: {
-					if (currentLogLevel == LOGGERFUNCTION) {
+					if (currentlogType == LOGGERFUNCTION) {
 						if (shouldNonUniqueLoggerFunctionCommandsBeProcessed == true) {
 							process_nonunique_LOGGERFUNCTION_commands(buffer.str());
 						}
@@ -128,7 +128,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 				}
 				// Output mode: Output to a consistent singular not-automatically-cleared txt file, and also optionally to the console.
 				case 2: {
-					if (currentLogLevel == LOGGERFUNCTION) {
+					if (currentlogType == LOGGERFUNCTION) {
 						if (buffer.str() == "log_file_clear") { //(Erases the contents of the main singular log file when the LOGGERFUNCTION command: "log_file_clear" is seen.)
 							std::ofstream openedLogFile;
 							openedLogFile.open(logFilesContainerDirectory + "/" + defaultSingularLogFileName + ".txt");
@@ -153,7 +153,7 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 				}
 				// Output mode: Outputs to a consistent singular txt file which is automatically cleared each time the program starts or the "log_file_clear" function is called, and also optionally to the console.
 				case 3: {
-					if (currentLogLevel == LOGGERFUNCTION){
+					if (currentlogType == LOGGERFUNCTION){
 						if ((buffer.str() == "program_start")||(buffer.str() == "log_file_clear")) { //(Erases the contents of the main singular log file when the LOGGERFUNCTION command: "program_start" or "log_file_clear" is seen.)
 							std::ofstream openedLogFile;
 							openedLogFile.open(logFilesContainerDirectory + "/" + defaultSingularLogFileName + ".txt");
