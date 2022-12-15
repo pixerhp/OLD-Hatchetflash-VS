@@ -1,13 +1,5 @@
-{POTENTIALLY SLIGHTLY OUTDATED}
-
-/* Commenting_Style.txt file description:
-* The official standard commenting style for Hatchetflash's code.
-* Written initially by Pixer Pinecone on 9/8/2022. (M/D/YYYY)
-*/
-
-
+This doc contains a list of tipes regarding comment formating choices/styles which are being used in Hatchetflash's development.
 =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
-
 
 ==> Most (if not all) code files should have a multi-line file description at the start of the file like this:
 

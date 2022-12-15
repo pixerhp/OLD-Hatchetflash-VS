@@ -104,7 +104,9 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		~Log() //(Note that all of this code is ran everytime a Log object is deconstructed, such as for example when a Log object is created but then not stored anywhere.)
 		{
 			// (Helps ensure that DEBUG logs only get logged when the program is compiled in debug mode.)
-			if (!(currentlogType <= lastmostUsableLogType)) { return; }
+			if (!(currentlogType <= lastmostUsableLogType)) { 
+				return; 
+			}
 
 			switch (loggerOutputtingMode)
 			{
@@ -176,6 +178,14 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 					}
 					break;
 				}
+				// {u} Output mode: Outputs to a new txt file which isn't ever automatically cleared each time the program starts (with no limit to the number of files.) (+ optionally to the console.)
+				case 4: {
+
+				}
+				// {u} Output mode: Outputs to a new txt file which isn't ever automatically cleared each time the program starts, with only the last N files saved. (+ optionally to the console.)
+				case 5: {
+
+				}
 				// (The loggerOutputtingMode value should always be one of the available numbered options, so when it's not, we should alert the dev via the console that something went wrong.)
 				default: {
 					std::cout << "[WARNING: THE LOGGER HAS AN INVALID `loggerOutputtingMode` VALUE.]";
@@ -205,18 +215,5 @@ namespace Logger //(The namespace "Logger" is used for organizational reasons.)
 		return;
 	}
 }
-
-
-// ( Unrelatedly, here's some fun pastable comment-text art! )
-
-// [Of Jcodefox]
-//     /|/|      |\|\       /|/|      |\|\       |\|\      |\|\      /|/|        |\|\     |\_/|
-//    (  ^^>    <^^  )     (  ''_>  <_''  )     (  ;;_>  <_;;   )    ( , '_>  <_' , )      o o 
-//    /   |      |   \     /   | /  \ |   \     /  (|      |)  \    /  /|        |\  \    /_^_\
-
-// [Of Pixer Pinecone]
-//    \///¯>    <¯\\\/     \//0^0    0^0\\/     \//0^0    0^0\\/     \//0^0    0^0\\/    \/)^()\
-//    /( 0^>    <^0 )\     /( o >    < o )\     /(^O >    < O^)\     /( . >    < . )\    /  v  )
-//    _/  ¯_    _¯  \_     _/  ¯_    _¯  \_     _/  ^_    _^  \_     _/  ¯_    _¯  \_     _ ¯ _ 
 
 //=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
