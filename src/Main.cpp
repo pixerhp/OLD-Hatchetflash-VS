@@ -118,6 +118,17 @@ int main()
 	textShader.Activate();
 
 	Logger::Log(Logger::INFO) << "Hatchetflash shader-objects created..." << "\n";
+	
+	/////////////////////////////////////////////////
+
+	// Set's up the view-camera's perspective.
+	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);//setup the projection orhto
+	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));//bind the projection orhto onto the text shader
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Clear them buffers
+	textRenderer.RenderText(textShader, "Loading...", (float)windowWidth / 2 - 300.0f, (float)windowHeight / 2 - ((48.0f * 2.5f) / 2.0f), 2.5f, glm::vec3(0.5, 0.8f, 0.5f));//Render Loading text
+	glfwSwapBuffers(window); //(Swaps the window's back buffer canvas with it's front buffer canvas.)
+	glfwPollEvents(); //(Checks for / gets window-events, such as attempting to close the window.)
 
 	/////////////////////////////////////////////////
 
@@ -145,10 +156,6 @@ int main()
 
 	// Creates the camera object.
 	Camera viewCam(windowWidth, windowHeight, glm::vec3(0.0f, 20.0f, 80.0f)); //(Also initializes the camera's position to where you start out already seeing the blocks. This will change later.)
-
-	// Set's up the view-camera's perspective.
-	glm::mat4 projection = glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight);
-	glUniformMatrix4fv(glGetUniformLocation(textShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 	Logger::Log(Logger::INFO) << "Hatchetflash view-camera object instantiated..." << "\n";
 
