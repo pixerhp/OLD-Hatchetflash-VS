@@ -171,13 +171,13 @@
     <Image Include="Resources\Block_Textures\gravel_default.png" />
     <Image Include="Resources\Block_Textures\ladder_brassish_side.png" />
     <Image Include="Resources\Block_Textures\metal_default.png" />
-    <Image Include="Resources\Block_Textures\poolrooms_tiles_brown_default.png" />
+    <Image Include="Resources\Block_Textures\poolrooms_tiles_default.png" />
     <Image Include="Resources\Block_Textures\sand_default.png" />
-    <Image Include="Resources\Block_Textures\shale_gray_side.png" />
-    <Image Include="Resources\Block_Textures\shale_gray_top.png" />
+    <Image Include="Resources\Block_Textures\shale_side.png" />
+    <Image Include="Resources\Block_Textures\shale_top.png" />
     <Image Include="Resources\Block_Textures\stone_tile_default.png" />
     <Image Include="Resources\Block_Textures\unknown_block_default.png" />
-    <Image Include="Resources\Block_Textures\water_top.png" />
+    <Image Include="Resources\Block_Textures\liquid_top.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_A.png" />
     <Image Include="Resources\Utility_Images\Hatchetflash_Window_Icon_B.png" />
   </ItemGroup>

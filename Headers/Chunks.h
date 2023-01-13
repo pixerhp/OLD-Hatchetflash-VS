@@ -8,7 +8,7 @@
 
 #include <vector>
 #include <map>
-#include <iostream> //(Doesn't seem to need to be stated here, but it's probably good to just do it anyways.)
+#include <iostream> //(Doesn't seem to need to be stated here, but it's probably best to restate it just-in-case.)
 
 #include "Meshes.h"
 #include "BlockTextureAtlas.h"
