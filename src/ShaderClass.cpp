@@ -91,8 +91,7 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-			Logger::getInstance().logLevel = Logger::ERROR;
-			Logger::getInstance() << "SHADER COMPILATION ERROR for:" << type << "\n" << infoLog << "\n";
+			Logger::getInstance() << Logger::ERROR << "SHADER COMPILATION ERROR for:" << type << "\n" << infoLog << "\n";
 		}
 	}
 	else
@@ -101,8 +100,7 @@ void Shader::compileErrors(unsigned int shader, const char* type)
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-			Logger::getInstance().logLevel = Logger::ERROR;
-			Logger::getInstance() << "SHADER LINKING ERROR for:" << type << "\n" << infoLog << "\n";
+			Logger::getInstance() << Logger::ERROR << "SHADER LINKING ERROR for:" << type << "\n" << infoLog << "\n";
 		}
 	}
 }
