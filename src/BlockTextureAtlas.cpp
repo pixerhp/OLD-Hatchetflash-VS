@@ -15,7 +15,10 @@ BlockTextureAtlas::BlockTextureAtlas()
 	/////////////////////////////////////////////////
 
 	const bool showBTAtlasCreationTextInConsole = false; //(Toggles whether debug text is displayed in the console regarding texture atlas object creation; default is false.)
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::TITLELESS) << "\n"; Logger::Log(Logger::INFO) << "Creating a BlockTextureAtlas object...\n"; }
+	if (showBTAtlasCreationTextInConsole) {
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "Creating a BlockTextureAtlas object...\n";
+	}
 
 	const uint8_t fileDirectoryNameLengthUntilFileName = 25; //Stores the length of a file's full directory name up until the unique name of the file. (Example: The length of "Resources/Block_Textures/" is 25 characters.)
 	const uint8_t lengthOfFileExtensionIncludingPeriod = 4; //Stores the character length that each of the textures' file extensions will have, *including the period*. (Example: ".png" is 4 characters.)
@@ -41,12 +44,21 @@ BlockTextureAtlas::BlockTextureAtlas()
 
 		// Adds the unique name of the file without any path or extension stuff to this vector, and then optionally outputs that it found said file to the console.
 		imageNamesList.push_back(entry.path().string().substr(fileDirectoryNameLengthUntilFileName, entry.path().string().size() - (fileDirectoryNameLengthUntilFileName + lengthOfFileExtensionIncludingPeriod)));
-		if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "Discovered texture : " + imageNamesList[imageNamesList.size() - 1] << "\n"; }
+		if (showBTAtlasCreationTextInConsole) {
+			Logger::getInstance().logLevel = Logger::INFO;
+			Logger::getInstance() << "Discovered texture : " + imageNamesList[imageNamesList.size() - 1] << "\n";
+		}
 
 		numberOfImagesInTextureAtlas += 1;
 	}
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "Total texture count: " << numberOfImagesInTextureAtlas << "\n"; }
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "Finished creating a list of image file paths and a list of image names. Creating atlas texture...\n"; }
+	if (showBTAtlasCreationTextInConsole) {
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "Total texture count: " << numberOfImagesInTextureAtlas << "\n";
+	}
+	if (showBTAtlasCreationTextInConsole) {
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "Finished creating a list of image file paths and a list of image names. Creating atlas texture...\n";
+	}
 
 	/////////////////////////////////////////////////
 
@@ -94,7 +106,10 @@ BlockTextureAtlas::BlockTextureAtlas()
 	glBindTexture(textureImageType, 0); //(Unbinds the OpenGL Texture object so that it can't be accidentally modified.)
 
 
-	if (showBTAtlasCreationTextInConsole) { Logger::Log(Logger::INFO) << "Atlas texture OpenGL texture object created successfully. Creating texcoord + other maps...\n"; }
+	if (showBTAtlasCreationTextInConsole) {
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "Atlas texture OpenGL texture object created successfully. Creating texcoord + other maps...\n";
+	}
 
 	/////////////////////////////////////////////////
 
@@ -110,8 +125,10 @@ BlockTextureAtlas::BlockTextureAtlas()
 	}
 
 	if (showBTAtlasCreationTextInConsole) {
-		Logger::Log(Logger::INFO) << "BlockTextureAtlas object created successfully!\n";
-		Logger::Log(Logger::DEBUG) << "[To turn off this text, use the showBTAtlasCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n\n";
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "BlockTextureAtlas object created successfully!\n";
+		Logger::getInstance().logLevel = Logger::DEBUG;
+		Logger::getInstance() << "[To turn off this text, use the showBTAtlasCreationTextInConsole bool in \"BlockTextureAtlas.cpp\".]\n\n";
 	}
 }
 

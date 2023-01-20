@@ -46,15 +46,17 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h); //(Declares a 
 
 int main()
 {
-	Logger::Log(Logger::LOGGERFUNCTION) << "program_start";
-	Logger::Log(Logger::INFO) << "Starting Hatchetflash program...\n" << "\n";
+	Logger::getInstance().delete_log_file();
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Starting Hatchetflash program...\n" << "\n";
 
 	/////////////////////////////////////////////////
 
 	const std::string hatchetflashVersion = "PREALPHA_0"; //A global variable used such that the code knows what version Hatchetflash is on, since this may affect saving/loading, etc.
 	bool showDebugUI = true; //(Toggles whether debug UI is shown. Debug UI includes the FPS counter.)
 
-	Logger::Log(Logger::INFO) << "Global vars and consts instantiated..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Global vars and consts instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -68,17 +70,20 @@ int main()
 
 	if (window == NULL) //(Error-checking: if GLFW failed to setup, it's function will return NULL. We check for if we get a NULL and close the program if we do.)
 	{
-		Logger::Log(Logger::ERROR) << "FATAL ERROR: Failed set up GLFW window." << "\n";
+		Logger::getInstance().logLevel = Logger::ERROR;
+		Logger::getInstance() << "FATAL ERROR: Failed set up GLFW window." << "\n";
 		return -1; 
 	}
 
 	// Loads GLAD such that it configures opengl, and also error checks. (Closes the program if GLAD didn't load properly.)
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-		Logger::Log(Logger::ERROR) << "FATAL ERROR: Failed to initilize GLAD." << "\n";
+		Logger::getInstance().logLevel = Logger::ERROR;
+		Logger::getInstance() << "FATAL ERROR: Failed to initilize GLAD." << "\n";
 		return -1;
 	}
 
-	Logger::Log(Logger::INFO) << "Successfully set-up GLFW and initialized GLAD..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Successfully set-up GLFW and initialized GLAD..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -95,7 +100,8 @@ int main()
 	glfwSetWindowIcon(window, 1, &windowIconImage);
 	stbi_image_free(windowIconImage.pixels);
 
-	Logger::Log(Logger::INFO) << "Hatchetflash Opengl-window created..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash Opengl-window created..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -104,7 +110,8 @@ int main()
 	//glfwSwapInterval(0); //(If not commented out, unlocks the window's fps. Should only be turned on temporarily for testing purposes.)
 	glClearColor(0.02f, 0.15f, 0.17f, 1.0f); //(Specifies the color that the window is cleared / drawn-over with each frame.)
 
-	Logger::Log(Logger::INFO) << "Hatchetflash glEnable settings set..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash glEnable settings set..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -117,7 +124,8 @@ int main()
 	textRenderer.initText();
 	textShader.Activate();
 
-	Logger::Log(Logger::INFO) << "Hatchetflash shader-objects created..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash shader-objects created..." << "\n";
 	
 	/////////////////////////////////////////////////
 
@@ -139,7 +147,8 @@ int main()
 	double avrgFPS = 60.0f; //(The program's average FPS from the last batch of frames, this is what's displayed when the fps is stated.)
 	bool buttonHeld = false; //(Used to detect if a button was pressed, but only so we check it once per press.)
 
-	Logger::Log(Logger::INFO) << "Hatchetflash time and FPS variables instantiated..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash time and FPS variables instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -150,14 +159,16 @@ int main()
 	AudioSource music;
 	music.queueBuffer(buffer.buffer);
 
-	Logger::Log(Logger::INFO) << "Hatchetflash audio instantiated..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash audio instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
 	// Creates the camera object.
 	Camera viewCam(windowWidth, windowHeight, glm::vec3(0.0f, 20.0f, 80.0f)); //(Also initializes the camera's position to where you start out already seeing the blocks. This will change later.)
 
-	Logger::Log(Logger::INFO) << "Hatchetflash view-camera object instantiated..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash view-camera object instantiated..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -165,7 +176,8 @@ int main()
 	BlockTextureAtlas& chunkBlocksTextureAtlas = BlockTextureAtlas::getInstance(); //(Note that BlockTextureAtlas is a singleton class, so there is only one actual block texture atlas in memory which is used everywhere.)
 	chunkBlocksTextureAtlas.texUnit(shaderProgram, "tex0", 0);
 
-	Logger::Log(Logger::INFO) << "Hatchetflash Block-Texture-Atlas created..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash Block-Texture-Atlas created..." << "\n";
 
 	/////////////////////////////////////////////////
 
@@ -187,11 +199,13 @@ int main()
 		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
 
-	Logger::Log(Logger::INFO) << "Hatchetflash pre-while-loop initializations ran..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash pre-while-loop initializations ran..." << "\n";
 
 	/////////////////////////////////////////////////
 
-	Logger::Log(Logger::INFO) << "Main while loop reached, starting Hatchetflash!\n" << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Main while loop reached, starting Hatchetflash!\n" << "\n";
 
 	while (!glfwWindowShouldClose(window)) //(Checks if you've prompted closing out the window. (One example would be "X-ing out the window".))
 	{
@@ -264,8 +278,8 @@ int main()
 
 	/////////////////////////////////////////////////
 
-	Logger::Log(Logger::TITLELESS) << "\n";
-	Logger::Log(Logger::INFO) << "Ending Hatchetflash program..." << "\n";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Ending Hatchetflash program..." << "\n";
 
 
 	// Deletes all of the renderable objects:
@@ -284,8 +298,8 @@ int main()
 	// Destroys the window, stops glfw-related things and fully ends the program.
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	Logger::Log(Logger::INFO) << "Hatchetflash program successfully ended." << "\n";
-	Logger::Log(Logger::LOGGERFUNCTION) << "program_end";
+	Logger::getInstance().logLevel = Logger::INFO;
+	Logger::getInstance() << "Hatchetflash program successfully ended." << "\n";
 	return 0;
 
 	/////////////////////////////////////////////////
@@ -319,7 +333,8 @@ GLFWwindow* setupGLFW()
 	GLFWwindow* window = glfwCreateWindow(monitorWidth, monitorHeight, "Hatchetflash   -   [Pre-Alpha Designing & Development]   -   Mid Brainmelting Stage", NULL, NULL); //(width, height, name, fullscreen monitor pointer, not-important)
 	if (window == NULL) //(Error-checks whether the glfw window was created successfully or not.)
 	{
-		Logger::Log(Logger::ERROR) << "Failed to create the GLFW window! (created window object == NULL)" << "\n";
+		Logger::getInstance().logLevel = Logger::INFO;
+		Logger::getInstance() << "Failed to create the GLFW window! (created window object == NULL)" << "\n";
 		glfwTerminate();
 		return NULL;
 	}
