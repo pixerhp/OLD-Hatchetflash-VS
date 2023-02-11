@@ -37,6 +37,7 @@
 #include "AudioSystem.h"
 #include "AudioSource.h"
 #include "AudioBuffer.h"
+#include "Physics.h"
 
 
 // Function declarations. (Their definitions are below int main().)
@@ -186,6 +187,13 @@ int main()
 		//chunk.MakeChunkFilledWithTestingBlocks();
 		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
+	/////////////////////////////////////////////////
+
+	Physics phys;
+	phys.MakeCube(reactphysics3d::Vector3(0, 0, 0), reactphysics3d::Vector3(0, 0, 0));
+	float phystimer=0.0f;
+
+	/////////////////////////////////////////////////
 
 	Logger::getInstance() << Logger::INFO << "Hatchetflash pre-while-loop initializations ran..." << "\n";
 
@@ -240,9 +248,13 @@ int main()
 			FPSTimer = 0.0f;
 			FPSCnt = 0;
 		}
-
+		if (phystimer >= (1.0f/60.0f)) {
+			phys.Step();
+			phystimer = 0.0f;
+		}
 		// FPS timer incremented by time between frames, the FPS counter is incremented too
 		FPSTimer += glfwGetTime() - last_FPS_time;
+		phystimer += glfwGetTime() - last_FPS_time;
 		FPSCnt++;
 		deltaTime = glfwGetTime() - last_FPS_time; //(Updates delta-time.)
 		last_FPS_time = glfwGetTime();
