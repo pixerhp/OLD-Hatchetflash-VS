@@ -9,11 +9,15 @@ class Physics {
 private:
 	reactphysics3d::PhysicsCommon physicsCommon;
 	reactphysics3d::PhysicsWorld* world;
-	const reactphysics3d::decimal timeStep = 1.0f / 60.0f;
 	std::vector<reactphysics3d::RigidBody*> bodies;
+	std::vector<reactphysics3d::BoxShape*> boxes;
 public:
+	const reactphysics3d::decimal timeStep = 1.0f / 60.0f;
 	Physics();
 	void Step();
-	void GetMeshes();//TODO
+	void GetNewMeshes(std::vector<Mesh>& m);
+	void GetTransfrom(std::vector<glm::vec3>& t);
+	void GetRotation(std::vector<glm::vec4>& r);
 	void MakeCube(reactphysics3d::Vector3 pos, reactphysics3d::Vector3 halfd);
+	void MakeFloor(reactphysics3d::Vector3 pos, reactphysics3d::Vector3 halfd);
 };
