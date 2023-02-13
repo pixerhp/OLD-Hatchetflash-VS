@@ -37,6 +37,7 @@
 #include "AudioSystem.h"
 #include "AudioSource.h"
 #include "AudioBuffer.h"
+#include "Physics.h"
 
 
 // Function declarations. (Their definitions are below int main().)
@@ -155,7 +156,7 @@ int main()
 	/////////////////////////////////////////////////
 
 	// Creates the camera object.
-	Camera viewCam(windowWidth, windowHeight, glm::vec3(0.0f, 20.0f, 80.0f)); //(Also initializes the camera's position to where you start out already seeing the blocks. This will change later.)
+	Camera viewCam(windowWidth, windowHeight, glm::vec3(0.0f, -10.0f, 30.0f)); //(Also initializes the camera's position to where you start out already seeing the blocks. This will change later.)
 
 	Logger::getInstance() << Logger::INFO << "Hatchetflash view-camera object instantiated..." << "\n";
 
@@ -187,6 +188,25 @@ int main()
 		chunk.GenerateMarchingCubesMesh();
 		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
+	/////////////////////////////////////////////////
+
+	Physics phys;
+	phys.MakeCube(reactphysics3d::Vector3(1.5, -11.0f, 1), reactphysics3d::Vector3(1, 1, 1));
+	phys.MakeCube(reactphysics3d::Vector3(-1.5, -13.0f, -1), reactphysics3d::Vector3(1, 1, 1));
+	phys.MakeCube(reactphysics3d::Vector3(0, -9.0f, 0), reactphysics3d::Vector3(1, 1, 1));
+	/*phys.MakeCube(reactphysics3d::Vector3(1.5, -5.0f, 1), reactphysics3d::Vector3(1, 1, 1));
+	phys.MakeCube(reactphysics3d::Vector3(-1.5, -7.0f, -1), reactphysics3d::Vector3(1, 1, 1));
+	phys.MakeCube(reactphysics3d::Vector3(0, -3.0f, 0), reactphysics3d::Vector3(1, 1, 1));*/
+	phys.MakeFloor(reactphysics3d::Vector3(0, -30.0f, 0), reactphysics3d::Vector3(10, 2, 10));
+	float phystimer=0.0f;
+	std::vector<Mesh> physMeshes;
+	phys.GetNewMeshes(physMeshes);
+	std::vector<glm::vec3> physTrans;
+	phys.GetTransfrom(physTrans);
+	std::vector<glm::vec4> physRot;
+	phys.GetRotation(physRot);
+
+	/////////////////////////////////////////////////
 
 	Logger::getInstance() << Logger::INFO << "Hatchetflash pre-while-loop initializations ran..." << "\n";
 
@@ -231,7 +251,7 @@ int main()
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 			chunk.Draw();
 		}
-
+		
 		
 		// Sets the displayed FPS to the half-second average of the programs's FPS.
 		if (FPSTimer > 0.5f) {
@@ -241,9 +261,30 @@ int main()
 			FPSTimer = 0.0f;
 			FPSCnt = 0;
 		}
+		if (phystimer >= phys.timeStep) {
+			phys.Step();
+			phys.GetTransfrom(physTrans);
+			phys.GetRotation(physRot);
+			//std::cout << physTrans.size();
+			phystimer = 0.0f;
+		}
+		int j = 0;
+		for (Mesh m : physMeshes) {
 
+
+			modelMatrix = glm::translate(glm::mat4(1.0f), physTrans[j]);
+			if (physRot[j].w < 1) 
+				modelMatrix = glm::rotate(modelMatrix, glm::acos(physRot[j].w) * 2.0f, glm::vec3(glm::asin(physRot[j])) / (glm::acos(physRot[j].w) * 2.0f));
+			
+			//modelMatrix = glm::rotate(modelMatrix, glm::acos(physRot[j].w) * 2, glm::vec3(0, 0, 1));
+			
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+			m.draw();
+			j++;
+		}
 		// FPS timer incremented by time between frames, the FPS counter is incremented too
 		FPSTimer += glfwGetTime() - last_FPS_time;
+		phystimer += glfwGetTime() - last_FPS_time;
 		FPSCnt++;
 		deltaTime = glfwGetTime() - last_FPS_time; //(Updates delta-time.)
 		last_FPS_time = glfwGetTime();
