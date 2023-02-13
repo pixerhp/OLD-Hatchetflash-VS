@@ -54,7 +54,9 @@ class Chunk
 	
 		void MakeChunkFilledWithTestingBlocks(); //(Used to generate a testing chunk as defined however is for dev purposes, won't be used in the actual game.)
 	
-		void UpdateChunkMesh(); //(Used to update the chunk's mesh/visuals to better represent the current state of the chunk.)
+		void GenerateMarchingCubesMesh();
+
+		//void UpdateChunkMesh(); //(Used to update the chunk's mesh/visuals to better represent the current state of the chunk.)
 
 		void cleanup(); //(Used for cleaning up the mesh, more specifically it has to do with VBO VAO EBO stuff.)
 };

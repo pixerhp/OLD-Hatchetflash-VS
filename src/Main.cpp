@@ -173,17 +173,18 @@ int main()
 
 	// Creates a cube/prism of chunk objects to be used for testing. THIS NEEDS TO BE REPLACED ONCE YOU GET TO DYNAMIC CHUNK LOADING.
 	std::vector<Chunk> chunks;
-	for (int z = 0; z < 4; z++){
-	for (int y = 0; y < 4; y++){
-	for (int x = 0; x < 4; x++){
-		chunks.push_back(Chunk{});
+	for (int z = 0; z < 1; z++){
+	for (int y = 0; y < 1; y++){
+	for (int x = 0; x < 1; x++){
+		chunks.push_back(Chunk{314, 0, 0, x, y, z});
 	} //end x
 	} //end y
 	} //end z
 	
 	// Fills the chunks' block-slots with random blocks and refreshes their meshes. 
 	for (Chunk& chunk: chunks){
-		//chunk.MakeChunkFilledWithTestingBlocks();
+		chunk.MakeChunkFilledWithTestingBlocks();
+		chunk.GenerateMarchingCubesMesh();
 		//chunk.UpdateChunkMesh(); //// COMMENTED OUT DUE TO IT NOT CURRENTLY WORKING!
 	}
 

@@ -5,6 +5,7 @@
 *////=-= =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-=       =-= =-= =-= =-= =-= =-= =-= 
 
 #include "Chunks.h"
+#include "Logger.h"
 
 
 // A function used to initiate drawing the chunk's mesh.
@@ -15,7 +16,7 @@ void Chunk::Draw(){ chunkMesh.draw(); }
 // Generates a chunk filled with whatever blocks are defined as needed for pure testing/dev related purposes, won't be used in-game.
 void Chunk::MakeChunkFilledWithTestingBlocks()
 {
-	/*int seed = 314 + 64 * chunkCoordsZ + 16 * chunkCoordsY + 4 * chunkCoordsX;
+	int seed = 314 + 64 * chunkCoordsZ + 16 * chunkCoordsY + 4 * chunkCoordsX;
 	srand(seed);
 	int index = 0;
 	for (int z = 0; z < 4; z++) {
@@ -25,13 +26,78 @@ void Chunk::MakeChunkFilledWithTestingBlocks()
 		// Converts the set of 3 coordinates into a single index as used for the block array.
 		index = 16*z + 4*y + x;
 
-		chunkBlockStorage[index].push_back(800000000 + rand()%17 - 1); //Set's the block's thingo-ID to a basic one.
+		if (index >= chunkBlockStorage.size()){
+			chunkBlockStorage.push_back({});
+		}
+
+		chunkBlockStorage[index].push_back(80 + rand() % 17 - 1); //Set's the block's thingo-ID to a basic one.
 
 	} //(End of the 'x' for loop.)
 	} //(End of the 'y' for loop.)
-	} //(End of the 'z' for loop.) */
+	} //(End of the 'z' for loop.)
 }
 
+
+void Chunk::GenerateMarchingCubesMesh(){
+	std::vector<Vertex> vertices;
+	std::vector<GLuint> indices;
+
+	int vertex_bottom_left_back;
+	int vertex_bottom_right_back;
+	int vertex_top_left_back;
+	int vertex_top_right_back;
+
+	int vertex_bottom_left_front;
+	int vertex_bottom_right_front;
+	int vertex_top_left_front;
+	int vertex_top_right_front;
+
+	int id = 0;
+
+	int index = 0;
+
+	for (int z = 0; z < 3; z++) {
+	for (int y = 0; y < 3; y++) {
+	for (int x = 0; x < 3; x++) {
+		vertex_bottom_left_back = (z + 0) * 16 + (y + 0) * 4 + (x + 0);
+		vertex_bottom_right_back = (z + 0) * 16 + (y + 0) * 4 + (x + 1);
+		vertex_top_left_back = (z + 0) * 16 + (y + 1) * 4 + (x + 0);
+		vertex_top_right_back = (z + 0) * 16 + (y + 1) * 4 + (x + 1);
+
+		vertex_bottom_left_front = (z + 1) * 16 + (y + 0) * 4 + (x + 0);
+		vertex_bottom_right_front = (z + 1) * 16 + (y + 0) * 4 + (x + 1);
+		vertex_top_left_front = (z + 1) * 16 + (y + 1) * 4 + (x + 0);
+		vertex_top_right_front = (z + 1) * 16 + (y + 1) * 4 + (x + 1);
+
+		id = (chunkBlockStorage[vertex_bottom_left_back][0] >= 80) | (chunkBlockStorage[vertex_bottom_right_back][0] >= 80) << 1 | (chunkBlockStorage[vertex_top_left_back][0] >= 80) << 2 | (chunkBlockStorage[vertex_top_right_back][0] >= 80) << 3 | (chunkBlockStorage[vertex_bottom_left_front][0] >= 80) << 4 | (chunkBlockStorage[vertex_bottom_right_front][0] >= 80) << 5 | (chunkBlockStorage[vertex_top_left_front][0] >= 80) << 6 | (chunkBlockStorage[vertex_top_right_front][0] >= 80) << 7;
+
+		Logger::getInstance() << Logger::DEBUG << id << "\n";
+
+		if (id != 0 && id != 255) {
+			vertices.push_back({{1.0f + x, 1.0f + y, 0.0f + z},	 {1.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+			vertices.push_back({{0.0f + x, 1.0f + y, 0.0f + z},	 {0.0f, 0.0f},	{1.0f, 1.0f, 1.0f}});
+			vertices.push_back({{0.0f + x, 1.0f + y, 1.0f + z},	 {0.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
+			vertices.push_back({{1.0f + x, 1.0f + y, 1.0f + z},	 {1.0f, 1.0f},	{1.0f, 1.0f, 1.0f}});
+
+			// Add all indices needed for this face.
+
+			indices.push_back(index);
+			indices.push_back(index + 1);
+			indices.push_back(index + 3);
+			indices.push_back(index + 3);
+			indices.push_back(index + 1);
+			indices.push_back(index + 2);
+			// Add to the index offset.
+			index += 4;
+		}
+	}
+	}
+	}
+
+	chunkMesh.vertices = vertices;
+	chunkMesh.indices = indices;
+	chunkMesh.regenerateVBOAndEBO();
+}
 
 // Used to update the chunk's mesh/visuals to better represent the current state of the chunk.
 /*
